@@ -1,0 +1,100 @@
+﻿AMD Radeon R7 240:30
+AMD Radeon R7 250:75
+AMD Radeon R7 250x:95
+AMD Radeon R7 260:95
+AMD Radeon R7 260x:115
+AMD Radeon R9 270:150
+AMD Radeon R9 270x:180
+AMD Radeon R9 280:240
+AMD Radeon R9 280X:250
+AMD Radeon R9 285:215
+AMD Radeon R9 290:280
+AMD Radeon R9 290x:290
+AMD Radeon R9 295 X2:500
+
+Nvidia GeForce GTX 750:55
+Nvidia GeForce GTX 750ti:60
+Nvidia GeForce GTX 760:170
+Nvidia GeForce GTX 770:200
+Nvidia GeForce GTX 780:250
+Nvidia GeForce GTX 780ti:250
+Nvidia GeForce GTX Titan:230
+Nvidia GeForce GTX Titan Black:250
+Nvidia GeForce GTX 970:145
+Nvidia GeForce GTX 980:165
+
+AMD Radeon HD 7770 GHz Edition:80
+AMD Radeon HD 7850:130
+AMD Radeon HD 7870:175
+AMD Radeon HD 7870 XT:210
+AMD Radeon HD 7950:200
+AMD Radeon HD 7970:250
+AMD Radeon HD 7990:375
+
+Nvidia GeForce GTX 650ti:80
+Nvidia GeForce GTX 650:64
+Nvidia GeForce GTX 660:140
+Nvidia GeForce GTX 660ti:170
+Nvidia GeForce GTX 670:170
+Nvidia GeForce GTX 680:195
+Nvidia GeForce GTX 690:417
+
+AMD Radeon HD 6350:20
+AMD Radeon HD 6450:30
+AMD Radeon HD 6570:60
+AMD Radeon HD 6670:70
+AMD Radeon HD 6750:90
+AMD Radeon HD 6770:110
+AMD Radeon HD 6790:150
+AMD Radeon HD 6850:130
+AMD Radeon HD 6870:150
+AMD Radeon HD 6950:200
+AMD Radeon HD 6970:200
+AMD Radeon HD 6990:375
+
+Nvidia GeForce GT 510:25
+Nvidia GeForce GT 520:29
+Nvidia GeForce GT 530:50
+Nvidia GeForce GT 545:70
+Nvidia GeForce GTX 550:105
+Nvidia GeForce GTX 555:116
+Nvidia GeForce GTX 560 SE:150
+Nvidia GeForce GTX 560:150
+Nvidia GeForce GTX 560ti:170
+Nvidia GeForce GTX 570:219
+Nvidia GeForce GTX 580:244
+Nvidia GeForce GTX 590:365
+
+AMD Radeon HD 5450:25
+AMD Radeon HD 5550:29
+AMD Radeon HD 5570:50
+AMD Radeon HD 5670:70
+AMD Radeon HD 5750:105
+AMD Radeon HD 5770:116
+AMD Radeon HD 5830:150
+AMD Radeon HD 5850:150
+AMD Radeon HD 5870:170
+AMD Radeon HD 5970:219
+
+Nvidia GeForce GT 420:50
+Nvidia GeForce GT 430:49
+Nvidia GeForce GT 440:65
+Nvidia GeForce GTS 450:106
+Nvidia GeForce GTX 460:150
+Nvidia GeForce GTX 465:200
+Nvidia GeForce GTX 470:215
+Nvidia GeForce GTX 480:250
+
+ATI Radeon 4350:20
+ATI Radeon HD 4770:90
+ATI Radeon HD 4850:170
+ATI Radeon HD 4870:220
+ATI Radeon HD 4870 X2:400
+ATI Radeon HD 4890:250
+
+Nvidia GeForce GTS 250:150
+Nvidia GeForce GTX 260:202
+Nvidia GeForce GTX 275:219
+Nvidia GeForce GTX 280:236
+Nvidia GeForce GTX 285:204
+Nvidia GeForce GTX 295:289

@@ -1,0 +1,20 @@
+﻿Be quiet! Dark Power P10 1200W;1200;1100;95;http://geizhals.de/be-quiet-dark-power-pro-10-1200w-atx-2-31-p10-1200w-bn205-a790611.html
+Be quiet! Dark Power P10 1000W;1000;850;96;http://geizhals.de/be-quiet-dark-power-pro-10-1000w-atx-2-31-p10-1000w-bn204-a790601.html
+Be quiet! Dark Power P10 750W;750;650;97;http://geizhals.de/be-quiet-dark-power-pro-10-750w-atx-2-31-p10-750w-bn202-a790490.html
+Be quiet! Dark Power P10 550W;550;500;100;http://geizhals.de/be-quiet-dark-power-pro-10-550w-atx-2-31-p10-550w-bn200-a790408.html
+Be quiet! Straight Power E10 600W CM;600;510;70;http://geizhals.de/be-quiet-straight-power-e10-cm-600w-atx-2-4-e10-cm-600w-bn235-a1165608.html
+Be quiet! Straight Power E10 500W;500;430;80;http://geizhals.de/be-quiet-straight-power-e10-500w-atx-2-4-e10-500w-bn231-a1165594.html
+Be quiet! Straight Power E10 400W;400;320;85;http://geizhals.de/be-quiet-straight-power-e10-400w-atx-2-4-e10-400w-bn230-a1165465.html
+Be quiet! Puer Power L8 300W ATX 2.4 ;300;230;60;http://geizhals.de/be-quiet-pure-power-l8-300w-atx-2-4-bn220-a960670.html
+Be quiet! System Power 7 450W;450;350;30;http://geizhals.de/be-quiet-system-power-7-450w-atx-2-31-bn143-a871343.html
+
+Antec High Current Pro HCP-850 Platinum 850W;850;800;100;http://geizhals.de/antec-high-current-pro-hcp-850-platinum-0761345-06250-3-0761345-06251-0-a1018539.html
+Antec High Current Pro HCP-1000 Platinum 1000W;1000;900;99;http://geizhals.de/antec-high-current-pro-hcp-1000-platinum-0-761345-06248-0-0-761345-06249-7-a1079951.html
+Antec High Current Pro HCP-1300 Platinum 1300W;1300;1150;98;http://geizhals.de/antec-high-current-pro-hcp-1300-platinum-0-761345-06260-2-0-761345-06261-9-a1018481.html
+Antec TruePower Classic TP-550C;550;425;40;http://geizhals.de/antec-truepower-classic-tp-550c-0761345-07702-6-0761345-07703-3-a1035130.html
+Antec True Power Classic 450W;450;425;41;http://geizhals.de/antec-truepower-classic-tp-450c-0761345-07700-2-0761345-07701-9-a1035122.html
+
+Sea Sonic G-Series G-550 550W PCGH-Edition;550;450;50;http://geizhals.de/sea-sonic-g-series-g-550-550w-pcgh-edition-atx-2-3-ssr-550rm-a1098704.html
+SuperFlower HX 450 Golden Green 450W;450;425;30;http://geizhals.de/super-flower-golden-green-hx-450w-atx-2-3-sf-450p14xe-hx-a1039307.html
+LC-Power LC 9450 400W;400;300;45;http://geizhals.de/lc-power-gold-series-lc9450-v2-3-400w-atx-2-3-a861221.html
+LC-Power LC 9550 500W;500;400;40;http://geizhals.de/lc-power-gold-series-lc9550-v2-3-500w-atx-2-3-a861223.html

@@ -1,0 +1,179 @@
+﻿Intel Core i5 4440:84
+Intel Core i5 4460:84
+Intel Core i5 4570:84
+Intel Core i5 4590:84
+Intel Core i5 4670(k):84
+Intel Core i5 4690:84
+Intel Core i5 2300:95
+Intel Core i5 2310:95
+Intel Core i5 2320:95
+Intel Core i5 2400:95
+Intel Core i5 2500(k):95
+Intel Core i5 2550(k):95
+Intel Core i5 3330:77
+Intel Core i5 3450:77
+Intel Core i5 3550:77
+Intel Core i5 3570:70
+Intel Core i5 3570(k):77
+Intel Core i5 4690(k):88
+
+Intel Core i7 860:95
+Intel Core i7 860S:82
+Intel Core i7 870:95
+Intel Core i7 920:130
+Intel Core i7 960:130
+Intel Core i7 2600(k):95
+Intel Core i7 3770(k):77
+Intel Core i7 3820(k):130
+Intel Core i7 3930k:130
+Intel Core i7 3960x:130
+Intel Core i7 3970x:150
+Intel Core i7 4770(k):84
+Intel Core i7 4930(k):190
+Intel Core i7 4960x:190
+Intel Core i7 5820k:140
+Intel Core i7 5930k:140
+Intel Core i7 5960x:140
+Intel Core i7 4790(k):84
+
+Intel Xeon E3 1220:80
+Intel Xeon E3 1220L:20
+Intel Xeon E3 1225:95
+Intel Xeon E3 1230:80
+Intel Xeon E3 1231:80
+Intel Xeon E3 1235:95
+Intel Xeon E3 1240:80
+Intel Xeon E3 1245:95
+Intel Xeon E3 1260L:45
+Intel Xeon E3 1270:80
+Intel Xeon E3 1275:80
+Intel Xeon E3 1280:95
+
+Intel Xeon E5-2670v2:115
+Intel Xeon E5-2630v2:80
+Intel Xeon E5-2620v2:80
+Intel Xeon E5-2609v2:80
+Intel Xeon E5-2609:80
+
+Intel Core 2 Duo E4300:65
+Intel Core 2 Duo E4400:65
+Intel Core 2 Duo E4500:65
+Intel Core 2 Duo E4600:65
+Intel Core 2 Duo E4700:65
+Intel Core 2 Duo E6300:65
+Intel Core 2 Duo E6320:65
+Intel Core 2 Duo E6400:65
+Intel Core 2 Duo E6420:65
+Intel Core 2 Duo E6540:65
+Intel Core 2 Duo E6550:65
+Intel Core 2 Duo E6700:65
+Intel Core 2 Duo E6750:65
+Intel Core 2 Duo E6850:65
+Intel Core 2 Duo E8400:65
+Intel Core 2 Duo E8500:65
+Intel Core 2 Duo E8600:65
+
+AMD Phenom II X4 945:125
+AMD Phenom II X4 955:125
+AMD Phenom II X4 955 BE:125
+AMD Phenom II X4 960T BE:95
+AMD Phenom II X4 965 BE:125
+AMD Phenom II X4 970 BE:125
+AMD Phenom II X4 975 BE:125
+AMD Phenom II X4 980 BE:125
+AMD Phenom II X6 1035T:95
+AMD Phenom II X6 1045T:95
+AMD Phenom II X6 1055T:125
+AMD Phenom II X6 1075T:125
+AMD Phenom II X6 1090T BE :125
+AMD Phenom II X6 1100T BE:125
+
+AMD FX-4100:95
+AMD FX-4170:125
+AMD FX-4300:95
+AMD FX-4350:125
+AMD FX-6100:95
+AMD FX-6200:125
+AMD FX-6300:95
+AMD FX-6350:125
+AMD FX-8120:125
+AMD FX-8150:125
+AMD FX-8320:125
+AMD FX-8350:125
+AMD FX-9370:220
+AMD FX-9590:220
+			
+AMD Athlon 5150:25
+AMD Athlon 5350:25
+AMD Athlon X2 340:65
+AMD Athlon X2 370K:65
+AMD Athlon X4 740:65
+AMD Athlon X4 750K:100
+AMD Athlon X4 760K:100
+AMD Athlon X4 860K Black Edition:95
+
+AMD Athlon 64 X2 3600+:89
+AMD Athlon 64 X2 3800+:89
+AMD Athlon 64 X2 4000+:65
+AMD Athlon 64 X2 4200+:89
+AMD Athlon 64 X2 4400+:65
+AMD Athlon 64 X2 4600+:89
+AMD Athlon 64 X2 4800+:89
+AMD Athlon 64 X2 5000+:89
+AMD Athlon 64 X2 5200+:89
+AMD Athlon 64 X2 5400+:89
+AMD Athlon 64 X2 5600+:89
+AMD Athlon 64 X2 6000+:125
+AMD Athlon 64 X2 6400+:125
+AMD Sempron 2650:25
+AMD Sempron 3850:25
+
+AMD A4-4000:65
+AMD A4-4020:65
+AMD A4-5300:65
+AMD A4-6300:65
+AMD A4-6320:65
+AMD A4-6400:65
+AMD A4-7300:65
+AMD A6-5400K:65
+AMD A6-6400K:65
+AMD A6-6420K Black Edition:65
+AMD A6-7400K Black Edition:95
+AMD A8-5500:65
+AMD A8-5600K:100
+AMD A8-6500:65
+AMD A8-6500T:45
+AMD A8-6600K:100
+AMD A8-7600:65
+AMD A10-5700:65
+AMD A10-5800K:100
+AMD A10-6700:65
+AMD A10-6700T:45
+AMD A10-6790K Black Edition:100
+AMD A10-6800K:100
+AMD A10-7700K Black Edition:95
+AMD A10-7800:65
+AMD A10-7850K Black Edition:95
+
+Intel Core 2 Quad Q6400:89
+Intel Core 2 Quad Q6600:91
+Intel Core 2 Quad Q6700:92
+Intel Core 2 Quad Q8200:95
+Intel Core 2 Quad Q8200S:65
+Intel Core 2 Quad Q8300:95
+Intel Core 2 Quad Q8400:95
+Intel Core 2 Quad Q8400S:65
+Intel Core 2 Quad Q9300:95
+Intel Core 2 Quad Q9500:95
+
+Intel Core i3 3210:55
+Intel Core i3 3220:55
+Intel Core i3 3225:55
+Intel Core i3 3250:55
+Intel Core i3 4130:53
+Intel Core i3 4150:54
+Intel Core i3 4160:54
+Intel Core i3 4330:54
+Intel Core i3 4340:54
+Intel Core i3 4360:54
+Intel Core i3 4370:54
