@@ -6,16 +6,16 @@ using System.Threading.Tasks;
 
 namespace PSU_Calculator.Komponenten
 {
-  public class PcKomponente
+  public class PcComponent
   {
-    public PcKomponente(string _bez, int _tdp, int _benchmarking)
+    public PcComponent(string _bez, int _tdp, int _benchmarking)
     {
-      Bezeichnung = _bez;
+      Name = _bez;
       TDP = _tdp;
       GPGPU = _benchmarking;
     }
 
-    public string Bezeichnung
+    public string Name
     {
       get;
       set;
@@ -35,12 +35,12 @@ namespace PSU_Calculator.Komponenten
 
     public virtual string GetOrginalString()
     {
-      return string.Format("{0}:{1}:{2}", Bezeichnung, TDP, GPGPU);
+      return string.Format("{0}:{1}:{2}", Name, TDP, GPGPU);
     }
 
     public override string ToString()
     {
-      return Bezeichnung;
+      return Name;
     }
   }
 }

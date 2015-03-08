@@ -5,27 +5,27 @@ using System.Text;
 
 namespace PSU_Calculator.Komponenten
 {
-  class Kuehlung : PcKomponente
+  class CoolingSolution : PcComponent
   {
-    public Kuehlung(string _bez, int _tdp, bool _gpu, CoolingTyp _kuehlloesung, bool _onlyOnce)
+    public CoolingSolution(string _bez, int _tdp, bool _gpu, CoolingTyp _coolingsolution, bool _onlyOnce)
       : base(_bez, _tdp, _tdp)
     {
       GPU = _gpu;
-      Kuehlloesung = _kuehlloesung;
+      CoolingTypTyp = _coolingsolution;
       OnlyOnce = _onlyOnce;
     }
 
-    public Kuehlung(string _bez, int _tdp, bool _gpu, CoolingTyp _kuehlloesung)
-      : this(_bez, _tdp,_gpu, _kuehlloesung, false)
+    public CoolingSolution(string _bez, int _tdp, bool _gpu, CoolingTyp _coolingsolution)
+      : this(_bez, _tdp,_gpu, _coolingsolution, false)
     {
     }
 
-    public void setOnlyOnce(bool _value)
+    public void SetOnlyOnce(bool _value)
     {
       OnlyOnce = _value;
     }
 
-    public CoolingTyp Kuehlloesung
+    public CoolingTyp CoolingTypTyp
     {
       get;
       set;
@@ -45,8 +45,8 @@ namespace PSU_Calculator.Komponenten
 
     public enum CoolingTyp
     {
-      Luft = 30,
-      Wasser = 50,
+      Air = 30,
+      Water = 50,
       LN2 = 100
     }
   }

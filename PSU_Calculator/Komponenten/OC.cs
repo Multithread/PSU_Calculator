@@ -5,7 +5,7 @@ using System.Text;
 
 namespace PSU_Calculator.Komponenten
 {
-  class OC : PcKomponente
+  class OC : PcComponent
   {
     public OC(string _bez, bool _isCPU, bool _isGPU)
       : base(_bez, 0, 0)
@@ -24,28 +24,28 @@ namespace PSU_Calculator.Komponenten
       return GPU;
     }
 
-    public int generateCPU_OCVerbrauch(int watt, Kuehlung kuhl)
+    public int CalculateCPU_OCUsageInWatt(int _watt, CoolingSolution _cool)
     {
       if (!HasCPUOC())
       {
-        return watt;
+        return _watt;
       }
-      return watt + (watt * (int)kuhl.Kuehlloesung / 100);
+      return _watt + (_watt * (int)_cool.CoolingTypTyp / 100);
     }
 
-    public int generateGPU_OCVerbrauch(int watt, Kuehlung kuhl)
+    public int CalculateGPU_OCUsageInWatt(int _watt, CoolingSolution _cool)
     {
       if (!HasGPUOC())
       {
-        return watt;
+        return _watt;
       }
-      if (kuhl.GPU)
+      if (_cool.GPU)
       {
-        return watt + (watt * (int)kuhl.Kuehlloesung / 100);
+        return _watt + (_watt * (int)_cool.CoolingTypTyp / 100);
       }
       else
       {
-        return watt + (watt * (int)Kuehlung.CoolingTyp.Luft / 100);
+        return _watt + (_watt * (int)CoolingSolution.CoolingTyp.Air / 100);
       }
     }
 

@@ -6,18 +6,18 @@ using System.Threading.Tasks;
 
 namespace PSU_Calculator.Komponenten
 {
-  public class Netzteil : PcKomponente
+  public class PowerSupply : PcComponent
   {
-      public Netzteil(string _name, int _power, int _toTDP, string _ghLink)
+      public PowerSupply(string _name, int _power, int _toTDP, string _ghLink)
         :this (_name,_power,_toTDP,_ghLink,50)  
     {
     }
 
-    public Netzteil(string _name, int _power, int _toTDP, string _ghLink, int qualitaet)
+    public PowerSupply(string _name, int _power, int _toTDP, string _ghLink, int qualitaet)
       : base(_name, _toTDP, _power)
     {
       Geizhals = _ghLink;
-      Qualitaet = qualitaet;
+      Quality = qualitaet;
     }
 
     public string Geizhals
@@ -26,7 +26,7 @@ namespace PSU_Calculator.Komponenten
       set;
     }
 
-    public int BesteAuslastung
+    public int UsageLoadMaximum
     {
       get
       {
@@ -35,12 +35,12 @@ namespace PSU_Calculator.Komponenten
     }
 
 
-    public virtual string GetOrginalString()
+    public override string GetOrginalString()
     {
-      return string.Format("{0};{1};{2};{3};{4}", Bezeichnung, TDP, BesteAuslastung, Qualitaet, Geizhals);
+      return string.Format("{0};{1};{2};{3};{4}", Name, TDP, UsageLoadMaximum, Quality, Geizhals);
     }
 
-    public int Qualitaet
+    public int Quality
     {
       set;
       get;

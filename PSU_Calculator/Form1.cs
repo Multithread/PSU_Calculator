@@ -47,15 +47,15 @@ namespace PSU_Calculator
     }
 
     //Updates herunterladen von Github.
-    void TestForUpdates(object data)
+    void TestForUpdates(object _data)
     {
       try
       {
-        Festplattenzugriffe.GetLocalData(addToBoxInvvoke);
+        StorageMapper.GetLocalData(addToBoxInvvoke);
 
         WebClient c = new WebClient();
         LoaderModul m = LoaderModul.getInstance();
-        string version = c.DownloadString("https://raw.githubusercontent.com/Multithread/PSU_Calculator/master/" + Einstellungen.Version);
+        string version = c.DownloadString("https://raw.githubusercontent.com/Multithread/PSU_Calculator/master/" + PSUCalculatorSettings.Version);
         version = version.Replace("\n", "");
         if (Properties.Einstellungen.Default.Version.Equals(version))
         {
@@ -63,25 +63,25 @@ namespace PSU_Calculator
         }
 
         //CPU liste updaten
-        string b = c.DownloadString("https://raw.githubusercontent.com/Multithread/PSU_Calculator/master/" + Einstellungen.CPU);
+        string b = c.DownloadString("https://raw.githubusercontent.com/Multithread/PSU_Calculator/master/" + PSUCalculatorSettings.CPU);
         string[] cpu = b.Split(new string[] { "\n" }, StringSplitOptions.RemoveEmptyEntries);
-        m.AddCPURange(m.getKomponenten(cpu));
+        m.AddCPURange(m.GetComponents(cpu));
 
         addToBoxInvvoke(true);
 
         //GPU liste updaten
-        b = c.DownloadString("https://raw.githubusercontent.com/Multithread/PSU_Calculator/master/" + Einstellungen.GPU);
+        b = c.DownloadString("https://raw.githubusercontent.com/Multithread/PSU_Calculator/master/" + PSUCalculatorSettings.GPU);
         string[] gpu = b.Split(new string[] { "\n" }, StringSplitOptions.RemoveEmptyEntries);
-        m.AddGPURange(m.getKomponenten(gpu));
+        m.AddGPURange(m.GetComponents(gpu));
 
         addToBoxInvvoke(false);
 
         //Netzteile Liste updaten
-        b = c.DownloadString("https://raw.githubusercontent.com/Multithread/PSU_Calculator/master/" + Einstellungen.Netzteile);
+        b = c.DownloadString("https://raw.githubusercontent.com/Multithread/PSU_Calculator/master/" + PSUCalculatorSettings.PowerSupplys);
         string[] nt = b.Split(new string[] { "\n" }, StringSplitOptions.RemoveEmptyEntries);
-        m.AddNetzteilRange(m.getNetzteileFromArray(nt));
+        m.AddNetzteilRange(m.GetPowerSupplysFromArray(nt));
 
-        if (Festplattenzugriffe.SetLocalData(version, m.GPU, m.CPU, m.Netzteile))
+        if (StorageMapper.SetLocalData(version, m.GPU, m.CPU, m.Netzteile))
         {
           Properties.Einstellungen.Default.Version = version;
         }
@@ -98,16 +98,16 @@ namespace PSU_Calculator
     }
 
     //Invoke für das hinzufügen von Elementen zu einer Combobox
-    public void addToBoxInvvoke(bool isCPU)
+    public void addToBoxInvvoke(bool _isCPU)
     {
       if (this.InvokeRequired)
       {
-        this.Invoke(new boxInvoke(addToBoxInvvoke), new object[] { isCPU });
+        this.Invoke(new boxInvoke(addToBoxInvvoke), new object[] { _isCPU });
         return;
       }
       object o = null;
       //CPU's aktualsisieren
-      if (isCPU)
+      if (_isCPU)
       {
         o = this.cbxCpu.SelectedItem;
         LoaderModul.getInstance().LoadCPU(this.cbxCpu);
@@ -136,7 +136,7 @@ namespace PSU_Calculator
         }
       }
     }
-    public delegate void boxInvoke(bool isCPU);
+    public delegate void boxInvoke(bool _isCPU);
 
     /// <summary>
     /// DAs event setzten für das Updaten des verbrauches und der Netzteilemepfehlungen
@@ -174,7 +174,7 @@ namespace PSU_Calculator
     {
       OC oc = cbxOverclocking.SelectedItem as OC; //Übertaktung auslesen zur weiteren bearbeitung
       verbrauch = 20;//Verbrauch MB mit Controlern
-      Kuehlung kuehlloesung = (cbxCooling.SelectedItem as Kuehlung);//Kühlung merken, wichtig für OC
+      CoolingSolution kuehlloesung = (cbxCooling.SelectedItem as CoolingSolution);//Kühlung merken, wichtig für OC
 
       //Kühllösung Strommverbrauch hinzufügen
       if (kuehlloesung.OnlyOnce)
@@ -183,41 +183,41 @@ namespace PSU_Calculator
       }
       else
       {
-        if (cbxCpu.SelectedItem is PcKomponente && (cbxCpu.SelectedItem as PcKomponente).TDP > 0)
+        if (cbxCpu.SelectedItem is PcComponent && (cbxCpu.SelectedItem as PcComponent).TDP > 0)
         {
           verbrauch += kuehlloesung.TDP;
         }
-        if (chkdualcpu.Checked && cbxCPU2.SelectedItem is PcKomponente && (cbxCPU2.SelectedItem as PcKomponente).TDP > 0)
+        if (chkdualcpu.Checked && cbxCPU2.SelectedItem is PcComponent && (cbxCPU2.SelectedItem as PcComponent).TDP > 0)
         {
           verbrauch += kuehlloesung.TDP;
         }
       }
 
       //CPU
-      if (cbxCpu.SelectedItem is PcKomponente)
+      if (cbxCpu.SelectedItem is PcComponent)
       {
-        verbrauch += oc.generateCPU_OCVerbrauch((cbxCpu.SelectedItem as PcKomponente).TDP, kuehlloesung);
+        verbrauch += oc.CalculateCPU_OCUsageInWatt((cbxCpu.SelectedItem as PcComponent).TDP, kuehlloesung);
       }
-      if (chkdualcpu.Checked && cbxCPU2.SelectedItem is PcKomponente)
+      if (chkdualcpu.Checked && cbxCPU2.SelectedItem is PcComponent)
       {
-        verbrauch += oc.generateCPU_OCVerbrauch((cbxCPU2.SelectedItem as PcKomponente).TDP, kuehlloesung);
+        verbrauch += oc.CalculateCPU_OCUsageInWatt((cbxCPU2.SelectedItem as PcComponent).TDP, kuehlloesung);
       }
 
       //GPU
       foreach (ComboBox box in cbxGrakaList)
       {
-        if (box.SelectedItem is PcKomponente)
+        if (box.SelectedItem is PcComponent)
         {
-          verbrauch += oc.generateGPU_OCVerbrauch((box.SelectedItem as PcKomponente).TDP, kuehlloesung);
+          verbrauch += oc.CalculateGPU_OCUsageInWatt((box.SelectedItem as PcComponent).TDP, kuehlloesung);
         }
         if (!chkCFSLI.Checked)
         {
           break;
         }
       }
-      if (cbxPhysx.SelectedItem is PcKomponente)
+      if (cbxPhysx.SelectedItem is PcComponent)
       {
-        verbrauch += (cbxPhysx.SelectedItem as PcKomponente).TDP;
+        verbrauch += (cbxPhysx.SelectedItem as PcComponent).TDP;
       }
 
       //Laufwerke/HDD/SSD/Lüfter
@@ -277,14 +277,14 @@ namespace PSU_Calculator
     /// Netzteile für den Rechner empfehlen
     /// </summary>
     /// <param name="Watt"></param>
-    public List<Netzteil> EmpfehleNetzteile(int Watt)
+    public List<PowerSupply> EmpfehleNetzteile(int Watt)
     {
-      List<Netzteil> empfehlenswerte = new List<Netzteil>();
-      foreach (Netzteil nt in LoaderModul.getInstance().getNetzteile())
+      List<PowerSupply> empfehlenswerte = new List<PowerSupply>();
+      foreach (PowerSupply nt in LoaderModul.getInstance().GetPowerSupplys())
       {
-        if (nt.BesteAuslastung > Watt)
+        if (nt.UsageLoadMaximum > Watt)
         {
-          if (nt.BesteAuslastung < (Watt + 100 + (nt.TDP * 0.1)))
+          if (nt.UsageLoadMaximum < (Watt + 100 + (nt.TDP * 0.1)))
           {
             //Empfehlen
             empfehlenswerte.Add(nt);
@@ -298,11 +298,11 @@ namespace PSU_Calculator
       return empfehlenswerte;
     }
 
-    private void AddToView(List<Netzteil> empfehlenswerte)
+    private void AddToView(List<PowerSupply> empfehlenswerte)
     {
       pnlNetzteile.SuspendLayout();
       pnlNetzteile.Controls.Clear();
-      foreach (Netzteil nt in empfehlenswerte)
+      foreach (PowerSupply nt in empfehlenswerte)
       {
         LinkLabel l = new LinkLabel();
         l.AutoSize = true;
@@ -313,7 +313,7 @@ namespace PSU_Calculator
         l.Name = nt.Geizhals;
         l.Size = new System.Drawing.Size(35, 15);
         l.TabIndex = 64;
-        l.Text = nt.Bezeichnung;
+        l.Text = nt.Name;
         l.Click += gotoGhLink;
 
 
@@ -449,9 +449,9 @@ namespace PSU_Calculator
       int nrOfEmpty = 0;
       foreach (ComboBox box in cbxGrakaList)
       {
-        if (box.SelectedItem is PcKomponente)
+        if (box.SelectedItem is PcComponent)
         {
-          if ((box.SelectedItem as PcKomponente).TDP == 0)
+          if ((box.SelectedItem as PcComponent).TDP == 0)
           {
             nrOfEmpty++;
           }
@@ -476,9 +476,9 @@ namespace PSU_Calculator
       //mehr als 1 leere, reduzieren auf 1 leere
       for (int i = 0; i < cbxGrakaList.Count; i++)
       {
-        if (cbxGrakaList[i].SelectedItem is PcKomponente)
+        if (cbxGrakaList[i].SelectedItem is PcComponent)
         {
-          if ((cbxGrakaList[i].SelectedItem as PcKomponente).TDP == 0)
+          if ((cbxGrakaList[i].SelectedItem as PcComponent).TDP == 0)
           {
             nrOfEmpty++;
           }
@@ -537,14 +537,14 @@ namespace PSU_Calculator
     //Netzteile in die Zwischenablage Kopieren für ein einfügen im Forum.
     private void cmdCopyToForum_Click(object sender, EventArgs e)
     {
-      List<Netzteil> netzteile = EmpfehleNetzteile(verbrauch);
+      List<PowerSupply> netzteile = EmpfehleNetzteile(verbrauch);
       StringBuilder sb = new StringBuilder();
-      foreach (Netzteil nt in netzteile)
+      foreach (PowerSupply nt in netzteile)
       {
         sb.Append("[URL=\"");
         sb.Append(nt.Geizhals);
         sb.Append("\"]");
-        sb.Append(nt.Bezeichnung);
+        sb.Append(nt.Name);
         sb.Append("[/URL]\n");
       }
       System.Windows.Forms.Clipboard.SetDataObject(sb.ToString(), true);

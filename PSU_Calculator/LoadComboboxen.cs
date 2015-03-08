@@ -26,16 +26,16 @@ namespace PSU_Calculator
 
     }
 
-    private List<PcKomponente> gpuKomponenten;
-    private List<PcKomponente> cpuKomponenten;
-    private List<Netzteil> netzteile;
-    private string getAssemblyText(string name)
+    private List<PcComponent> gpuComponentList;
+    private List<PcComponent> cpuComponentList;
+    private List<PowerSupply> powersupplyList;
+    private string getAssemblyText(string _name)
     {
       string back = "";
       try
       {
         Assembly ass = Assembly.GetExecutingAssembly();
-        StreamReader _textStreamReader = new StreamReader(ass.GetManifestResourceStream("PSU_Calculator.Resources." + name));
+        StreamReader _textStreamReader = new StreamReader(ass.GetManifestResourceStream("PSU_Calculator.Resources." + _name));
         back = _textStreamReader.ReadToEnd();
       }
       catch (Exception)
@@ -45,53 +45,53 @@ namespace PSU_Calculator
       return back;
     }
 
-    public List<PcKomponente> GPU
+    public List<PcComponent> GPU
     {
       get
       {
-        return gpuKomponenten;
+        return gpuComponentList;
       }
     }
 
-    public List<PcKomponente> CPU
+    public List<PcComponent> CPU
     {
       get
       {
-        return cpuKomponenten;
+        return cpuComponentList;
       }
     }
 
-    public List<PcKomponente> Netzteile
+    public List<PcComponent> Netzteile
     {
       get
       {
-        return new List<PcKomponente>(netzteile);
+        return new List<PcComponent>(powersupplyList);
       }
     }
 
     /// <summary>
     /// Cooling solutions laden
     /// </summary>
-    /// <param name="liste"></param>
-    public void LoadCoolingSolutions(ComboBox liste)
+    /// <param name="_box"></param>
+    public void LoadCoolingSolutions(ComboBox _box)
     {
-      liste.Items.Clear();
-      liste.Items.AddRange(new object[] {
-            new Kuehlung("Luftkühlung (1-Fan)", 5, false,Kuehlung.CoolingTyp.Luft),
-            new Kuehlung("Luftkühlung (2-Fan)", 10, false,Kuehlung.CoolingTyp.Luft),
-            new Kuehlung("AiO WaKü", 10, false, Kuehlung.CoolingTyp.Wasser),
-            new Kuehlung("WaKü", 10, true, Kuehlung.CoolingTyp.Wasser, true),
-            new Kuehlung("LN2", 0, true, Kuehlung.CoolingTyp.LN2, true)});
+      _box.Items.Clear();
+      _box.Items.AddRange(new object[] {
+            new CoolingSolution("Luftkühlung (1-Fan)", 5, false,CoolingSolution.CoolingTyp.Air),
+            new CoolingSolution("Luftkühlung (2-Fan)", 10, false,CoolingSolution.CoolingTyp.Air),
+            new CoolingSolution("AiO WaKü", 10, false, CoolingSolution.CoolingTyp.Water),
+            new CoolingSolution("WaKü", 10, true, CoolingSolution.CoolingTyp.Water, true),
+            new CoolingSolution("LN2", 0, true, CoolingSolution.CoolingTyp.LN2, true)});
     }
 
     /// <summary>
     /// OC möglichkeiten laden
     /// </summary>
-    /// <param name="liste"></param>
-    public void LoadOCVariations(ComboBox liste)
+    /// <param name="_box"></param>
+    public void LoadOCVariations(ComboBox _box)
     {
-      liste.Items.Clear();
-      liste.Items.AddRange(new object[] {
+      _box.Items.Clear();
+      _box.Items.AddRange(new object[] {
             new OC("Kein OC", false, false),
             new OC("Ja nur CPU", true, false),
             new OC("Ja nur GPU", false, true),
@@ -99,27 +99,27 @@ namespace PSU_Calculator
     }
 
     /// <summary>
-    /// GPU's in eine combobox laden
+    /// GPU's in eine combobox laden, allerdings nur solche von NVidia, ev. speziellen Parameter der sowas abdeckt machen.
     /// </summary>
-    /// <param name="liste"></param>
-    public void LoadPhysXKarten(ComboBox liste)
+    /// <param name="_box"></param>
+    public void LoadPhysXKarten(ComboBox _box)
     {
-      List<PcKomponente> physx = new List<PcKomponente>();
-      foreach (PcKomponente gpu in getGPUKomponenten())
+      List<PcComponent> physx = new List<PcComponent>();
+      foreach (PcComponent gpu in GetGPUComponents())
       {
-        if (string.IsNullOrEmpty(gpu.Bezeichnung) || gpu.Bezeichnung.Contains("Nvidia"))
+        if (string.IsNullOrEmpty(gpu.Name) || gpu.Name.Contains("Nvidia"))
         {
           physx.Add(gpu);
         }
       }
-      liste.AutoCompleteSource = AutoCompleteSource.ListItems;
-      liste.Items.Clear();
-      liste.Items.AddRange(physx.ToArray());
+      _box.AutoCompleteSource = AutoCompleteSource.ListItems;
+      _box.Items.Clear();
+      _box.Items.AddRange(physx.ToArray());
     }
 
-    public void setPhysXSearchEvent(ComboBox liste)
+    public void setPhysXSearchEvent(ComboBox _box)
     {
-      liste.KeyUp += (sender, args) =>
+      _box.KeyUp += (sender, args) =>
       {
         //Nichts machen wenn das Zeichen kein Zeichen oder kein Buchstabe ist
         if (!char.IsLetterOrDigit((char)args.KeyValue) && !Keys.Back.Equals(args.KeyCode) && !Keys.Delete.Equals(args.KeyCode) && !Keys.NumPad0.Equals(args.KeyCode))
@@ -127,24 +127,24 @@ namespace PSU_Calculator
           return;
         }
 
-        liste.Items.Clear();
-        IEnumerable<PcKomponente> suggestions = string.IsNullOrWhiteSpace(liste.Text) ? gpuKomponenten : gpuKomponenten.Where(el => el.Bezeichnung.Contains("Nvidia") && el.Bezeichnung.ToLower().Contains(liste.Text.ToLower()));
+        _box.Items.Clear();
+        IEnumerable<PcComponent> suggestions = string.IsNullOrWhiteSpace(_box.Text) ? gpuComponentList : gpuComponentList.Where(el => el.Name.Contains("Nvidia") && el.Name.ToLower().Contains(_box.Text.ToLower()));
         if (suggestions.Count() == 0)
         {
-          suggestions = gpuKomponenten;
+          suggestions = gpuComponentList;
         }
 
         if (suggestions.Count() == 1)
         {
-          liste.Items.AddRange(gpuKomponenten.ToArray());
-          liste.SelectedItem = suggestions.First();
-          liste.SelectAll();
+          _box.Items.AddRange(gpuComponentList.ToArray());
+          _box.SelectedItem = suggestions.First();
+          _box.SelectAll();
         }
         else
         {
-          liste.Items.AddRange(suggestions.ToArray());
-          liste.Select(liste.Text.Length, 0);
-          liste.SelectedItem = null;
+          _box.Items.AddRange(suggestions.ToArray());
+          _box.Select(_box.Text.Length, 0);
+          _box.SelectedItem = null;
           //liste.DroppedDown = true;
         }
       };
@@ -153,18 +153,18 @@ namespace PSU_Calculator
 
 
     //Range hinzufügen zu einer Liste von PC Komponenten, sofern möglich akurat
-    private void addRangeAt(List<PcKomponente> range, List<PcKomponente> liste)
+    private void addRangeAt(List<PcComponent> _listOfInserts, List<PcComponent> _mainList)
     {
       bool beforebestmatch, tempbeforematch;
       int bestmatch, matchcount, tempcount;
-      foreach (PcKomponente komp in range)
+      foreach (PcComponent komp in _listOfInserts)
       {
         bestmatch = -1;
         matchcount = 0;
         beforebestmatch = false;
-        for (int i = 0; i < liste.Count; i++)
+        for (int i = 0; i < _mainList.Count; i++)
         {
-          if (komp.Bezeichnung.Equals(liste[i].Bezeichnung))
+          if (komp.Name.Equals(_mainList[i].Name))
           {
             bestmatch = -2;
             break;
@@ -172,15 +172,15 @@ namespace PSU_Calculator
           tempbeforematch = true;
           tempcount = 0;
           //zeichen für zeichen vergleich für best match findung
-          for (int m = 0; m < komp.Bezeichnung.Length; m++)
+          for (int m = 0; m < komp.Name.Length; m++)
           {
-            if (liste[i].Bezeichnung.Length <= m)
+            if (_mainList[i].Name.Length <= m)
             {
               tempbeforematch = false;
               break;
             }
             int temp = 0;
-            temp = liste[i].Bezeichnung.Substring(m, 1).CompareTo(komp.Bezeichnung.Substring(m, 1));
+            temp = _mainList[i].Name.Substring(m, 1).CompareTo(komp.Name.Substring(m, 1));
 
             if (temp == 0)
             {
@@ -209,7 +209,7 @@ namespace PSU_Calculator
         //EInfügen des neuen Elementes
         if (bestmatch == -1)
         {
-          liste.Add(komp);
+          _mainList.Add(komp);
         }
         else if (bestmatch == -2)
         {
@@ -218,11 +218,11 @@ namespace PSU_Calculator
         {
           if (beforebestmatch)
           {
-            liste.Insert(bestmatch, komp);
+            _mainList.Insert(bestmatch, komp);
           }
           else
           {
-            liste.Insert(bestmatch + 1, komp);
+            _mainList.Insert(bestmatch + 1, komp);
           }
         }
       }
@@ -232,34 +232,34 @@ namespace PSU_Calculator
     /// Hinzufügen von weiteren elementen zur GPU Liste, Sync, um reienfolge sicherzustellen
     /// Weitere Elemente sind solche die aus dem Web oder lokal geladen wurden
     /// </summary>
-    /// <param name="range"></param>
+    /// <param name="_rangeToInsert"></param>
     [MethodImpl(MethodImplOptions.Synchronized)]
-    public void AddGPURange(List<PcKomponente> range)
+    public void AddGPURange(List<PcComponent> _rangeToInsert)
     {
-      addRangeAt(range, gpuKomponenten);
+      addRangeAt(_rangeToInsert, gpuComponentList);
     }
 
     /// <summary>
     /// Hinzufügen von weiteren elementen zur CPU Liste, Sync, um reienfolge sicherzustellen
     /// Weitere Elemente sind solche die aus dem Web oder lokal geladen wurden
     /// </summary>
-    /// <param name="range"></param>
+    /// <param name="_rangeToInsert"></param>
     [MethodImpl(MethodImplOptions.Synchronized)]
-    public void AddCPURange(List<PcKomponente> range)
+    public void AddCPURange(List<PcComponent> _rangeToInsert)
     {
-      addRangeAt(range, cpuKomponenten);
+      addRangeAt(_rangeToInsert, cpuComponentList);
     }
 
-    public void AddNetzteilRange(List<Netzteil> range)
+    public void AddNetzteilRange(List<PowerSupply> _rangeToInsert)
     {
-      if (netzteile == null)
+      if (powersupplyList == null)
       {
-        netzteile = getNetzteile();
+        powersupplyList = GetPowerSupplys();
       }
-      netzteile.AddRange(range);
-      netzteile.Sort(delegate(Netzteil n1, Netzteil n2)
+      powersupplyList.AddRange(_rangeToInsert);
+      powersupplyList.Sort(delegate(PowerSupply n1, PowerSupply n2)
       {
-        return n1.Qualitaet.CompareTo(n2.Qualitaet) * -1;
+        return n1.Quality.CompareTo(n2.Quality) * -1;
       });
     }
 
@@ -267,18 +267,18 @@ namespace PSU_Calculator
     /// GPU's in eine combobox laden
     /// Setztern dews Keyxup events für suche
     /// </summary>
-    /// <param name="liste"></param>
+    /// <param name="_box"></param>
     [MethodImpl(MethodImplOptions.Synchronized)]
-    public void LoadGPU(ComboBox liste)
+    public void LoadGPU(ComboBox _box)
     {
-      liste.AutoCompleteSource = AutoCompleteSource.ListItems;
-      liste.Items.Clear();
-      liste.Items.AddRange(getGPUKomponenten().ToArray());
+      _box.AutoCompleteSource = AutoCompleteSource.ListItems;
+      _box.Items.Clear();
+      _box.Items.AddRange(GetGPUComponents().ToArray());
     }
 
-    public void setGPUSearchEvent(ComboBox liste)
+    public void setGPUSearchEvent(ComboBox _box)
     {
-      liste.KeyUp += (sender, args) =>
+      _box.KeyUp += (sender, args) =>
       {
         //Nichts machen wenn das Zeichen kein Zeichen oder kein Buchstabe ist
         if (!char.IsLetterOrDigit((char)args.KeyValue) && !Keys.Back.Equals(args.KeyCode) && !Keys.Delete.Equals(args.KeyCode) && !Keys.NumPad0.Equals(args.KeyCode))
@@ -286,24 +286,24 @@ namespace PSU_Calculator
           return;
         }
 
-        liste.Items.Clear();
-        IEnumerable<PcKomponente> suggestions = string.IsNullOrWhiteSpace(liste.Text) ? gpuKomponenten : gpuKomponenten.Where(el => el.Bezeichnung.ToLower().Contains(liste.Text.ToLower()));
+        _box.Items.Clear();
+        IEnumerable<PcComponent> suggestions = string.IsNullOrWhiteSpace(_box.Text) ? gpuComponentList : gpuComponentList.Where(el => el.Name.ToLower().Contains(_box.Text.ToLower()));
         if (suggestions.Count() == 0)
         {
-          suggestions = gpuKomponenten;
+          suggestions = gpuComponentList;
         }
 
         if (suggestions.Count() == 1)
         {
-          liste.Items.AddRange(gpuKomponenten.ToArray());
-          liste.SelectedItem = suggestions.First();
-          liste.SelectAll();
+          _box.Items.AddRange(gpuComponentList.ToArray());
+          _box.SelectedItem = suggestions.First();
+          _box.SelectAll();
         }
         else
         {
-          liste.Items.AddRange(suggestions.ToArray());
-          liste.Select(liste.Text.Length, 0);
-          liste.SelectedItem = null;
+          _box.Items.AddRange(suggestions.ToArray());
+          _box.Select(_box.Text.Length, 0);
+          _box.SelectedItem = null;
           //liste.DroppedDown = true;
         }
       };
@@ -313,18 +313,18 @@ namespace PSU_Calculator
     /// CPU's in eine combobox laden
     /// Setztern dews Keyxup events für suche
     /// </summary>
-    /// <param name="liste"></param>
+    /// <param name="_box"></param>
     [MethodImpl(MethodImplOptions.Synchronized)]
-    public void LoadCPU(ComboBox liste)
+    public void LoadCPU(ComboBox _box)
     {
-      liste.AutoCompleteSource = AutoCompleteSource.ListItems;
-      liste.Items.Clear();
-      liste.Items.AddRange(getCPUKomponenten().ToArray());
+      _box.AutoCompleteSource = AutoCompleteSource.ListItems;
+      _box.Items.Clear();
+      _box.Items.AddRange(GetCPUComponents().ToArray());
     }
 
-    public void setCPUSearchEvent(ComboBox liste)
+    public void setCPUSearchEvent(ComboBox _box)
     {
-      liste.KeyUp += (sender, args) =>
+      _box.KeyUp += (sender, args) =>
       {
         //Nichts machen wenn das Zeichen kein Zeichen oder kein Buchstabe ist
         if (!char.IsLetterOrDigit((char)args.KeyValue) && !Keys.Back.Equals(args.KeyCode) && !Keys.Delete.Equals(args.KeyCode) && !Keys.NumPad0.Equals(args.KeyCode))
@@ -332,24 +332,24 @@ namespace PSU_Calculator
           return;
         }
 
-        liste.Items.Clear();
-        IEnumerable<PcKomponente> suggestions = string.IsNullOrWhiteSpace(liste.Text) ? cpuKomponenten : cpuKomponenten.Where(el => el.Bezeichnung.ToLower().Contains(liste.Text.ToLower()));
+        _box.Items.Clear();
+        IEnumerable<PcComponent> suggestions = string.IsNullOrWhiteSpace(_box.Text) ? cpuComponentList : cpuComponentList.Where(el => el.Name.ToLower().Contains(_box.Text.ToLower()));
         if (suggestions.ToArray().Length == 0)
         {
-          suggestions = cpuKomponenten;
+          suggestions = cpuComponentList;
         }
 
         if (suggestions.Count() == 1)
         {
-          liste.Items.AddRange(cpuKomponenten.ToArray());
-          liste.SelectedItem = suggestions.First();
-          liste.SelectAll();
+          _box.Items.AddRange(cpuComponentList.ToArray());
+          _box.SelectedItem = suggestions.First();
+          _box.SelectAll();
         }
         else
         {
-          liste.Items.AddRange(suggestions.ToArray());
-          liste.Select(liste.Text.Length, 0);
-          liste.SelectedItem = null;
+          _box.Items.AddRange(suggestions.ToArray());
+          _box.Select(_box.Text.Length, 0);
+          _box.SelectedItem = null;
           //liste.DroppedDown = true;
         }
       };
@@ -358,34 +358,34 @@ namespace PSU_Calculator
     /// <summary>
     /// Get Komponenten aufgrund einer Zeilenliste
     /// </summary>
-    /// <param name="zeilen"></param>
+    /// <param name="_rows"></param>
     /// <returns></returns>
-    public List<PcKomponente> getKomponenten(string[] zeilen)
+    public List<PcComponent> GetComponents(string[] _rows)
     {
-      List<PcKomponente> komponenten = new List<PcKomponente>();
-      string[] spalten;
+      List<PcComponent> componentList = new List<PcComponent>();
+      string[] columns;
       int tdp, benchmark;
-      foreach (string zeile in zeilen)
+      foreach (string row in _rows)
       {
-        spalten = zeile.Split(':');
-        switch (spalten.Length)
+        columns = row.Split(':');
+        switch (columns.Length)
         {
           case 0:
           case 1:
-            komponenten.Add(new PcKomponente("", 0, 0));
+            componentList.Add(new PcComponent("", 0, 0));
             break;
           case 2:
-            int.TryParse(spalten[1], out tdp);
-            komponenten.Add(new PcKomponente(spalten[0], tdp, tdp));
+            int.TryParse(columns[1], out tdp);
+            componentList.Add(new PcComponent(columns[0], tdp, tdp));
             break;
           case 3:
-            int.TryParse(spalten[1], out tdp);
-            int.TryParse(spalten[2], out benchmark);
-            komponenten.Add(new PcKomponente(spalten[0], tdp, benchmark));
+            int.TryParse(columns[1], out tdp);
+            int.TryParse(columns[2], out benchmark);
+            componentList.Add(new PcComponent(columns[0], tdp, benchmark));
             break;
         }
       }
-      return komponenten;
+      return componentList;
     }
 
     /// <summary>
@@ -393,15 +393,15 @@ namespace PSU_Calculator
     /// </summary>
     /// <returns></returns>
     [MethodImpl(MethodImplOptions.Synchronized)]
-    private List<PcKomponente> getCPUKomponenten()
+    private List<PcComponent> GetCPUComponents()
     {
-      if (cpuKomponenten == null)
+      if (cpuComponentList == null)
       {
         string[] zeilen = getAssemblyText("CPUs.txt").Split(new string[] { Environment.NewLine }, StringSplitOptions.None);
 
-        cpuKomponenten = getKomponenten(zeilen);
+        cpuComponentList = GetComponents(zeilen);
       }
-      return cpuKomponenten;
+      return cpuComponentList;
     }
 
     /// <summary>
@@ -409,15 +409,15 @@ namespace PSU_Calculator
     /// </summary>
     /// <returns></returns>
     [MethodImpl(MethodImplOptions.Synchronized)]
-    private List<PcKomponente> getGPUKomponenten()
+    private List<PcComponent> GetGPUComponents()
     {
-      if (gpuKomponenten == null)
+      if (gpuComponentList == null)
       {
         string[] zeilen = getAssemblyText("GPUs.txt").Split(new string[] { Environment.NewLine }, StringSplitOptions.None);
 
-        gpuKomponenten = getKomponenten(zeilen);
+        gpuComponentList = GetComponents(zeilen);
       }
-      return gpuKomponenten;
+      return gpuComponentList;
     }
 
     /// <summary>
@@ -425,62 +425,62 @@ namespace PSU_Calculator
     /// </summary>
     /// <returns></returns>
     [MethodImpl(MethodImplOptions.Synchronized)]
-    public List<Netzteil> getNetzteile()
+    public List<PowerSupply> GetPowerSupplys()
     {
-      if (netzteile == null)
+      if (powersupplyList == null)
       {
-        string[] zeilen = getAssemblyText("Netzteile.txt").Split(new string[] { Environment.NewLine }, StringSplitOptions.None);
+        string[] rows = getAssemblyText("Netzteile.txt").Split(new string[] { Environment.NewLine }, StringSplitOptions.None);
 
-        netzteile = getNetzteileFromArray(zeilen);
+        powersupplyList = GetPowerSupplysFromArray(rows);
       }
-      return netzteile;
+      return powersupplyList;
     }
 
     /// <summary>
     /// Netzteile aus einem Zeilen array generieren
     /// </summary>
-    /// <param name="zeilen"></param>
+    /// <param name="_rows"></param>
     /// <returns></returns>
-    public List<Netzteil> getNetzteileFromArray(string[] zeilen)
+    public List<PowerSupply> GetPowerSupplysFromArray(string[] _rows)
     {
-      List<Netzteil> teile = new List<Netzteil>();
-      string[] spalten;
+      List<PowerSupply> parts = new List<PowerSupply>();
+      string[] columns;
       int tdp, power, quali;
-      foreach (string zeile in zeilen)
+      foreach (string row in _rows)
       {
-        spalten = zeile.Split(';');
-        switch (spalten.Length)
+        columns = row.Split(';');
+        switch (columns.Length)
         {
           case 0:
           case 1:
-            teile.Add(new Netzteil("", 0, 0, ""));
+            parts.Add(new PowerSupply("", 0, 0, ""));
             break;
           case 2:
-            int.TryParse(spalten[1], out tdp);
-            teile.Add(new Netzteil(spalten[0], tdp, tdp, ""));
+            int.TryParse(columns[1], out tdp);
+            parts.Add(new PowerSupply(columns[0], tdp, tdp, ""));
             break;
           case 3:
-            int.TryParse(spalten[1], out tdp);
-            teile.Add(new Netzteil(spalten[0], tdp, tdp, spalten[2]));
+            int.TryParse(columns[1], out tdp);
+            parts.Add(new PowerSupply(columns[0], tdp, tdp, columns[2]));
             break;
           case 4:
-            int.TryParse(spalten[1], out tdp);
-            int.TryParse(spalten[2], out power);
-            teile.Add(new Netzteil(spalten[0], power, tdp, spalten[3]));
+            int.TryParse(columns[1], out tdp);
+            int.TryParse(columns[2], out power);
+            parts.Add(new PowerSupply(columns[0], power, tdp, columns[3]));
             break;
           case 5:
-            int.TryParse(spalten[1], out tdp);
-            int.TryParse(spalten[2], out power);
-            int.TryParse(spalten[3], out quali);
-            teile.Add(new Netzteil(spalten[0], power, tdp, spalten[4], quali));
+            int.TryParse(columns[1], out tdp);
+            int.TryParse(columns[2], out power);
+            int.TryParse(columns[3], out quali);
+            parts.Add(new PowerSupply(columns[0], power, tdp, columns[4], quali));
             break;
         }
       }
-      teile.Sort(delegate(Netzteil n1, Netzteil n2)
+      parts.Sort(delegate(PowerSupply n1, PowerSupply n2)
       {
-        return n1.Qualitaet.CompareTo(n2.Qualitaet) * -1;
+        return n1.Quality.CompareTo(n2.Quality) * -1;
       });
-      return teile;
+      return parts;
     }
   }
 }

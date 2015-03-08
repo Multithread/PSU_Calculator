@@ -8,19 +8,19 @@ using System.Windows.Forms;
 
 namespace PSU_Calculator.Dateizugriffe
 {
-  class Festplattenzugriffe
+  class StorageMapper
   {
-    public static bool SetLocalData(string _version, List<PcKomponente> _gpu, List<PcKomponente> _cpu, List<PcKomponente> _nt)
+    public static bool SetLocalData(string _version, List<PcComponent> _gpu, List<PcComponent> _cpu, List<PcComponent> _nt)
     {
       //erstesmal?
       if (!Properties.Einstellungen.Default.AskSaveLocal)
       {
-        if (!Festplattenzugriffe.existiert(Einstellungen.OrdnerPfad))
+        if (!StorageMapper.existiert(PSUCalculatorSettings.DirectoryPath))
         {
           DialogResult dialogResult = MessageBox.Show("Wollen Sie die geupdateten Daten vom Server lokal bei sich Speichern?", "Speichern", MessageBoxButtons.YesNoCancel);
           if (dialogResult == DialogResult.Yes)
           {
-            Festplattenzugriffe.erstelleOrdner(Einstellungen.OrdnerPfad);
+            StorageMapper.erstelleOrdner(PSUCalculatorSettings.DirectoryPath);
           }
           else if (dialogResult == DialogResult.No)
           {
@@ -35,12 +35,12 @@ namespace PSU_Calculator.Dateizugriffe
 
       }
       //Daten schreiben wenn Ordner vorhanden
-      if (Festplattenzugriffe.existiert(Einstellungen.OrdnerPfad))
+      if (StorageMapper.existiert(PSUCalculatorSettings.DirectoryPath))
       {
         //wenn alles geschrieben werden konnte ist alles io:)
-        if(addZeilen(Einstellungen.GPUPfad, _gpu)
-        && addZeilen(Einstellungen.CPUPfad, _cpu)
-        && addZeilen(Einstellungen.NetzteilPfad, _nt))
+        if(addZeilen(PSUCalculatorSettings.GPUPath, _gpu)
+        && addZeilen(PSUCalculatorSettings.CPUPath, _cpu)
+        && addZeilen(PSUCalculatorSettings.PowerSupplyPath, _nt))
         {
           return true;
         }
@@ -50,33 +50,33 @@ namespace PSU_Calculator.Dateizugriffe
 
     public static void GetLocalData(PSU_Calculator.Form1.boxInvoke del)
     {
-      if (!Festplattenzugriffe.existiert(Einstellungen.OrdnerPfad))
+      if (!StorageMapper.existiert(PSUCalculatorSettings.DirectoryPath))
       {
         return;
       }
       LoaderModul m = LoaderModul.getInstance();
       string[] daten = null;
       //CPU's euinlesen
-      daten = leseZeilen(Einstellungen.CPUPfad);
+      daten = leseZeilen(PSUCalculatorSettings.CPUPath);
       if (daten != null)
       {
-        m.AddCPURange(m.getKomponenten(daten));
+        m.AddCPURange(m.GetComponents(daten));
         del(true);
       }
 
       //GPU's einlesen
-      daten = leseZeilen(Einstellungen.GPUPfad);
+      daten = leseZeilen(PSUCalculatorSettings.GPUPath);
       if (daten != null)
       {
-        m.AddGPURange(m.getKomponenten(daten));
+        m.AddGPURange(m.GetComponents(daten));
         del(false);
       }
 
       //Netzteile einlesen
-      daten = leseZeilen(Einstellungen.NetzteilPfad);
+      daten = leseZeilen(PSUCalculatorSettings.PowerSupplyPath);
       if (daten != null)
       {
-        m.AddNetzteilRange(m.getNetzteileFromArray(daten));
+        m.AddNetzteilRange(m.GetPowerSupplysFromArray(daten));
       }
     }
 
@@ -93,12 +93,12 @@ namespace PSU_Calculator.Dateizugriffe
       return false;
     }
 
-    private static bool addZeilen(string pfad, List<PcKomponente> zeilen)
+    private static bool addZeilen(string pfad, List<PcComponent> zeilen)
     {
       try
       {
         StringBuilder sb = new StringBuilder();
-        foreach (PcKomponente s in zeilen)
+        foreach (PcComponent s in zeilen)
         {
           sb.AppendLine(s.GetOrginalString());
         }

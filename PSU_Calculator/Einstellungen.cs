@@ -7,41 +7,41 @@ using System.Windows.Forms;
 
 namespace PSU_Calculator
 {
-  public class Einstellungen
+  public class PSUCalculatorSettings
   {
     public static string Version = "Version";
     public static string CPU = "CPUs";
     public static string GPU = "GPUs";
-    public static string Netzteile = "Netzteile";
-    public static string DataOrdner = "PSU_Calculator_Data";
+    public static string PowerSupplys = "Netzteile";
+    public static string DataPath = "PSU_Calculator_Data";
 
     //Pfade im Dateisystem
-    public static string CPUPfad
+    public static string CPUPath
     {
       get
       {
-        return string.Format("{0}{3}{1}{3}{2}.txt", Application.StartupPath, Einstellungen.DataOrdner, Einstellungen.CPU, Path.DirectorySeparatorChar);
+        return string.Format("{0}{3}{1}{3}{2}.txt", Application.StartupPath, PSUCalculatorSettings.DataPath, PSUCalculatorSettings.CPU, Path.DirectorySeparatorChar);
       }
     }
-    public static string GPUPfad
+    public static string GPUPath
     {
       get
       {
-        return string.Format("{0}{3}{1}{3}{2}.txt", Application.StartupPath, Einstellungen.DataOrdner, Einstellungen.GPU, Path.DirectorySeparatorChar);
+        return string.Format("{0}{3}{1}{3}{2}.txt", Application.StartupPath, PSUCalculatorSettings.DataPath, PSUCalculatorSettings.GPU, Path.DirectorySeparatorChar);
       }
     }
-    public static string NetzteilPfad
+    public static string PowerSupplyPath
     {
       get
       {
-        return string.Format("{0}{3}{1}{3}{2}.txt", Application.StartupPath, Einstellungen.DataOrdner, Einstellungen.Netzteile, Path.DirectorySeparatorChar);
+        return string.Format("{0}{3}{1}{3}{2}.txt", Application.StartupPath, PSUCalculatorSettings.DataPath, PSUCalculatorSettings.PowerSupplys, Path.DirectorySeparatorChar);
       }
     }
-    public static string OrdnerPfad
+    public static string DirectoryPath
     {
       get
       {
-        return string.Format("{0}{2}{1}", Application.StartupPath, Einstellungen.DataOrdner, Path.DirectorySeparatorChar);
+        return string.Format("{0}{2}{1}", Application.StartupPath, PSUCalculatorSettings.DataPath, Path.DirectorySeparatorChar);
       }
     }
   }
