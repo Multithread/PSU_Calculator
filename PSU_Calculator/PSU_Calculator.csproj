@@ -95,6 +95,7 @@
     </Compile>
     <Compile Include="Dateizugriffe\Festplattenzugriffe.cs" />
     <Compile Include="Einstellungen.cs" />
+    <Compile Include="Komponenten\ComponentStringSplitter.cs" />
     <Compile Include="Properties\Einstellungen.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>

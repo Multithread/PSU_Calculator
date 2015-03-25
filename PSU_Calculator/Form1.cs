@@ -21,6 +21,13 @@ namespace PSU_Calculator
     Thread t = null;
     public Form1()
     {
+      string data = "name;LC-Power LC 9550 500W;tdp;500;max;400;quali;40;DE;http://geizhals.de/lc-power-gold-series-lc9550-v2-3-500w-atx-2-3-a861223.html";
+      ComponentStringSplitter css = new ComponentStringSplitter(data);
+      while (css.HasNext())
+      {
+        string value = css.GetValueForKey(css.Next());
+      }
+
       InitializeComponent();
 
       addGPU();

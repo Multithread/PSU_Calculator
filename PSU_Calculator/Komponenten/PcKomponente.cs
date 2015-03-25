@@ -8,11 +8,18 @@ namespace PSU_Calculator.Komponenten
 {
   public class PcComponent
   {
-    public PcComponent(string _bez, int _tdp, int _benchmarking)
+    public PcComponent(string name, int tdp, int benchmarking)
     {
-      Name = _bez;
-      TDP = _tdp;
-      GPGPU = _benchmarking;
+      Name = name;
+      TDP = tdp;
+      GPGPU = benchmarking;
+    }
+
+    protected PcComponent()
+    {
+      Name = "";
+      TDP = 0;
+      GPGPU= 0;
     }
 
     public string Name
