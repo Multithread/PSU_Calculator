@@ -1,4 +1,5 @@
-﻿using PSU_Calculator.Komponenten;
+﻿using PSU_Calculator.DataWorker;
+using PSU_Calculator.Komponenten;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -8,14 +9,14 @@ using System.Windows.Forms;
 
 namespace PSU_Calculator.Dateizugriffe
 {
-  class StorageMapper
+  public class StorageMapper
   {
     public static bool SetLocalData(string _version, List<PcComponent> _gpu, List<PcComponent> _cpu, List<PcComponent> _nt)
     {
       //erstesmal?
       if (!Properties.Einstellungen.Default.AskSaveLocal)
       {
-        if (!StorageMapper.existiert(PSUCalculatorSettings.DirectoryPath))
+        if (!StorageMapper.Existiert(PSUCalculatorSettings.DirectoryPath))
         {
           DialogResult dialogResult = MessageBox.Show("Wollen Sie die geupdateten Daten vom Server lokal bei sich Speichern?", "Speichern", MessageBoxButtons.YesNoCancel);
           if (dialogResult == DialogResult.Yes)
@@ -35,7 +36,7 @@ namespace PSU_Calculator.Dateizugriffe
 
       }
       //Daten schreiben wenn Ordner vorhanden
-      if (StorageMapper.existiert(PSUCalculatorSettings.DirectoryPath))
+      if (StorageMapper.Existiert(PSUCalculatorSettings.DirectoryPath))
       {
         //wenn alles geschrieben werden konnte ist alles io:)
         if(addZeilen(PSUCalculatorSettings.GPUPath, _gpu)
@@ -50,7 +51,7 @@ namespace PSU_Calculator.Dateizugriffe
 
     public static void GetLocalData(PSU_Calculator.Form1.boxInvoke del)
     {
-      if (!StorageMapper.existiert(PSUCalculatorSettings.DirectoryPath))
+      if (!StorageMapper.Existiert(PSUCalculatorSettings.DirectoryPath))
       {
         return;
       }
@@ -80,7 +81,7 @@ namespace PSU_Calculator.Dateizugriffe
       }
     }
 
-    private static bool existiert(string pfad)
+    public static bool Existiert(string pfad)
     {
       if (File.Exists(pfad))
       {
@@ -102,7 +103,7 @@ namespace PSU_Calculator.Dateizugriffe
         {
           sb.AppendLine(s.GetOrginalString());
         }
-        schreibe(pfad, sb.ToString());
+        WriteToFilesystem(pfad, sb.ToString());
         return true;
       }
       catch (Exception)
@@ -197,7 +198,7 @@ namespace PSU_Calculator.Dateizugriffe
       return output.ToArray();
     }
 
-    private static string lese(string pfad)
+    public static string ReadFromFilesystem(string pfad)
     {
       string output = "";
       try
@@ -213,7 +214,7 @@ namespace PSU_Calculator.Dateizugriffe
       return output;
     }
 
-    private static bool schreibe(string pfad, string daten)
+    public static bool WriteToFilesystem(string pfad, string daten)
     {
       try
       {

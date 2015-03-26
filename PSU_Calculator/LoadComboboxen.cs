@@ -1,4 +1,5 @@
-﻿using PSU_Calculator.Komponenten;
+﻿using PSU_Calculator.DataWorker;
+using PSU_Calculator.Komponenten;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -473,6 +474,9 @@ namespace PSU_Calculator
             int.TryParse(columns[2], out power);
             int.TryParse(columns[3], out quali);
             parts.Add(new PowerSupply(columns[0], power, tdp, columns[4], quali));
+            break;
+          default:
+            parts.Add(new PowerSupply(new ComponentStringSplitter(row, true)));
             break;
         }
       }
