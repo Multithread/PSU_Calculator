@@ -1,18 +1,18 @@
+name=Antec High Current Pro HCP-850 Platinum 850W;tdp=850;min=500;max=800;quali=100;DE=http://geizhals.de/antec-high-current-pro-hcp-850-platinum-0761345-06250-3-0761345-06251-0-a1018539.html;CH=http://www.toppreise.ch/prod_224802.html
+name=Antec High Current Pro HCP-1000 Platinum 1000W;tdp=1000;max=900;quali=99;DE=http://geizhals.de/antec-high-current-pro-hcp-1000-platinum-0-761345-06248-0-0-761345-06249-7-a1079951.html;CH=http://www.toppreise.ch/prod_307951.html
+name=Antec High Current Pro HCP-1300 Platinum 1300W;tdp=1300;max=1150;quali=98;DE=http://geizhals.de/antec-high-current-pro-hcp-1300-platinum-0-761345-06260-2-0-761345-06261-9-a1018481.html;CH=http://www.toppreise.ch/prod_366817.html
 name=Be quiet! Dark Power P10 550W;tdp=550;max=500;quali=100;DE=http://geizhals.de/be-quiet-dark-power-pro-10-550w-atx-2-31-p10-550w-bn200-a790408.html;CH=http://www.toppreise.ch/prod_279029.html
-name=Antec High Current Pro HCP-850 Platinum 850W;tdp=850;max=800;quali=100;DE=http://geizhals.de/antec-high-current-pro-hcp-850-platinum-0761345-06250-3-0761345-06251-0-a1018539.html;CH=http://www.toppreise.ch/prod_224802.html
-name=Antec High Current Pro HCP-1000 Platinum 1000W;tdp=1000;max=900;quali=99;DE=http://geizhals.de/antec-high-current-pro-hcp-1000-platinum-0-761345-06248-0-0-761345-06249-7-a1079951.html
-name=Antec High Current Pro HCP-1300 Platinum 1300W;tdp=1300;max=1150;quali=98;DE=http://geizhals.de/antec-high-current-pro-hcp-1300-platinum-0-761345-06260-2-0-761345-06261-9-a1018481.html
 name=Be quiet! Dark Power P10 750W;tdp=750;max=650;quali=97;DE=http://geizhals.de/be-quiet-dark-power-pro-10-750w-atx-2-31-p10-750w-bn202-a790490.html;CH=http://www.toppreise.ch/prod_279027.html
-name=Be quiet! Dark Power P10 1000W;tdp=1000;max=850;quali=96;DE=http://geizhals.de/be-quiet-dark-power-pro-10-1000w-atx-2-31-p10-1000w-bn204-a790601.html
-name=Be quiet! Dark Power P10 1200W;tdp=1200;max=1100;quali=95;DE=http://geizhals.de/be-quiet-dark-power-pro-10-1200w-atx-2-31-p10-1200w-bn205-a790611.html
-name=Be quiet! Straight Power E10 400W;tdp=400;max=320;quali=85;DE=http://geizhals.de/be-quiet-straight-power-e10-400w-atx-2-4-e10-400w-bn230-a1165465.html
-name=Be quiet! Straight Power E10 500W;tdp=500;max=430;quali=80;DE=http://geizhals.de/be-quiet-straight-power-e10-500w-atx-2-4-e10-500w-bn231-a1165594.html
-name=Be quiet! Straight Power E10 600W CM;tdp=600;max=510;quali=70;DE=http://geizhals.de/be-quiet-straight-power-e10-cm-600w-atx-2-4-e10-cm-600w-bn235-a1165608.html
-name=Be quiet! Puer Power L8 300W ATX 2.4 ;tdp=300;min=10;max=230;quali=60;DE=http://geizhals.de/be-quiet-pure-power-l8-300w-atx-2-4-bn220-a960670.html
-name=Sea Sonic G-Series G-550 550W PCGH-Edition;tdp=550;max=450;quali=50;DE=http://geizhals.de/sea-sonic-g-series-g-550-550w-pcgh-edition-atx-2-3-ssr-550rm-a1098704.html
-name=LC-Power LC 9450 400W;tdp=400;max=300;quali=45;DE=http://geizhals.de/lc-power-gold-series-lc9450-v2-3-400w-atx-2-3-a861221.html
+name=Be quiet! Dark Power P10 1000W;tdp=1000;max=850;quali=96;DE=http://geizhals.de/be-quiet-dark-power-pro-10-1000w-atx-2-31-p10-1000w-bn204-a790601.html;CH=http://www.toppreise.ch/prod_279025.html
+name=Be quiet! Dark Power P10 1200W;tdp=1200;max=1100;quali=95;DE=http://geizhals.de/be-quiet-dark-power-pro-10-1200w-atx-2-31-p10-1200w-bn205-a790611.html;CH=http://www.toppreise.ch/prod_279024.html
+name=Be quiet! Straight Power E10 400W;tdp=400;min=150;max=320;quali=85;DE=http://geizhals.de/be-quiet-straight-power-e10-400w-atx-2-4-e10-400w-bn230-a1165465.html;CH=http://www.toppreise.ch/prod_365027.html
+name=Be quiet! Straight Power E10 500W;tdp=500;max=430;quali=80;DE=http://geizhals.de/be-quiet-straight-power-e10-500w-atx-2-4-e10-500w-bn231-a1165594.html;CH=http://www.toppreise.ch/prod_365065.html
+name=Be quiet! Puer Power L8 300W ATX 2.4 ;tdp=300;min=10;max=230;quali=60;DE=http://geizhals.de/be-quiet-pure-power-l8-300w-atx-2-4-bn220-a960670.html;CH=http://www.toppreise.ch/prod_325820.html;AT=http://geizhals.at/be-quiet-pure-power-l8-300w-atx-2-4-bn220-a960670.html
+name=LC-Power LC 9450 400W;tdp=400;max=300;quali=45;DE=http://geizhals.de/lc-power-gold-series-lc9450-v2-3-400w-atx-2-3-a861221.html;AT=http://geizhals.at/lc-power-gold-series-lc9450-v2-3-400w-atx-2-3-a861221.html
+name=Sea Sonic G-Series G-550 550W PCGH-Edition;tdp=550;max=450;quali=50;DE=http://geizhals.de/sea-sonic-g-series-g-550-550w-pcgh-edition-atx-2-3-ssr-550rm-a1098704.html;CH=http://www.toppreise.ch/prod_290759.html
 name=Antec True Power Classic 450W;tdp=450;max=425;quali=41;DE=http://geizhals.de/antec-truepower-classic-tp-450c-0761345-07700-2-0761345-07701-9-a1035122.html
-name=LC-Power LC 9550 500W;tdp=500;max=400;quali=40;DE=http://geizhals.de/lc-power-gold-series-lc9550-v2-3-500w-atx-2-3-a861223.html
-name=Antec TruePower Classic TP-550C;tdp=550;max=425;quali=40;DE=http://geizhals.de/antec-truepower-classic-tp-550c-0761345-07702-6-0761345-07703-3-a1035130.html
-name=Be quiet! System Power 7 450W;tdp=450;max=350;quali=30;DE=http://geizhals.de/be-quiet-system-power-7-450w-atx-2-31-bn143-a871343.html
-name=SuperFlower HX 450 Golden Green 450W;tdp=450;max=425;quali=30;DE=http://geizhals.de/super-flower-golden-green-hx-450w-atx-2-3-sf-450p14xe-hx-a1039307.html;CH=http://www.toppreise.ch/prod_254328.html
+name=LC-Power LC 9550 500W;tdp=500;max=400;quali=40;DE=http://geizhals.de/lc-power-gold-series-lc9550-v2-3-500w-atx-2-3-a861223.html;AT=http://geizhals.at/lc-power-gold-series-lc9550-v2-3-500w-atx-2-3-a861223.html
+name=Antec TruePower Classic TP-550C;tdp=550;max=425;quali=40;DE=http://geizhals.de/antec-truepower-classic-tp-550c-0761345-07702-6-0761345-07703-3-a1035130.html;AT=http://geizhals.at/antec-truepower-classic-tp-550c-0761345-07702-6-0761345-07703-3-a1035130.html
+name=Be quiet! System Power 7 450W;tdp=450;max=350;quali=30;DE=http://geizhals.de/be-quiet-system-power-7-450w-atx-2-31-bn143-a871343.html;AT=http://geizhals.at/be-quiet-system-power-7-450w-atx-2-31-bn143-a871343.html
+name=SuperFlower HX 450 Golden Green 450W;tdp=450;min=200;max=425;quali=30;DE=http://geizhals.de/super-flower-golden-green-hx-450w-atx-2-3-sf-450p14xe-hx-a1039307.html;CH=http://www.toppreise.ch/prod_254328.html;AT=http://geizhals.at/super-flower-golden-green-hx-450w-atx-2-3-sf-450p14xe-hx-a1039307.html
+name=SuperFlower HX 350 Golden Green 350W;tdp=350;min=100;max=325;quali=29;DE=http://geizhals.de/super-flower-golden-green-hx-350w-atx-2-3-sf-350p14xe-hx-a1039316.html;CH=http://www.toppreise.ch/prod_360027.html;AT=http://geizhals.at/super-flower-golden-green-hx-350w-atx-2-3-sf-350p14xe-hx-a1039316.html
