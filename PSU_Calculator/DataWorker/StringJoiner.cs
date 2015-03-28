@@ -7,13 +7,26 @@ namespace PSU_Calculator.DataWorker
 {
   public class StringJoiner: ComponentStringSplitter
   {
+    public StringJoiner(string line, bool toLower)
+      : base(line, toLower)
+    {
+    }
+
     public StringJoiner()
       : base("", false)
     {
     }
 
-    public void Add(string key, string value)
+    public void Put(string key, string value)
     {
+      if (toLoowerString)
+      {
+        key = key.ToLower();
+      }
+      if (DataDict.ContainsKey(key))
+      {
+        DataDict.Remove(key);
+      }
       DataDict.Add(key, value);
     }
 

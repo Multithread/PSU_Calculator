@@ -112,7 +112,7 @@ namespace PSU_Calculator.Dateizugriffe
       }
     }
 
-    private static bool erstelle(string pfad)
+    public static bool erstelle(string pfad)
     {
       try
       {
@@ -209,24 +209,42 @@ namespace PSU_Calculator.Dateizugriffe
       }
       catch (Exception)
       {
-        return null;
+        return "";
       }
       return output;
     }
 
     public static bool WriteToFilesystem(string pfad, string daten)
     {
+      if (!Existiert(pfad))
+      {
+        erstelle(pfad);
+      }
+      StreamWriter sw = null;
       try
       {
-        StreamWriter sw = new StreamWriter(pfad);
+        sw = new StreamWriter(pfad);
         sw.Write(daten);
         sw.Close();
       }
       catch (Exception ex)
       {
+        try
+        {
+          sw.Close();
+        }
+        catch (Exception)
+        {
+
+        }
         return false;
       }
       return true;
+    }
+
+    public static void CreateStructure()
+    {
+      Directory.CreateDirectory(PSUCalculatorSettings.DirectoryPath);
     }
   }
 }

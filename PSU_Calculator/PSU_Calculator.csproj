@@ -98,6 +98,12 @@
     <Compile Include="DataWorker\PSUCalculatorSettings.cs" />
     <Compile Include="DataWorker\ComponentStringSplitter.cs" />
     <Compile Include="DataWorker\IStringSplitter.cs" />
+    <Compile Include="FirstUsageInfoBox.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FirstUsageInfoBox.Designer.cs">
+      <DependentUpon>FirstUsageInfoBox.cs</DependentUpon>
+    </Compile>
     <Compile Include="Updater.cs" />
     <Compile Include="Properties\Einstellungen.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -129,6 +135,9 @@
     <EmbeddedResource Include="FAQ.resx">
       <DependentUpon>FAQ.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="FirstUsageInfoBox.resx">
+      <DependentUpon>FirstUsageInfoBox.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
       <SubType>Designer</SubType>
@@ -156,7 +165,6 @@
     <EmbeddedResource Include="Resources\CPUs.txt" />
     <EmbeddedResource Include="Resources\GPUs.txt" />
     <Content Include="icon.ico" />
-    <EmbeddedResource Include="Resources\Netzteile.txt" />
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.5">

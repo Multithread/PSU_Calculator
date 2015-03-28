@@ -43,11 +43,20 @@ namespace PSU_Calculator
       this.optionenToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
       this.themeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
       this.classicToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+      this.einstellungenToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+      this.spracheToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+      this.deutschToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+      this.suchmaschineToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+      this.dEToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+      this.aTToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+      this.cHToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
       this.PnlHeader = new System.Windows.Forms.Panel();
       this.PnlContent = new System.Windows.Forms.Panel();
       this.LinkLabel4 = new System.Windows.Forms.LinkLabel();
       this.Label17 = new System.Windows.Forms.Label();
       this.gbxNetzteile = new System.Windows.Forms.GroupBox();
+      this.cmdCopyToForum = new System.Windows.Forms.Button();
+      this.pnlNetzteile = new System.Windows.Forms.FlowLayoutPanel();
       this.gbxVerbrauch = new System.Windows.Forms.GroupBox();
       this.PictureBox1 = new System.Windows.Forms.PictureBox();
       this.Label8 = new System.Windows.Forms.Label();
@@ -90,8 +99,6 @@ namespace PSU_Calculator
       this.cbxOverclocking = new System.Windows.Forms.ComboBox();
       this.cbxCPU2 = new System.Windows.Forms.ComboBox();
       this.lblCPU2 = new System.Windows.Forms.Label();
-      this.pnlNetzteile = new System.Windows.Forms.FlowLayoutPanel();
-      this.cmdCopyToForum = new System.Windows.Forms.Button();
       this.menuStrip1.SuspendLayout();
       this.PnlContent.SuspendLayout();
       this.gbxNetzteile.SuspendLayout();
@@ -108,10 +115,11 @@ namespace PSU_Calculator
       this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.supportToolStripMenuItem,
             this.nützlicheLinksToolStripMenuItem,
-            this.optionenToolStripMenuItem});
+            this.optionenToolStripMenuItem,
+            this.einstellungenToolStripMenuItem});
       this.menuStrip1.Location = new System.Drawing.Point(0, 0);
       this.menuStrip1.Name = "menuStrip1";
-      this.menuStrip1.Size = new System.Drawing.Size(168, 24);
+      this.menuStrip1.Size = new System.Drawing.Size(419, 24);
       this.menuStrip1.TabIndex = 0;
       this.menuStrip1.Text = "menuStrip1";
       // 
@@ -200,9 +208,64 @@ namespace PSU_Calculator
       this.classicToolStripMenuItem.Size = new System.Drawing.Size(110, 22);
       this.classicToolStripMenuItem.Text = "Classic";
       // 
+      // einstellungenToolStripMenuItem
+      // 
+      this.einstellungenToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.spracheToolStripMenuItem,
+            this.suchmaschineToolStripMenuItem});
+      this.einstellungenToolStripMenuItem.Name = "einstellungenToolStripMenuItem";
+      this.einstellungenToolStripMenuItem.Size = new System.Drawing.Size(90, 20);
+      this.einstellungenToolStripMenuItem.Text = "Einstellungen";
+      // 
+      // spracheToolStripMenuItem
+      // 
+      this.spracheToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.deutschToolStripMenuItem});
+      this.spracheToolStripMenuItem.Name = "spracheToolStripMenuItem";
+      this.spracheToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+      this.spracheToolStripMenuItem.Text = "Sprache";
+      // 
+      // deutschToolStripMenuItem
+      // 
+      this.deutschToolStripMenuItem.Name = "deutschToolStripMenuItem";
+      this.deutschToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+      this.deutschToolStripMenuItem.Text = "Deutsch";
+      this.deutschToolStripMenuItem.Click += new System.EventHandler(this.deutschToolStripMenuItem_Click);
+      // 
+      // suchmaschineToolStripMenuItem
+      // 
+      this.suchmaschineToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.dEToolStripMenuItem,
+            this.aTToolStripMenuItem,
+            this.cHToolStripMenuItem});
+      this.suchmaschineToolStripMenuItem.Name = "suchmaschineToolStripMenuItem";
+      this.suchmaschineToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+      this.suchmaschineToolStripMenuItem.Text = "Suchmaschine";
+      // 
+      // dEToolStripMenuItem
+      // 
+      this.dEToolStripMenuItem.Name = "dEToolStripMenuItem";
+      this.dEToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+      this.dEToolStripMenuItem.Text = "AT";
+      this.dEToolStripMenuItem.Click += new System.EventHandler(this.aTToolStripMenuItem_Click);
+      // 
+      // aTToolStripMenuItem
+      // 
+      this.aTToolStripMenuItem.Name = "aTToolStripMenuItem";
+      this.aTToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+      this.aTToolStripMenuItem.Text = "CH";
+      this.aTToolStripMenuItem.Click += new System.EventHandler(this.cHToolStripMenuItem_Click);
+      // 
+      // cHToolStripMenuItem
+      // 
+      this.cHToolStripMenuItem.Name = "cHToolStripMenuItem";
+      this.cHToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+      this.cHToolStripMenuItem.Text = "DE";
+      this.cHToolStripMenuItem.Click += new System.EventHandler(this.dEToolStripMenuItem_Click);
+      // 
       // PnlHeader
       // 
-      this.PnlHeader.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+      this.PnlHeader.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
       this.PnlHeader.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(121)))), ((int)(((byte)(255)))));
       this.PnlHeader.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("PnlHeader.BackgroundImage")));
@@ -214,8 +277,8 @@ namespace PSU_Calculator
       // 
       // PnlContent
       // 
-      this.PnlContent.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-            | System.Windows.Forms.AnchorStyles.Left)
+      this.PnlContent.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
       this.PnlContent.Controls.Add(this.LinkLabel4);
       this.PnlContent.Controls.Add(this.Label17);
@@ -254,8 +317,8 @@ namespace PSU_Calculator
       // 
       // gbxNetzteile
       // 
-      this.gbxNetzteile.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-            | System.Windows.Forms.AnchorStyles.Left)
+      this.gbxNetzteile.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
       this.gbxNetzteile.BackColor = System.Drawing.Color.White;
       this.gbxNetzteile.Controls.Add(this.cmdCopyToForum);
@@ -267,9 +330,32 @@ namespace PSU_Calculator
       this.gbxNetzteile.TabStop = false;
       this.gbxNetzteile.Text = "Empfehlenswerte Netzteile";
       // 
+      // cmdCopyToForum
+      // 
+      this.cmdCopyToForum.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+      this.cmdCopyToForum.Location = new System.Drawing.Point(11, 176);
+      this.cmdCopyToForum.Name = "cmdCopyToForum";
+      this.cmdCopyToForum.Size = new System.Drawing.Size(338, 23);
+      this.cmdCopyToForum.TabIndex = 115;
+      this.cmdCopyToForum.Text = "Netzteile in die Zwischenablage Kopieren";
+      this.cmdCopyToForum.UseVisualStyleBackColor = true;
+      this.cmdCopyToForum.Click += new System.EventHandler(this.cmdCopyToForum_Click);
+      // 
+      // pnlNetzteile
+      // 
+      this.pnlNetzteile.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+      this.pnlNetzteile.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
+      this.pnlNetzteile.Location = new System.Drawing.Point(13, 17);
+      this.pnlNetzteile.Name = "pnlNetzteile";
+      this.pnlNetzteile.Size = new System.Drawing.Size(333, 159);
+      this.pnlNetzteile.TabIndex = 1;
+      // 
       // gbxVerbrauch
       // 
-      this.gbxVerbrauch.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+      this.gbxVerbrauch.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
       this.gbxVerbrauch.BackColor = System.Drawing.Color.Transparent;
       this.gbxVerbrauch.Controls.Add(this.PictureBox1);
@@ -310,7 +396,7 @@ namespace PSU_Calculator
       // 
       // pgbEffizienz
       // 
-      this.pgbEffizienz.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+      this.pgbEffizienz.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
       this.pgbEffizienz.Location = new System.Drawing.Point(13, 58);
       this.pgbEffizienz.Maximum = 1000;
@@ -321,7 +407,7 @@ namespace PSU_Calculator
       // 
       // PictureBox4
       // 
-      this.PictureBox4.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+      this.PictureBox4.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
       this.PictureBox4.Image = ((System.Drawing.Image)(resources.GetObject("PictureBox4.Image")));
       this.PictureBox4.Location = new System.Drawing.Point(13, 74);
@@ -357,7 +443,7 @@ namespace PSU_Calculator
       // 
       // gbxDaten
       // 
-      this.gbxDaten.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+      this.gbxDaten.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left)));
       this.gbxDaten.Controls.Add(this.label9);
       this.gbxDaten.Controls.Add(this.cbxPhysx);
@@ -832,29 +918,6 @@ namespace PSU_Calculator
       this.lblCPU2.Text = "CPU 2:";
       this.lblCPU2.Visible = false;
       // 
-      // pnlNetzteile
-      // 
-      this.pnlNetzteile.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-            | System.Windows.Forms.AnchorStyles.Left)
-            | System.Windows.Forms.AnchorStyles.Right)));
-      this.pnlNetzteile.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
-      this.pnlNetzteile.Location = new System.Drawing.Point(13, 17);
-      this.pnlNetzteile.Name = "pnlNetzteile";
-      this.pnlNetzteile.Size = new System.Drawing.Size(333, 159);
-      this.pnlNetzteile.TabIndex = 1;
-      // 
-      // cmdCopyToForum
-      // 
-      this.cmdCopyToForum.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)
-            | System.Windows.Forms.AnchorStyles.Right)));
-      this.cmdCopyToForum.Location = new System.Drawing.Point(11, 176);
-      this.cmdCopyToForum.Name = "cmdCopyToForum";
-      this.cmdCopyToForum.Size = new System.Drawing.Size(338, 23);
-      this.cmdCopyToForum.TabIndex = 115;
-      this.cmdCopyToForum.Text = "Netzteile in die Zwischenablage Kopieren";
-      this.cmdCopyToForum.UseVisualStyleBackColor = true;
-      this.cmdCopyToForum.Click += new System.EventHandler(this.cmdCopyToForum_Click);
-      // 
       // Form1
       // 
       this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1039,6 +1102,13 @@ namespace PSU_Calculator
     private System.Windows.Forms.ToolStripMenuItem classicToolStripMenuItem;
     private System.Windows.Forms.Button cmdCopyToForum;
     internal System.Windows.Forms.FlowLayoutPanel pnlNetzteile;
+    private System.Windows.Forms.ToolStripMenuItem einstellungenToolStripMenuItem;
+    private System.Windows.Forms.ToolStripMenuItem spracheToolStripMenuItem;
+    private System.Windows.Forms.ToolStripMenuItem deutschToolStripMenuItem;
+    private System.Windows.Forms.ToolStripMenuItem suchmaschineToolStripMenuItem;
+    private System.Windows.Forms.ToolStripMenuItem dEToolStripMenuItem;
+    private System.Windows.Forms.ToolStripMenuItem aTToolStripMenuItem;
+    private System.Windows.Forms.ToolStripMenuItem cHToolStripMenuItem;
 
   }
 }

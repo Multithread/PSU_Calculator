@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Net;
 using System.Runtime.CompilerServices;
@@ -22,17 +23,24 @@ namespace PSU_Calculator
     Thread t = null;
     public Form1()
     {
-      PSUCalculatorSettings.Get();
-      string data = "name=LC-Power LC 9550 500W;tdp=500;max=400;quali=40;DE=http://geizhals.de/lc-power-gold-series-lc9550-v2-3-500w-atx-2-3-a861223.html";
-      ComponentStringSplitter css = new ComponentStringSplitter(data, true);
-      while (css.HasNext())
-      {
-        string value = css.GetValueForKey(css.Next());
-      }
-
       InitializeComponent();
-
       addGPU();
+
+      if (!StorageMapper.Existiert(PSUCalculatorSettings.DirectoryPath))
+      {
+        StorageMapper.CreateStructure();
+        PSUCalculatorSettings.Get().PrepareForFirstUse();
+        FirstUsageInfoBox boxie = new FirstUsageInfoBox();
+        boxie.Show();
+        Application.DoEvents();
+        new Updater().RunUpdateSyncroniced();
+        boxie.Close();
+      }
+      else
+      {
+        new Updater().RunUpdateAsync();
+      }
+      PSUCalculatorSettings.Get();
 
       LoaderModul m = LoaderModul.getInstance();
 
@@ -53,11 +61,13 @@ namespace PSU_Calculator
       t = new Thread(new ParameterizedThreadStart(TestForUpdates));
       t.IsBackground = true;
       t.Start();
+      berechneVerbrauch(this, null);
     }
 
     //Updates herunterladen von Github.
     void TestForUpdates(object _data)
     {
+      return;
       try
       {
         StorageMapper.GetLocalData(addToBoxInvvoke);
@@ -86,7 +96,7 @@ namespace PSU_Calculator
         addToBoxInvvoke(false);
 
         //Netzteile Liste updaten
-        b = c.DownloadString("https://raw.githubusercontent.com/Multithread/PSU_Calculator/master/" + PSUCalculatorSettings.PowerSupplys);
+        b = c.DownloadString("https://raw.githubusercontent.com/Multithread/PSU_Calculator/master/" + PSUCalculatorSettings.PowerSupply);
         string[] nt = b.Split(new string[] { "\n" }, StringSplitOptions.RemoveEmptyEntries);
         m.AddNetzteilRange(m.GetPowerSupplysFromArray(nt));
 
@@ -291,17 +301,22 @@ namespace PSU_Calculator
       List<PowerSupply> empfehlenswerte = new List<PowerSupply>();
       foreach (PowerSupply nt in LoaderModul.getInstance().GetPowerSupplys())
       {
-        if (nt.UsageLoadMaximum > Watt)
+        if (nt.UsageLoadMaximum < Watt)
         {
-          if (nt.UsageLoadMaximum < (Watt + 100 + (nt.TDP * 0.1)))
+          continue;
+        }
+        if (nt.UsageLoadMinimum != -1)
+        {
+          if (nt.UsageLoadMinimum < Watt)
           {
-            //Empfehlen
             empfehlenswerte.Add(nt);
           }
+          continue;
         }
-        else if (Watt > 1000)
+        if (nt.UsageLoadMaximum < (Watt + 100 + (nt.TDP * 0.1)))
         {
-
+          //Empfehlen
+          empfehlenswerte.Add(nt);
         }
       }
       return empfehlenswerte;
@@ -343,7 +358,7 @@ namespace PSU_Calculator
         url = (sender as LinkLabel).Name;
       }
 
-      if (url.StartsWith("http://geizhals.de/"))
+      if (url.StartsWith("http://geizhals") || url.StartsWith("http://www.toppreise"))
       {
         System.Diagnostics.Process.Start(url);
       }
@@ -557,6 +572,34 @@ namespace PSU_Calculator
         sb.Append("[/URL]\n");
       }
       System.Windows.Forms.Clipboard.SetDataObject(sb.ToString(), true);
+    }
+
+    private void deutschToolStripMenuItem_Click(object sender, EventArgs e)
+    {
+
+    }
+
+    private void dEToolStripMenuItem_Click(object sender, EventArgs e)
+    {
+      var set = PSUCalculatorSettings.Get();
+      set.OverrideSetting(PSUCalculatorSettings.SearchEngineString, "DE");
+      set.SaveSettings();
+    }
+
+    private void aTToolStripMenuItem_Click(object sender, EventArgs e)
+    {
+      var set = PSUCalculatorSettings.Get();
+      set.OverrideSetting(PSUCalculatorSettings.SearchEngineString, "AT");
+      set.SaveSettings();
+
+    }
+
+    private void cHToolStripMenuItem_Click(object sender, EventArgs e)
+    {
+      var set = PSUCalculatorSettings.Get();
+      set.OverrideSetting(PSUCalculatorSettings.SearchEngineString, "CH");
+      set.SaveSettings();
+
     }
   }
 }

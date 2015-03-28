@@ -19,6 +19,7 @@ namespace PSU_Calculator.Komponenten
       public PowerSupply(string name, int powerConsumation, int toTDP, string geizhalsLink, int qualitaet)
         : base(name, toTDP, powerConsumation)
       {
+        UsageLoadMinimum = -1;
         Geizhals = geizhalsLink;
         Quality = qualitaet;
       }
@@ -31,6 +32,10 @@ namespace PSU_Calculator.Komponenten
         GPGPU = getIntForString(ss.GetValueForKey("Max"));
         Quality = getIntForString(ss.GetValueForKey("Quali"));
 
+        if(UsageLoadMinimum == 0)
+        {
+          UsageLoadMinimum = -1; 
+        }
         string key = "";
         while (ss.HasNext())
         {
@@ -72,7 +77,7 @@ namespace PSU_Calculator.Komponenten
     public override string GetOrginalString()
     {
       StringBuilder db = new StringBuilder();
-      return string.Format("{0};{1};{2};{3};{4}", Name, TDP, UsageLoadMaximum, Quality, Geizhals);
+      return string.Format("name={0};tdp={1};max={2};quali={3};DE={4}", Name, TDP, UsageLoadMaximum, Quality, Geizhals);
     }
 
     public int Quality

@@ -1,4 +1,5 @@
 ﻿using PSU_Calculator.DataWorker;
+using PSU_Calculator.Dateizugriffe;
 using PSU_Calculator.Komponenten;
 using System;
 using System.Collections.Generic;
@@ -277,6 +278,19 @@ namespace PSU_Calculator
       _box.Items.AddRange(GetGPUComponents().ToArray());
     }
 
+    /// <summary>
+    /// CPU's in eine combobox laden
+    /// Setztern dews Keyxup events für suche
+    /// </summary>
+    /// <param name="_box"></param>
+    [MethodImpl(MethodImplOptions.Synchronized)]
+    public void LoadCPU(ComboBox _box)
+    {
+      _box.AutoCompleteSource = AutoCompleteSource.ListItems;
+      _box.Items.Clear();
+      _box.Items.AddRange(GetCPUComponents().ToArray());
+    }
+
     public void setGPUSearchEvent(ComboBox _box)
     {
       _box.KeyUp += (sender, args) =>
@@ -288,11 +302,7 @@ namespace PSU_Calculator
         }
 
         _box.Items.Clear();
-        IEnumerable<PcComponent> suggestions = string.IsNullOrWhiteSpace(_box.Text) ? gpuComponentList : gpuComponentList.Where(el => el.Name.ToLower().Contains(_box.Text.ToLower()));
-        if (suggestions.Count() == 0)
-        {
-          suggestions = gpuComponentList;
-        }
+        IEnumerable<PcComponent> suggestions = GetPossibleComponents(gpuComponentList, _box.Text);
 
         if (suggestions.Count() == 1)
         {
@@ -310,19 +320,6 @@ namespace PSU_Calculator
       };
     }
 
-    /// <summary>
-    /// CPU's in eine combobox laden
-    /// Setztern dews Keyxup events für suche
-    /// </summary>
-    /// <param name="_box"></param>
-    [MethodImpl(MethodImplOptions.Synchronized)]
-    public void LoadCPU(ComboBox _box)
-    {
-      _box.AutoCompleteSource = AutoCompleteSource.ListItems;
-      _box.Items.Clear();
-      _box.Items.AddRange(GetCPUComponents().ToArray());
-    }
-
     public void setCPUSearchEvent(ComboBox _box)
     {
       _box.KeyUp += (sender, args) =>
@@ -334,11 +331,7 @@ namespace PSU_Calculator
         }
 
         _box.Items.Clear();
-        IEnumerable<PcComponent> suggestions = string.IsNullOrWhiteSpace(_box.Text) ? cpuComponentList : cpuComponentList.Where(el => el.Name.ToLower().Contains(_box.Text.ToLower()));
-        if (suggestions.ToArray().Length == 0)
-        {
-          suggestions = cpuComponentList;
-        }
+        IEnumerable<PcComponent> suggestions = GetPossibleComponents(cpuComponentList, _box.Text);
 
         if (suggestions.Count() == 1)
         {
@@ -354,6 +347,45 @@ namespace PSU_Calculator
           //liste.DroppedDown = true;
         }
       };
+    }
+
+    /// <summary>
+    /// Liste möglicher Elemente zurückgeben.
+    /// </summary>
+    /// <param name="orginalList"></param>
+    /// <param name="searchstring"></param>
+    /// <returns></returns>
+    private IEnumerable<PcComponent> GetPossibleComponents(List<PcComponent> orginalList, string searchstring)
+    {
+      searchstring = searchstring.ToLower();
+      if (string.IsNullOrWhiteSpace(searchstring))
+      {
+        return orginalList;
+      }
+      string[] searchparts=searchstring.Split(new string[]{" "}, StringSplitOptions.RemoveEmptyEntries);
+      List<PcComponent> output = new List<PcComponent>();
+      bool isvalid=false;
+      foreach (PcComponent com in orginalList)
+      {
+        isvalid = true;
+        foreach (string search in searchparts)
+        {
+          if (!com.Name.ToLower().Contains(search))
+          {
+            isvalid = false;
+          }
+        }
+        if (isvalid)
+        {
+          output.Add(com);
+        }
+      }
+
+      if (output.Count == 0)
+      {
+        return orginalList;
+      }
+      return output;
     }
 
     /// <summary>
@@ -430,8 +462,7 @@ namespace PSU_Calculator
     {
       if (powersupplyList == null)
       {
-        string[] rows = getAssemblyText("Netzteile.txt").Split(new string[] { Environment.NewLine }, StringSplitOptions.None);
-
+        string[] rows = StorageMapper.ReadFromFilesystem(PSUCalculatorSettings.GetFilePath(PSUCalculatorSettings.PowerSupply)).Split(new string[] { Environment.NewLine,"\n","\r" }, StringSplitOptions.None);
         powersupplyList = GetPowerSupplysFromArray(rows);
       }
       return powersupplyList;
@@ -445,40 +476,9 @@ namespace PSU_Calculator
     public List<PowerSupply> GetPowerSupplysFromArray(string[] _rows)
     {
       List<PowerSupply> parts = new List<PowerSupply>();
-      string[] columns;
-      int tdp, power, quali;
       foreach (string row in _rows)
       {
-        columns = row.Split(';');
-        switch (columns.Length)
-        {
-          case 0:
-          case 1:
-            parts.Add(new PowerSupply("", 0, 0, ""));
-            break;
-          case 2:
-            int.TryParse(columns[1], out tdp);
-            parts.Add(new PowerSupply(columns[0], tdp, tdp, ""));
-            break;
-          case 3:
-            int.TryParse(columns[1], out tdp);
-            parts.Add(new PowerSupply(columns[0], tdp, tdp, columns[2]));
-            break;
-          case 4:
-            int.TryParse(columns[1], out tdp);
-            int.TryParse(columns[2], out power);
-            parts.Add(new PowerSupply(columns[0], power, tdp, columns[3]));
-            break;
-          case 5:
-            int.TryParse(columns[1], out tdp);
-            int.TryParse(columns[2], out power);
-            int.TryParse(columns[3], out quali);
-            parts.Add(new PowerSupply(columns[0], power, tdp, columns[4], quali));
-            break;
-          default:
-            parts.Add(new PowerSupply(new ComponentStringSplitter(row, true)));
-            break;
-        }
+        parts.Add(new PowerSupply(new ComponentStringSplitter(row, true)));
       }
       parts.Sort(delegate(PowerSupply n1, PowerSupply n2)
       {
