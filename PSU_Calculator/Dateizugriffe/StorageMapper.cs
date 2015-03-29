@@ -40,8 +40,7 @@ namespace PSU_Calculator.Dateizugriffe
       {
         //wenn alles geschrieben werden konnte ist alles io:)
         if(addZeilen(PSUCalculatorSettings.GPUPath, _gpu)
-        && addZeilen(PSUCalculatorSettings.CPUPath, _cpu)
-        && addZeilen(PSUCalculatorSettings.PowerSupplyPath, _nt))
+        && addZeilen(PSUCalculatorSettings.CPUPath, _cpu))
         {
           return true;
         }

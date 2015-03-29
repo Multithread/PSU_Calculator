@@ -23,24 +23,12 @@ namespace PSU_Calculator
     Thread t = null;
     public Form1()
     {
+      PSUCalculatorSettings.Get().Load();
+
       InitializeComponent();
       addGPU();
 
-      if (!StorageMapper.Existiert(PSUCalculatorSettings.DirectoryPath))
-      {
-        StorageMapper.CreateStructure();
-        PSUCalculatorSettings.Get().PrepareForFirstUse();
-        FirstUsageInfoBox boxie = new FirstUsageInfoBox();
-        boxie.Show();
-        Application.DoEvents();
-        new Updater().RunUpdateSyncroniced();
-        boxie.Close();
-      }
-      else
-      {
-        new Updater().RunUpdateAsync();
-      }
-      PSUCalculatorSettings.Get();
+      new Updater().RunUpdateAsync();
 
       LoaderModul m = LoaderModul.getInstance();
 
@@ -62,12 +50,12 @@ namespace PSU_Calculator
       t.IsBackground = true;
       t.Start();
       berechneVerbrauch(this, null);
+      AddPriceComparorsToToolStrip();
     }
 
     //Updates herunterladen von Github.
     void TestForUpdates(object _data)
     {
-      return;
       try
       {
         StorageMapper.GetLocalData(addToBoxInvvoke);
@@ -94,11 +82,6 @@ namespace PSU_Calculator
         m.AddGPURange(m.GetComponents(gpu));
 
         addToBoxInvvoke(false);
-
-        //Netzteile Liste updaten
-        b = c.DownloadString("https://raw.githubusercontent.com/Multithread/PSU_Calculator/master/" + PSUCalculatorSettings.PowerSupply);
-        string[] nt = b.Split(new string[] { "\n" }, StringSplitOptions.RemoveEmptyEntries);
-        m.AddNetzteilRange(m.GetPowerSupplysFromArray(nt));
 
         if (StorageMapper.SetLocalData(version, m.GPU, m.CPU, m.Netzteile))
         {
@@ -322,24 +305,51 @@ namespace PSU_Calculator
       return empfehlenswerte;
     }
 
+    /// <summary>
+    /// Erstellt die Labels mit Farbe für die ANzeige in der Linklist.
+    /// </summary>
+    /// <param name="empfehlenswerte"></param>
     private void AddToView(List<PowerSupply> empfehlenswerte)
     {
       pnlNetzteile.SuspendLayout();
       pnlNetzteile.Controls.Clear();
       foreach (PowerSupply nt in empfehlenswerte)
       {
+        var color = Color.Blue;
+        string link = "";
+        if (PSUCalculatorSettings.Get().ShowPriceComparer)
+        {
+          link = nt.CurrentPresvergleichLink;
+          if (string.IsNullOrEmpty(link))
+          {
+            link = nt.AnyPresvergleichLink;
+            color = Color.Navy;
+            if (string.IsNullOrEmpty(link))
+            {
+              color = Color.Black;
+            }
+          }
+        }
+        else
+        {
+          if (nt.Testberichte.Count == 0)
+          {
+            color = Color.Black;
+          }
+        }
         LinkLabel l = new LinkLabel();
         l.AutoSize = true;
         l.BackColor = System.Drawing.Color.Transparent;
         l.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
         l.ForeColor = System.Drawing.Color.Black;
         l.Location = new System.Drawing.Point(5, 2);
-        l.Name = nt.Geizhals;
+        l.Name = link;
         l.Size = new System.Drawing.Size(35, 15);
         l.TabIndex = 64;
         l.Text = nt.Name;
-        l.Click += gotoGhLink;
-
+        l.LinkColor = color;
+        l.Click += GoToLink;
+        l.Tag = nt;
 
         Panel p = new Panel();
         p.AutoSize = true;
@@ -350,17 +360,34 @@ namespace PSU_Calculator
       pnlNetzteile.ResumeLayout();
     }
 
-    void gotoGhLink(object sender, System.EventArgs e)
+    void GoToLink(object sender, System.EventArgs e)
     {
       string url = "";
+      LinkLabel orginal;
       if (sender is LinkLabel)
       {
-        url = (sender as LinkLabel).Name;
+        orginal = (sender as LinkLabel);
+        url = orginal.Name;
+      }
+      else
+      {
+        return;
       }
 
-      if (url.StartsWith("http://geizhals") || url.StartsWith("http://www.toppreise"))
+      if (PSUCalculatorSettings.Get().ShowPriceComparer)
       {
-        System.Diagnostics.Process.Start(url);
+        if (url.StartsWith("http://geizhals") || url.StartsWith("http://www.toppreise"))
+        {
+          System.Diagnostics.Process.Start(url);
+        }
+      }
+      else
+      {
+        PowerSupply ps = (PowerSupply)orginal.Tag;
+        if (ps.Testberichte.Count > 0)
+        {
+          new TestberichteAuswahl(ps).ShowDialog();
+        }
       }
     }
 
@@ -566,7 +593,7 @@ namespace PSU_Calculator
       foreach (PowerSupply nt in netzteile)
       {
         sb.Append("[URL=\"");
-        sb.Append(nt.Geizhals);
+        sb.Append(nt.AnyPresvergleichLink);
         sb.Append("\"]");
         sb.Append(nt.Name);
         sb.Append("[/URL]\n");
@@ -579,27 +606,85 @@ namespace PSU_Calculator
 
     }
 
-    private void dEToolStripMenuItem_Click(object sender, EventArgs e)
+    private void AddPriceComparorsToToolStrip()
     {
-      var set = PSUCalculatorSettings.Get();
-      set.OverrideSetting(PSUCalculatorSettings.SearchEngineString, "DE");
-      set.SaveSettings();
+      foreach (string comparer in PowerSupply.PriceComparer)
+      {
+
+        var toolStripMenuEntrie = new ToolStripMenuItem();
+        toolStripMenuEntrie.Name = comparer + "ToolStripMenuItem";
+        toolStripMenuEntrie.Size = new System.Drawing.Size(152, 22);
+        toolStripMenuEntrie.Text = UppercaseFirst(comparer);
+        toolStripMenuEntrie.Click += toolStripMenuEntrie_Click;
+
+        suchmaschineToolStripMenuItem.DropDownItems.Add(toolStripMenuEntrie);
+      }
     }
 
-    private void aTToolStripMenuItem_Click(object sender, EventArgs e)
+    private string UppercaseFirst(string s)
     {
-      var set = PSUCalculatorSettings.Get();
-      set.OverrideSetting(PSUCalculatorSettings.SearchEngineString, "AT");
-      set.SaveSettings();
-
+      if (string.IsNullOrEmpty(s))
+      {
+        return string.Empty;
+      }
+      if (s.Length <= 3)
+      {
+        return s.ToUpper();
+      }
+      char[] a = s.ToCharArray();
+      a[0] = char.ToUpper(a[0]);
+      return new string(a);
     }
 
-    private void cHToolStripMenuItem_Click(object sender, EventArgs e)
+    private void toolStripMenuEntrie_Click(object sender, EventArgs e)
     {
+      var entry = sender as ToolStripMenuItem;
       var set = PSUCalculatorSettings.Get();
-      set.OverrideSetting(PSUCalculatorSettings.SearchEngineString, "CH");
+      set.OverrideSetting(PSUCalculatorSettings.SearchEngineString, entry.Text);
+      set.SetSearchEngine(entry.Text);
       set.SaveSettings();
+      berechneVerbrauch(null, null);
+    }
 
+    private void radioPreisvergleich_CheckedChanged(object sender, EventArgs e)
+    {
+      PSUCalculatorSettings.Get().ShowPriceComparer = true;
+      berechneVerbrauch(null, null);
+    }
+
+    private void radioTestberichte_CheckedChanged(object sender, EventArgs e)
+    {
+      PSUCalculatorSettings.Get().ShowPriceComparer = false;
+      berechneVerbrauch(null, null);
+    }
+
+    private void cmdCopySystem_Click(object sender, EventArgs e)
+    {
+      StringJoiner sj = new StringJoiner();
+      sj.Put("CPU1", GetItem(cbxCpu.SelectedItem));
+      sj.Put("CPU2", GetItem(cbxCPU2.SelectedItem));
+      int grakacount = 1;
+      foreach (ComboBox box in cbxGrakaList)
+      {
+        sj.Put("GPU_"+grakacount, GetItem(cbxCPU2.SelectedItem));
+        grakacount++;
+      }
+      sj.Put("PhysX", GetItem(cbxPhysx.SelectedItem));
+      sj.Put("Lüfter", GetItem(cbxFans.SelectedItem));
+      sj.Put("HDD", GetItem(cbxHDD.SelectedItem));
+      sj.Put("SSD", GetItem(cbxSSD.SelectedItem));
+      sj.Put("Laufwerke", GetItem(cbxLaufwerke.SelectedItem));
+      sj.Put("OC", GetItem(cbxOverclocking.SelectedItem));
+      System.Windows.Forms.Clipboard.SetDataObject(sj.ToString(), true);
+    }
+
+    private string GetItem(object o)
+    {
+      if (o == null)
+      {
+        return "";
+      }
+      return o.ToString();
     }
   }
 }

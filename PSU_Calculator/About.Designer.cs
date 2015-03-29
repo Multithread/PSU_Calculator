@@ -115,9 +115,9 @@
       this.Label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
       this.Label2.Location = new System.Drawing.Point(15, 40);
       this.Label2.Name = "Label2";
-      this.Label2.Size = new System.Drawing.Size(44, 15);
+      this.Label2.Size = new System.Drawing.Size(24, 15);
       this.Label2.TabIndex = 44;
-      this.Label2.Text = "1.3.0.0";
+      this.Label2.Text = "1.5";
       // 
       // About
       // 
@@ -134,7 +134,6 @@
       this.Controls.Add(this.RichTextBox1);
       this.Controls.Add(this.Label2);
       this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
-      this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
       this.MaximizeBox = false;
       this.MinimizeBox = false;
       this.Name = "About";

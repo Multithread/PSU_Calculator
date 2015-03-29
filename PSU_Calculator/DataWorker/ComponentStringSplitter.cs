@@ -8,7 +8,7 @@ namespace PSU_Calculator.DataWorker
 {
   public class ComponentStringSplitter: IStringSplitter
   {
-    protected Dictionary<string, string> DataDict = new Dictionary<string, string>();
+    protected Dictionary<string, List<string>> DataDict = new Dictionary<string, List<string>>();
     protected char escape = '\\';
     protected char splitter = ';';
     protected char valuesplitter = '=';
@@ -55,10 +55,6 @@ namespace PSU_Calculator.DataWorker
           {
             if (key.Length == 0)
             {
-              if (toLoowerString)
-              {
-                key = key.ToLower();
-              }
               key = sb.ToString();
             }
             else
@@ -83,7 +79,12 @@ namespace PSU_Calculator.DataWorker
       {
         if (!DataDict.ContainsKey(key))
         {
-          DataDict.Add(key, value[0]);
+          if (toLoowerString)
+          {
+            key = key.ToLower();
+          }
+          UnusedKeys.Add(key);
+          DataDict.Add(key, value);
         }
       }
       return pos + 1;
@@ -96,12 +97,27 @@ namespace PSU_Calculator.DataWorker
         key = key.ToLower();
       }
       UnusedKeys.Remove(key);
-      string data = "";
+      List<string> data;
+      if (Data.TryGetValue(key, out data))
+      {
+        return data[0];
+      }
+      return "";
+    }
+
+    public List<string> GetValueForKeyList(string key)
+    {
+      if (toLoowerString)
+      {
+        key = key.ToLower();
+      }
+      UnusedKeys.Remove(key);
+      List<string> data;
       if (Data.TryGetValue(key, out data))
       {
         return data;
       }
-      return "";
+      return new List<string>();
     }
 
     public double GetValueForKeyAsDouble(string key)
@@ -115,7 +131,7 @@ namespace PSU_Calculator.DataWorker
       return 0.0d;
     }
 
-    public Dictionary<string, string> Data
+    public Dictionary<string, List<string>> Data
     {
       get
       {
@@ -134,7 +150,10 @@ namespace PSU_Calculator.DataWorker
 
     public string Next()
     {
-      return UnusedKeys[0];
+      string output = "";
+      output = UnusedKeys[0];
+      UnusedKeys.RemoveAt(0);
+      return output;
     }
   }
 }

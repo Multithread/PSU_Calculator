@@ -13,6 +13,13 @@ namespace PSU_Calculator.DataWorker
     /// <param name="key"></param>
     /// <returns></returns>
     string GetValueForKey(string key);
+
+    /// <summary>
+    /// Wert für einen key auslesen.
+    /// </summary>
+    /// <param name="key"></param>
+    /// <returns></returns>
+    List<string> GetValueForKeyList(string key);
     
     /// <summary>
     /// Gibt es mehr Keys in der Liste?

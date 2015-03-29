@@ -9,7 +9,10 @@ namespace PSU_Calculator.Komponenten
 {
   public class PowerSupply : PcComponent
   {
-    private Dictionary<String, String> PriceCompareList = new Dictionary<string, string>();
+    public static List<string> PriceComparer = new List<string>(); //Liste der Preisvergleiche
+
+    private Dictionary<String, String> PriceCompareDict = new Dictionary<string, string>();
+    private List<string> tests = new List<string>();
 
       public PowerSupply(string name, int powerConsumation, int toTDP, string geizhalsLink)
         :this (name,powerConsumation,toTDP,geizhalsLink,50)  
@@ -31,6 +34,8 @@ namespace PSU_Calculator.Komponenten
         UsageLoadMinimum = getIntForString(ss.GetValueForKey("Min"));
         GPGPU = getIntForString(ss.GetValueForKey("Max"));
         Quality = getIntForString(ss.GetValueForKey("Quali"));
+        TDP = getIntForString(ss.GetValueForKey("TDP"));
+        tests = ss.GetValueForKeyList("Testberichte");
 
         if(UsageLoadMinimum == 0)
         {
@@ -40,8 +45,12 @@ namespace PSU_Calculator.Komponenten
         while (ss.HasNext())
         {
           key = ss.Next();
-          PriceCompareList.Add(key.ToUpper(), ss.GetValueForKey(key));
-        }
+          PriceCompareDict.Add(key.ToUpper(), ss.GetValueForKey(key));
+          if (!PriceComparer.Contains(key))
+          {
+            PriceComparer.Add(key);
+          }
+        }      
       }
 
       private int getIntForString(string data)
@@ -52,6 +61,54 @@ namespace PSU_Calculator.Komponenten
           return value;
         }
         return 0;
+      }
+
+      public string CurrentPresvergleichLink
+      {
+        get
+        {
+          string output = "";
+          if (!PriceCompareDict.TryGetValue(PSUCalculatorSettings.Get().SearchEngine.ToUpper(), out output))
+          {
+            return "";
+          }
+          return output;
+        }
+      }
+
+      public List<string> Testberichte
+      {
+        get
+        {
+          return tests;
+        }
+      }
+
+    /// <summary>
+    /// gibt einen Preisvergleichslink zurück, bevorzugt den aktuel gewählten, bzw. den Default wert (DE)
+    /// </summary>
+      public string AnyPresvergleichLink
+      {
+        get
+        {
+          string output = "";
+          if (PriceCompareDict.TryGetValue(PSUCalculatorSettings.Get().SearchEngine.ToUpper(), out output))
+          {
+            return output;
+          }
+          if (PriceCompareDict.TryGetValue(PSUCalculatorSettings.DefaultSearchEngine.ToUpper(), out output))
+          {
+            return output;
+          }
+          foreach (string key in PriceCompareDict.Keys)
+          {
+            if (PriceCompareDict.TryGetValue(key, out output))
+            {
+              return output;
+            }
+          }
+          return "";
+        }
       }
 
     public string Geizhals

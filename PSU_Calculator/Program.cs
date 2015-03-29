@@ -1,4 +1,6 @@
-﻿using System;
+﻿using PSU_Calculator.DataWorker;
+using PSU_Calculator.Dateizugriffe;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -16,6 +18,12 @@ namespace PSU_Calculator
     {
       Application.EnableVisualStyles();
       Application.SetCompatibleTextRenderingDefault(false);
+
+      if (!StorageMapper.Existiert(PSUCalculatorSettings.DirectoryPath))
+      {
+        FirstUsageInfoBox boxie = new FirstUsageInfoBox();
+        boxie.ShowDialog();
+      }
       Application.Run(new Form1());
     }
   }

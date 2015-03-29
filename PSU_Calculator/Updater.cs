@@ -17,6 +17,10 @@ namespace PSU_Calculator
     static string GPUList = "https://raw.githubusercontent.com/Multithread/PSU_Calculator/master/GPUs.data";
     static string CPUList = "https://raw.githubusercontent.com/Multithread/PSU_Calculator/master/CPUs.data";
     Thread downloader;
+
+    public delegate void UpdateFinishedDelegate(Updater sender);
+    public event UpdateFinishedDelegate UpdateFinishedEvent;
+
     public bool IsUpdating
     {
       get;
@@ -59,6 +63,7 @@ namespace PSU_Calculator
           string path = PSUCalculatorSettings.GetFilePath(PSUCalculatorSettings.PowerSupply);
           StorageMapper.WriteToFilesystem(path, data);
           PSUCalculatorSettings.Get().OverrideSetting(PSUCalculatorSettings.PowerSupply, css.GetValueForKeyAsDouble(PSUCalculatorSettings.PowerSupply).ToString());
+          LoaderModul.getInstance().ReloadPowerSupplys();
         }
         IsUpdating = false;
       }
@@ -87,6 +92,10 @@ namespace PSU_Calculator
         IsUpdating = false;
       }
       PSUCalculatorSettings.Get().SaveSettings();
+      if (UpdateFinishedEvent != null)
+      {
+        UpdateFinishedEvent(this);
+      }
     }
 
     public string DownloadFromSource(string url)

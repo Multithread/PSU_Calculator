@@ -352,8 +352,8 @@ namespace PSU_Calculator
     /// <summary>
     /// Liste möglicher Elemente zurückgeben.
     /// </summary>
-    /// <param name="orginalList"></param>
-    /// <param name="searchstring"></param>
+    /// <param name="orginalList">Liste aller PC Objekcte (CPU/GPU/whatever)</param>
+    /// <param name="searchstring">Suchstring, mehrere über leerzeichen trennbar</param>
     /// <returns></returns>
     private IEnumerable<PcComponent> GetPossibleComponents(List<PcComponent> orginalList, string searchstring)
     {
@@ -466,6 +466,15 @@ namespace PSU_Calculator
         powersupplyList = GetPowerSupplysFromArray(rows);
       }
       return powersupplyList;
+    }
+
+    /// <summary>
+    /// Lädt die Netzteile neu, für den fall eines Online Updates.
+    /// </summary>
+    public void ReloadPowerSupplys()
+    {
+      string[] rows = StorageMapper.ReadFromFilesystem(PSUCalculatorSettings.GetFilePath(PSUCalculatorSettings.PowerSupply)).Split(new string[] { Environment.NewLine, "\n", "\r" }, StringSplitOptions.None);
+      powersupplyList = GetPowerSupplysFromArray(rows);
     }
 
     /// <summary>

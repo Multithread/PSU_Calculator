@@ -27,10 +27,12 @@
     /// </summary>
     private void InitializeComponent()
     {
-      System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FAQ));
+      System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
+
       this.Button1 = new System.Windows.Forms.Button();
       this.Label30 = new System.Windows.Forms.Label();
       this.SuspendLayout();
+      this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
       // 
       // Button1
       // 
@@ -50,7 +52,7 @@
       this.Label30.Name = "Label30";
       this.Label30.Size = new System.Drawing.Size(405, 104);
       this.Label30.TabIndex = 3;
-      this.Label30.Text = resources.GetString("Label30.Text");
+      this.Label30.Text = "FAQ\n\nWieso werden 20W schon beim Start angezeigt?\nDies ist der Durchschnittsverbrauch eines Mainboards mit Controllern.\n\nVerbraucht mein PC exakt so viel wie in dem Tool angegeben wird?\nNein, das Ergebnis dient nur zur Orientierung für die Dimensionierung des Netzteiles. \nDieser Verbrauch wird normalerweise nur unter künstlicher Last erreicht.";
       // 
       // FAQ
       // 

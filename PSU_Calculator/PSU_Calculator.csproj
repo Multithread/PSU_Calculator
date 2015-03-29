@@ -104,6 +104,12 @@
     <Compile Include="FirstUsageInfoBox.Designer.cs">
       <DependentUpon>FirstUsageInfoBox.cs</DependentUpon>
     </Compile>
+    <Compile Include="TestberichteAuswahl.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="TestberichteAuswahl.Designer.cs">
+      <DependentUpon>TestberichteAuswahl.cs</DependentUpon>
+    </Compile>
     <Compile Include="Updater.cs" />
     <Compile Include="Properties\Einstellungen.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -152,6 +158,9 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <EmbeddedResource Include="TestberichteAuswahl.resx">
+      <DependentUpon>TestberichteAuswahl.cs</DependentUpon>
+    </EmbeddedResource>
     <None Include="Properties\Einstellungen.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Einstellungen.Designer.cs</LastGenOutput>
