@@ -62,7 +62,7 @@ namespace PSU_Calculator
         {
           string path = PSUCalculatorSettings.GetFilePath(PSUCalculatorSettings.PowerSupply);
           StorageMapper.WriteToFilesystem(path, data);
-          PSUCalculatorSettings.Get().OverrideSetting(PSUCalculatorSettings.PowerSupply, css.GetValueForKeyAsDouble(PSUCalculatorSettings.PowerSupply).ToString());
+          PSUCalculatorSettings.Get().PSUVersion = css.GetValueForKeyAsDouble(PSUCalculatorSettings.PowerSupply);
           LoaderModul.getInstance().ReloadPowerSupplys();
         }
         IsUpdating = false;
@@ -75,7 +75,7 @@ namespace PSU_Calculator
         {
           string path = PSUCalculatorSettings.GetFilePath(PSUCalculatorSettings.CPU);
           StorageMapper.WriteToFilesystem(path, data);
-          PSUCalculatorSettings.Get().OverrideSetting(PSUCalculatorSettings.CPU, css.GetValueForKeyAsDouble(PSUCalculatorSettings.CPU).ToString());
+          PSUCalculatorSettings.Get().CPUVersion = css.GetValueForKeyAsDouble(PSUCalculatorSettings.CPU);
         }
         IsUpdating = false;
       }
@@ -87,7 +87,7 @@ namespace PSU_Calculator
         {
           string path = PSUCalculatorSettings.GetFilePath(PSUCalculatorSettings.GPU);
           StorageMapper.WriteToFilesystem(path, data);
-          PSUCalculatorSettings.Get().OverrideSetting(PSUCalculatorSettings.GPU, css.GetValueForKeyAsDouble(PSUCalculatorSettings.GPU).ToString());
+          PSUCalculatorSettings.Get().GPUVersion = css.GetValueForKeyAsDouble(PSUCalculatorSettings.GPU);
         }
         IsUpdating = false;
       }

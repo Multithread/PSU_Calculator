@@ -10,6 +10,7 @@ using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Xml;
 
 namespace PSU_Calculator
 {
@@ -252,19 +253,6 @@ namespace PSU_Calculator
       addRangeAt(_rangeToInsert, cpuComponentList);
     }
 
-    public void AddNetzteilRange(List<PowerSupply> _rangeToInsert)
-    {
-      if (powersupplyList == null)
-      {
-        powersupplyList = GetPowerSupplys();
-      }
-      powersupplyList.AddRange(_rangeToInsert);
-      powersupplyList.Sort(delegate(PowerSupply n1, PowerSupply n2)
-      {
-        return n1.Quality.CompareTo(n2.Quality) * -1;
-      });
-    }
-
     /// <summary>
     /// GPU's in eine combobox laden
     /// Setztern dews Keyxup events für suche
@@ -362,9 +350,9 @@ namespace PSU_Calculator
       {
         return orginalList;
       }
-      string[] searchparts=searchstring.Split(new string[]{" "}, StringSplitOptions.RemoveEmptyEntries);
+      string[] searchparts = searchstring.Split(new string[] { " " }, StringSplitOptions.RemoveEmptyEntries);
       List<PcComponent> output = new List<PcComponent>();
-      bool isvalid=false;
+      bool isvalid = false;
       foreach (PcComponent com in orginalList)
       {
         isvalid = true;
@@ -462,8 +450,24 @@ namespace PSU_Calculator
     {
       if (powersupplyList == null)
       {
-        string[] rows = StorageMapper.ReadFromFilesystem(PSUCalculatorSettings.GetFilePath(PSUCalculatorSettings.PowerSupply)).Split(new string[] { Environment.NewLine,"\n","\r" }, StringSplitOptions.None);
-        powersupplyList = GetPowerSupplysFromArray(rows);
+        powersupplyList = new List<PowerSupply>();
+        Element e = StorageMapper.GetXML(PSUCalculatorSettings.GetXmlFilePath(PSUCalculatorSettings.PowerSupply));
+        foreach (Element NT in e.getAlleElementeByName("Netzteil"))
+        {
+          var psu = new PowerSupply(NT);
+          powersupplyList.Add(psu);
+        }
+
+        //string[] rows = StorageMapper.ReadFromFilesystem(PSUCalculatorSettings.GetFilePath(PSUCalculatorSettings.PowerSupply)).Split(new string[] { Environment.NewLine,"\n","\r" }, StringSplitOptions.None);
+        //powersupplyList = GetPowerSupplysFromArray(rows); 
+
+        //Generate XML out of PSU file
+        //Element ele = new Element("Netzteile");
+        //foreach (PowerSupply psu in powersupplyList)
+        //{
+        //  ele.addElement(psu.XML);
+        //}
+        //StorageMapper.WriteToFilesystem("C:\\Netzteile.xml", ele.getXML());
       }
       return powersupplyList;
     }
@@ -473,27 +477,8 @@ namespace PSU_Calculator
     /// </summary>
     public void ReloadPowerSupplys()
     {
-      string[] rows = StorageMapper.ReadFromFilesystem(PSUCalculatorSettings.GetFilePath(PSUCalculatorSettings.PowerSupply)).Split(new string[] { Environment.NewLine, "\n", "\r" }, StringSplitOptions.None);
-      powersupplyList = GetPowerSupplysFromArray(rows);
-    }
-
-    /// <summary>
-    /// Netzteile aus einem Zeilen array generieren
-    /// </summary>
-    /// <param name="_rows"></param>
-    /// <returns></returns>
-    public List<PowerSupply> GetPowerSupplysFromArray(string[] _rows)
-    {
-      List<PowerSupply> parts = new List<PowerSupply>();
-      foreach (string row in _rows)
-      {
-        parts.Add(new PowerSupply(new ComponentStringSplitter(row, true)));
-      }
-      parts.Sort(delegate(PowerSupply n1, PowerSupply n2)
-      {
-        return n1.Quality.CompareTo(n2.Quality) * -1;
-      });
-      return parts;
+      powersupplyList = null;
+      GetPowerSupplys();
     }
   }
 }

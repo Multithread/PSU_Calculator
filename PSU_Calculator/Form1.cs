@@ -23,7 +23,7 @@ namespace PSU_Calculator
     Thread t = null;
     public Form1()
     {
-      PSUCalculatorSettings.Get().Load();
+      PSUCalculatorSettings.Get();
 
       InitializeComponent();
       addGPU();
@@ -640,7 +640,6 @@ namespace PSU_Calculator
     {
       var entry = sender as ToolStripMenuItem;
       var set = PSUCalculatorSettings.Get();
-      set.OverrideSetting(PSUCalculatorSettings.SearchEngineString, entry.Text);
       set.SetSearchEngine(entry.Text);
       set.SaveSettings();
       berechneVerbrauch(null, null);

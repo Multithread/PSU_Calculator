@@ -14,102 +14,146 @@ namespace PSU_Calculator.Komponenten
     private Dictionary<String, String> PriceCompareDict = new Dictionary<string, string>();
     private List<string> tests = new List<string>();
 
-      public PowerSupply(string name, int powerConsumation, int toTDP, string geizhalsLink)
-        :this (name,powerConsumation,toTDP,geizhalsLink,50)  
+    public PowerSupply(Element ele)
     {
+      this.XML = ele;
+    }
+    public void test()
+    {
+
     }
 
-      public PowerSupply(string name, int powerConsumation, int toTDP, string geizhalsLink, int qualitaet)
-        : base(name, toTDP, powerConsumation)
+    private bool AddToPreisvergleich(string key)
+    {
+      if (!PriceComparer.Contains(key))
       {
-        UsageLoadMinimum = -1;
-        Geizhals = geizhalsLink;
-        Quality = qualitaet;
+        PriceComparer.Add(key);
+        return true;
       }
+      return false;
+    }
 
-      public PowerSupply(IStringSplitter ss)
-        : base()
+    private int getIntForString(string data)
+    {
+      int value = 0;
+      if (int.TryParse(data, out value))
       {
-        Name = ss.GetValueForKey("Name");
-        UsageLoadMinimum = getIntForString(ss.GetValueForKey("Min"));
-        GPGPU = getIntForString(ss.GetValueForKey("Max"));
-        Quality = getIntForString(ss.GetValueForKey("Quali"));
-        TDP = getIntForString(ss.GetValueForKey("TDP"));
-        tests = ss.GetValueForKeyList("Testberichte");
+        return value;
+      }
+      return 0;
+    }
 
-        if(UsageLoadMinimum == 0)
+    public string CurrentPresvergleichLink
+    {
+      get
+      {
+        string output = "";
+        if (!PriceCompareDict.TryGetValue(PSUCalculatorSettings.Get().SearchEngine.ToUpper(), out output))
         {
-          UsageLoadMinimum = -1; 
+          return "";
         }
-        string key = "";
-        while (ss.HasNext())
-        {
-          key = ss.Next();
-          PriceCompareDict.Add(key.ToUpper(), ss.GetValueForKey(key));
-          if (!PriceComparer.Contains(key))
-          {
-            PriceComparer.Add(key);
-          }
-        }      
+        return output;
       }
+    }
 
-      private int getIntForString(string data)
+    public List<string> Testberichte
+    {
+      get
       {
-        int value = 0;
-        if (int.TryParse(data, out value))
-        {
-          return value;
-        }
-        return 0;
+        return tests;
       }
-
-      public string CurrentPresvergleichLink
-      {
-        get
-        {
-          string output = "";
-          if (!PriceCompareDict.TryGetValue(PSUCalculatorSettings.Get().SearchEngine.ToUpper(), out output))
-          {
-            return "";
-          }
-          return output;
-        }
-      }
-
-      public List<string> Testberichte
-      {
-        get
-        {
-          return tests;
-        }
-      }
+    }
 
     /// <summary>
     /// gibt einen Preisvergleichslink zurück, bevorzugt den aktuel gewählten, bzw. den Default wert (DE)
     /// </summary>
-      public string AnyPresvergleichLink
+    public string AnyPresvergleichLink
+    {
+      get
       {
-        get
+        string output = "";
+        if (PriceCompareDict.TryGetValue(PSUCalculatorSettings.Get().SearchEngine.ToUpper(), out output))
         {
-          string output = "";
-          if (PriceCompareDict.TryGetValue(PSUCalculatorSettings.Get().SearchEngine.ToUpper(), out output))
+          return output;
+        }
+        if (PriceCompareDict.TryGetValue(PSUCalculatorSettings.DefaultSearchEngine.ToUpper(), out output))
+        {
+          return output;
+        }
+        foreach (string key in PriceCompareDict.Keys)
+        {
+          if (PriceCompareDict.TryGetValue(key, out output))
           {
             return output;
           }
-          if (PriceCompareDict.TryGetValue(PSUCalculatorSettings.DefaultSearchEngine.ToUpper(), out output))
+        }
+        return "";
+      }
+    }
+
+    public Element XML
+    {
+      get
+      {
+        Element e = new Element("Netzteil");
+        e.addAttribut("Name", Name);
+        Element daten = new Element("Daten");
+        daten.addAttribut("Min", UsageLoadMinimum.ToString());
+        daten.addAttribut("Max", GPGPU.ToString());
+        daten.addAttribut("Quali", Quality.ToString());
+        //daten.addAttribut("TDP", Quality.ToString());
+        e.addElement(daten);
+
+        daten = new Element("Preisvergleiche");
+        foreach (string key in PriceCompareDict.Keys)
+        {
+          string output;
+          PriceCompareDict.TryGetValue(key, out output);
+          daten.addElement(new Element(key, output));
+        }
+        e.addElement(daten);
+
+        daten = new Element("Testberichte");
+        foreach (string test in tests)
+        {
+          daten.addElement(new Element("Test", test));
+        }
+        e.addElement(daten);
+        return e;
+      }
+      set
+      {
+        PriceCompareDict.Clear();
+        tests.Clear();
+
+        Element e = value;
+        Name = e.getAttribut("Name");
+        Element data = e.getElement("Daten");
+        UsageLoadMinimum = getIntForString(data.getAttribut("Min"));
+        GPGPU = getIntForString(data.getAttribut("Max"));
+        Quality = getIntForString(data.getAttribut("Quali"));
+        TDP = getIntForString(data.getAttribut("TDP"));
+
+        data = e.getElement("Preisvergleiche");
+        if (data != null)
+        {
+          foreach (Element ele in data.getAllEntries())
           {
-            return output;
+            AddToPreisvergleich(ele.Name);
+            PriceCompareDict.Add(ele.Name, ele.Text);
           }
-          foreach (string key in PriceCompareDict.Keys)
+        }
+
+        data = e.getElement("Testberichte");
+        if (data != null)
+        {
+          foreach (Element ele in data.getAllEntries())
           {
-            if (PriceCompareDict.TryGetValue(key, out output))
-            {
-              return output;
-            }
+            tests.Add(ele.Text);
           }
-          return "";
         }
       }
+    }
 
     public string Geizhals
     {

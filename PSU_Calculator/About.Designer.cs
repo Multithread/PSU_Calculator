@@ -35,7 +35,7 @@
       this.Label1 = new System.Windows.Forms.Label();
       this.Button2 = new System.Windows.Forms.Button();
       this.RichTextBox1 = new System.Windows.Forms.RichTextBox();
-      this.Label2 = new System.Windows.Forms.Label();
+      this.lblVersion = new System.Windows.Forms.Label();
       this.SuspendLayout();
       // 
       // LinkLabel2
@@ -108,16 +108,16 @@
       this.RichTextBox1.TabIndex = 46;
       this.RichTextBox1.Text = resources.GetString("RichTextBox1.Text");
       // 
-      // Label2
+      // lblVersion
       // 
-      this.Label2.AutoSize = true;
-      this.Label2.BackColor = System.Drawing.Color.Transparent;
-      this.Label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-      this.Label2.Location = new System.Drawing.Point(15, 40);
-      this.Label2.Name = "Label2";
-      this.Label2.Size = new System.Drawing.Size(24, 15);
-      this.Label2.TabIndex = 44;
-      this.Label2.Text = "1.5";
+      this.lblVersion.AutoSize = true;
+      this.lblVersion.BackColor = System.Drawing.Color.Transparent;
+      this.lblVersion.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+      this.lblVersion.Location = new System.Drawing.Point(15, 40);
+      this.lblVersion.Name = "lblVersion";
+      this.lblVersion.Size = new System.Drawing.Size(24, 15);
+      this.lblVersion.TabIndex = 44;
+      this.lblVersion.Text = "1.7";
       // 
       // About
       // 
@@ -132,7 +132,7 @@
       this.Controls.Add(this.Label1);
       this.Controls.Add(this.Button2);
       this.Controls.Add(this.RichTextBox1);
-      this.Controls.Add(this.Label2);
+      this.Controls.Add(this.lblVersion);
       this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
       this.MaximizeBox = false;
       this.MinimizeBox = false;
@@ -156,7 +156,7 @@
     internal System.Windows.Forms.Label Label1;
     internal System.Windows.Forms.Button Button2;
     internal System.Windows.Forms.RichTextBox RichTextBox1;
-    internal System.Windows.Forms.Label Label2;
+    internal System.Windows.Forms.Label lblVersion;
 
   }
 }

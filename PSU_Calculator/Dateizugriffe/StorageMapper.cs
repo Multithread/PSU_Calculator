@@ -6,6 +6,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+using System.Xml;
 
 namespace PSU_Calculator.Dateizugriffe
 {
@@ -48,6 +49,27 @@ namespace PSU_Calculator.Dateizugriffe
       return false;
     }
 
+    /// <summary>
+    /// XML datei auslesen und parsen.
+    /// </summary>
+    /// <param name="pfad"></param>
+    /// <returns></returns>
+    public static Element GetXML(string pfad)
+    {
+      string data = StorageMapper.ReadFromFilesystem(pfad);
+      XmlDocument doc = new XmlDocument();
+      try
+      {
+        doc.LoadXml(data);
+      }
+      catch (XmlException)
+      {
+        //throw new Exception("XML ist Korupted");
+      }
+      Element e = new Element(doc.FirstChild);
+      return e;
+    }
+
     public static void GetLocalData(PSU_Calculator.Form1.boxInvoke del)
     {
       if (!StorageMapper.Existiert(PSUCalculatorSettings.DirectoryPath))
@@ -70,13 +92,6 @@ namespace PSU_Calculator.Dateizugriffe
       {
         m.AddGPURange(m.GetComponents(daten));
         del(false);
-      }
-
-      //Netzteile einlesen
-      daten = leseZeilen(PSUCalculatorSettings.PowerSupplyPath);
-      if (daten != null)
-      {
-        m.AddNetzteilRange(m.GetPowerSupplysFromArray(daten));
       }
     }
 
@@ -111,7 +126,7 @@ namespace PSU_Calculator.Dateizugriffe
       }
     }
 
-    public static bool erstelle(string pfad)
+    private static bool erstelle(string pfad)
     {
       try
       {

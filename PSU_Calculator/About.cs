@@ -13,6 +13,7 @@ namespace PSU_Calculator
     public About()
     {
       InitializeComponent();
+      lblVersion.Text = Assembly.GetExecutingAssembly().GetName().Version.Major + "." + Assembly.GetExecutingAssembly().GetName().Version.Minor;
     }
 
     #region Assemblyattributaccessoren
