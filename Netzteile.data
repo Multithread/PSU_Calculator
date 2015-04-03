@@ -1,18 +1,330 @@
-name=Antec High Current Pro HCP-850 Platinum 850W;tdp=850;min=500;max=800;quali=100;DE=http://geizhals.de/antec-high-current-pro-hcp-850-platinum-0761345-06250-3-0761345-06251-0-a1018539.html;CH=http://www.toppreise.ch/prod_224802.html
-name=Antec High Current Pro HCP-1000 Platinum 1000W;tdp=1000;max=900;quali=99;DE=http://geizhals.de/antec-high-current-pro-hcp-1000-platinum-0-761345-06248-0-0-761345-06249-7-a1079951.html;CH=http://www.toppreise.ch/prod_307951.html
-name=Antec High Current Pro HCP-1300 Platinum 1300W;tdp=1300;max=1150;quali=98;DE=http://geizhals.de/antec-high-current-pro-hcp-1300-platinum-0-761345-06260-2-0-761345-06261-9-a1018481.html;CH=http://www.toppreise.ch/prod_366817.html
-name=Be quiet! Dark Power P10 550W;tdp=550;max=500;quali=100;DE=http://geizhals.de/be-quiet-dark-power-pro-10-550w-atx-2-31-p10-550w-bn200-a790408.html;CH=http://www.toppreise.ch/prod_279029.html
-name=Be quiet! Dark Power P10 750W;tdp=750;max=650;quali=97;DE=http://geizhals.de/be-quiet-dark-power-pro-10-750w-atx-2-31-p10-750w-bn202-a790490.html;CH=http://www.toppreise.ch/prod_279027.html
-name=Be quiet! Dark Power P10 1000W;tdp=1000;max=850;quali=96;DE=http://geizhals.de/be-quiet-dark-power-pro-10-1000w-atx-2-31-p10-1000w-bn204-a790601.html;CH=http://www.toppreise.ch/prod_279025.html
-name=Be quiet! Dark Power P10 1200W;tdp=1200;max=1100;quali=95;DE=http://geizhals.de/be-quiet-dark-power-pro-10-1200w-atx-2-31-p10-1200w-bn205-a790611.html;CH=http://www.toppreise.ch/prod_279024.html
-name=Be quiet! Straight Power E10 400W;tdp=400;min=150;max=320;quali=85;DE=http://geizhals.de/be-quiet-straight-power-e10-400w-atx-2-4-e10-400w-bn230-a1165465.html;CH=http://www.toppreise.ch/prod_365027.html
-name=Be quiet! Straight Power E10 500W;tdp=500;max=430;quali=80;DE=http://geizhals.de/be-quiet-straight-power-e10-500w-atx-2-4-e10-500w-bn231-a1165594.html;CH=http://www.toppreise.ch/prod_365065.html
-name=Be quiet! Puer Power L8 300W ATX 2.4 ;tdp=300;min=10;max=230;quali=60;DE=http://geizhals.de/be-quiet-pure-power-l8-300w-atx-2-4-bn220-a960670.html;CH=http://www.toppreise.ch/prod_325820.html;AT=http://geizhals.at/be-quiet-pure-power-l8-300w-atx-2-4-bn220-a960670.html;Testberichte=http://www.computerbase.de/2014-01/300-watt-netzteile-test/=http://us.hardware.info/reviews/4643/be-quiet!-pure-power-l8-400w300w-review-good-for-budget-pcs
-name=LC-Power LC 9450 400W;tdp=400;max=300;quali=45;DE=http://geizhals.de/lc-power-gold-series-lc9450-v2-3-400w-atx-2-3-a861221.html;AT=http://geizhals.at/lc-power-gold-series-lc9450-v2-3-400w-atx-2-3-a861221.html
-name=Sea Sonic G-Series G-550 550W PCGH-Edition;tdp=550;max=450;quali=50;DE=http://geizhals.de/sea-sonic-g-series-g-550-550w-pcgh-edition-atx-2-3-ssr-550rm-a1098704.html;CH=http://www.toppreise.ch/prod_290759.html
-name=Antec True Power Classic 450W;tdp=450;max=425;quali=41;DE=http://geizhals.de/antec-truepower-classic-tp-450c-0761345-07700-2-0761345-07701-9-a1035122.html
-name=LC-Power LC 9550 500W;tdp=500;max=400;quali=40;DE=http://geizhals.de/lc-power-gold-series-lc9550-v2-3-500w-atx-2-3-a861223.html;AT=http://geizhals.at/lc-power-gold-series-lc9550-v2-3-500w-atx-2-3-a861223.html
-name=Antec TruePower Classic TP-550C;tdp=550;max=425;quali=40;DE=http://geizhals.de/antec-truepower-classic-tp-550c-0761345-07702-6-0761345-07703-3-a1035130.html;AT=http://geizhals.at/antec-truepower-classic-tp-550c-0761345-07702-6-0761345-07703-3-a1035130.html
-name=Be quiet! System Power 7 450W;tdp=450;max=350;quali=30;DE=http://geizhals.de/be-quiet-system-power-7-450w-atx-2-31-bn143-a871343.html;AT=http://geizhals.at/be-quiet-system-power-7-450w-atx-2-31-bn143-a871343.html
-name=SuperFlower HX 450 Golden Green 450W;tdp=450;min=200;max=425;quali=30;DE=http://geizhals.de/super-flower-golden-green-hx-450w-atx-2-3-sf-450p14xe-hx-a1039307.html;CH=http://www.toppreise.ch/prod_254328.html;AT=http://geizhals.at/super-flower-golden-green-hx-450w-atx-2-3-sf-450p14xe-hx-a1039307.html
-name=SuperFlower HX 350 Golden Green 350W;tdp=350;min=100;max=325;quali=29;DE=http://geizhals.de/super-flower-golden-green-hx-350w-atx-2-3-sf-350p14xe-hx-a1039316.html;CH=http://www.toppreise.ch/prod_360027.html;AT=http://geizhals.at/super-flower-golden-green-hx-350w-atx-2-3-sf-350p14xe-hx-a1039316.html
+<Netzteile>
+  <Netzteil Name="Cooler Master G450M">
+    <Daten Min="100" Max="340" Quali="31">	  
+	  <Kabel Modular="Semi">
+		<PCIE SixPlusTwo="2"/>
+	  </Kabel>
+	  <Rail PCIE="34"/>
+	</Daten>
+    <Preisvergleiche>
+      <DE>
+        http://geizhals.de/cooler-master-g450m-450w-atx-2-31-rs-450-amaa-b1-a1010337.html
+      </DE>
+      <AT>
+        http://geizhals.at/cooler-master-g450m-450w-atx-2-31-rs-450-amaa-b1-a1010337.html
+      </AT>
+      <CH>
+        http://www.toppreise.ch/prod_332917.html
+      </CH>
+    </Preisvergleiche>
+    <Testberichte>
+      <Test>
+        http://www.hardwareluxx.de/index.php/artikel/hardware/netzteile/29562-roundup500w0114.html?start=2
+      </Test>
+    </Testberichte>
+  </Netzteil>
+  <Netzteil Name="Antec Edge 550W">
+    <Daten Min="250" Max="400" Quali="40">	  
+	  <Kabel Modular="Voll">
+		<PCIE SixPlusTwo="2"/>
+	  </Kabel>
+	  <Rail PCIE="30"/>
+	</Daten>
+    <Preisvergleiche>
+      <DE>
+        http://geizhals.de/antec-edge-550w-atx-2-4-0761345-05055-5-a1136283.html
+      </DE>
+      <AT>
+        http://geizhals.at/antec-edge-550w-atx-2-4-0761345-05055-5-a1136283.html
+      </AT>
+      <CH>
+        http://www.toppreise.ch/prod_366782.html
+      </CH>
+    </Preisvergleiche>
+    <Testberichte>
+      <Test>
+        http://www.computerbase.de/2014-10/antec-edge-550-watt-im-test/
+      </Test>
+    </Testberichte>
+  </Netzteil>
+  <Netzteil Name="Be quiet! Dark Power P10 550W">
+    <Daten Min="-1" Max="550" Quali="100"/>
+    <Preisvergleiche>
+      <DE>
+        http://geizhals.de/be-quiet-dark-power-pro-10-550w-atx-2-31-p10-550w-bn200-a790408.html
+      </DE>
+      <CH>
+        http://www.toppreise.ch/prod_279029.html
+      </CH>
+    </Preisvergleiche>
+    <Testberichte>
+      <Test>
+        www.computerbase.de/forum/showthread.php?t
+      </Test>
+      <Test>
+        www.tweakpc.de/hardware/tests/netzteile/bequiet_dark_power_pro_10_550/s01.php
+      </Test>
+      <Test>
+        www.hardwareluxx.de/artikel/hardware/netzteile/22672-test-be-quiet-dark-power-pro-p10-550w.html
+      </Test>
+    </Testberichte>
+  </Netzteil>
+  <Netzteil Name="Antec High Current Pro HCP-850 Platinum 850W">
+    <Daten Min="500" Max="800" Quali="100"/>
+    <Preisvergleiche>
+      <DE>
+        http://geizhals.de/antec-high-current-pro-hcp-850-platinum-0761345-06250-3-0761345-06251-0-a1018539.html
+      </DE>
+      <CH>
+        http://www.toppreise.ch/prod_224802.html
+      </CH>
+    </Preisvergleiche>
+    <Testberichte>
+      <Test>
+        www.hardwareluxx.de/index.php/artikel/hardware/netzteile/32181-850w-netzteil-roundup-antec-be-quiet-corsair-und-seasonic-teil-45.html?start
+      </Test>
+    </Testberichte>
+  </Netzteil>
+  <Netzteil Name="Antec High Current Pro HCP-1000 Platinum 1000W">
+    <Daten Min="700" Max="900" Quali="99"/>
+    <Preisvergleiche>
+      <DE>
+        http://geizhals.de/antec-high-current-pro-hcp-1000-platinum-0-761345-06248-0-0-761345-06249-7-a1079951.html
+      </DE>
+      <CH>
+        http://www.toppreise.ch/prod_307951.html
+      </CH>
+    </Preisvergleiche>
+    <Testberichte/>
+  </Netzteil>
+  <Netzteil Name="Antec High Current Pro HCP-1300 Platinum 1300W">
+    <Daten Min="850" Max="1150" Quali="98"/>
+    <Preisvergleiche>
+      <DE>
+        http://geizhals.de/antec-high-current-pro-hcp-1300-platinum-0-761345-06260-2-0-761345-06261-9-a1018481.html
+      </DE>
+      <CH>
+        http://www.toppreise.ch/prod_366817.html
+      </CH>
+    </Preisvergleiche>
+    <Testberichte/>
+  </Netzteil>
+  <Netzteil Name="Be quiet! Dark Power P10 750W">
+    <Daten Min="450" Max="650" Quali="97"/>
+    <Preisvergleiche>
+      <DE>
+        http://geizhals.de/be-quiet-dark-power-pro-10-750w-atx-2-31-p10-750w-bn202-a790490.html
+      </DE>
+      <CH>
+        http://www.toppreise.ch/prod_279027.html
+      </CH>
+    </Preisvergleiche>
+    <Testberichte/>
+  </Netzteil>
+  <Netzteil Name="Be quiet! Dark Power P10 1000W">
+    <Daten Min="650" Max="880" Quali="96"/>
+    <Preisvergleiche>
+      <DE>
+        http://geizhals.de/be-quiet-dark-power-pro-10-1000w-atx-2-31-p10-1000w-bn204-a790601.html
+      </DE>
+      <CH>
+        http://www.toppreise.ch/prod_279025.html
+      </CH>
+    </Preisvergleiche>
+    <Testberichte/>
+  </Netzteil>
+  <Netzteil Name="Be quiet! Dark Power P10 1200W">
+    <Daten Min="800" Max="1100" Quali="95"/>
+    <Preisvergleiche>
+      <DE>
+        http://geizhals.de/be-quiet-dark-power-pro-10-1200w-atx-2-31-p10-1200w-bn205-a790611.html
+      </DE>
+      <CH>
+        http://www.toppreise.ch/prod_279024.html
+      </CH>
+    </Preisvergleiche>
+    <Testberichte/>
+  </Netzteil>
+  <Netzteil Name="Be quiet! Straight Power E10 400W">
+    <Daten Min="150" Max="320" Quali="85"/>
+    <Preisvergleiche>
+      <DE>
+        http://geizhals.de/be-quiet-straight-power-e10-400w-atx-2-4-e10-400w-bn230-a1165465.html
+      </DE>
+      <CH>
+        http://www.toppreise.ch/prod_365027.html
+      </CH>
+    </Preisvergleiche>
+    <Testberichte/>
+  </Netzteil>
+  <Netzteil Name="Be quiet! Straight Power E10 500W">
+    <Daten Min="-1" Max="430" Quali="80"/>
+    <Preisvergleiche>
+      <DE>
+        http://geizhals.de/be-quiet-straight-power-e10-500w-atx-2-4-e10-500w-bn231-a1165594.html
+      </DE>
+      <CH>
+        http://www.toppreise.ch/prod_365065.html
+      </CH>
+    </Preisvergleiche>
+    <Testberichte>
+      <Test>
+        www.computerbase.de/2014-09/be-quiet-straight-power-10-500-watt-im-test/
+      </Test>
+    </Testberichte>
+  </Netzteil>
+  <Netzteil Name="Be quiet! Puer Power L8 300W ATX 2.4 ">
+    <Daten Min="10" Max="230" Quali="60"/>
+    <Preisvergleiche>
+      <DE>
+        http://geizhals.de/be-quiet-pure-power-l8-300w-atx-2-4-bn220-a960670.html
+      </DE>
+      <CH>
+        http://www.toppreise.ch/prod_325820.html
+      </CH>
+      <AT>
+        http://geizhals.at/be-quiet-pure-power-l8-300w-atx-2-4-bn220-a960670.html
+      </AT>
+    </Preisvergleiche>
+    <Testberichte>
+      <Test>
+        http://www.computerbase.de/2014-01/300-watt-netzteile-test/
+      </Test>
+      <Test>
+        http://us.hardware.info/reviews/4643/be-quiet!-pure-power-l8-400w300w-review-good-for-budget-pcs
+      </Test>
+    </Testberichte>
+  </Netzteil>
+  <Netzteil Name="Sea Sonic G-Series G-550 550W PCGH-Edition">
+    <Daten Min="-1" Max="450" Quali="50"/>
+    <Preisvergleiche>
+      <DE>
+        http://geizhals.de/sea-sonic-g-series-g-550-550w-pcgh-edition-atx-2-3-ssr-550rm-a1098704.html
+      </DE>
+      <CH>
+        http://www.toppreise.ch/prod_290759.html
+      </CH>
+    </Preisvergleiche>
+    <Testberichte/>
+  </Netzteil>
+  <Netzteil Name="LC-Power LC 9450 400W">
+    <Daten Min="150" Max="300" Quali="45"/>
+    <Preisvergleiche>
+      <DE>
+        http://geizhals.de/lc-power-gold-series-lc9450-v2-3-400w-atx-2-3-a861221.html
+      </DE>
+      <AT>
+        http://geizhals.at/lc-power-gold-series-lc9450-v2-3-400w-atx-2-3-a861221.html
+      </AT>
+      <CH>
+        http://www.toppreise.ch/prod_343780.html
+      </CH>
+    </Preisvergleiche>
+    <Testberichte>
+      <Test>
+        www.computerbase.de/2013-02/test-lc-power-gold-series-lc9450-400w/
+      </Test>
+    </Testberichte>
+  </Netzteil>
+  <Netzteil Name="Antec True Power Classic 450W">
+    <Daten Min="-1" Max="425" Quali="41"/>
+    <Preisvergleiche>
+      <DE>
+        http://geizhals.de/antec-truepower-classic-tp-450c-0761345-07700-2-0761345-07701-9-a1035122.html
+      </DE>
+    </Preisvergleiche>
+    <Testberichte/>
+  </Netzteil>
+  <Netzteil Name="Antec TruePower Classic TP-550C">
+    <Daten Min="-1" Max="425" Quali="40"/>
+    <Preisvergleiche>
+      <DE>
+        http://geizhals.de/antec-truepower-classic-tp-550c-0761345-07702-6-0761345-07703-3-a1035130.html
+      </DE>
+      <AT>
+        http://geizhals.at/antec-truepower-classic-tp-550c-0761345-07702-6-0761345-07703-3-a1035130.html
+      </AT>
+      <CH>
+        http://www.toppreise.ch/prod_366761.html
+      </CH>
+    </Preisvergleiche>
+    <Testberichte/>
+  </Netzteil>
+  <Netzteil Name="LC-Power LC 9550 500W">
+    <Daten Min="-1" Max="400" Quali="40"/>
+    <Preisvergleiche>
+      <DE>
+        http://geizhals.de/lc-power-gold-series-lc9550-v2-3-500w-atx-2-3-a861223.html
+      </DE>
+      <AT>
+        http://geizhals.at/lc-power-gold-series-lc9550-v2-3-500w-atx-2-3-a861223.html
+      </AT>
+      <CH>
+        http://www.toppreise.ch/prod_343839.html
+      </CH>
+    </Preisvergleiche>
+    <Testberichte>
+      <Test>
+        www.computerbase.de/forum/showthread.php?t=1287023
+      </Test>
+    </Testberichte>
+  </Netzteil>
+  <Netzteil Name="SuperFlower HX 450 Golden Green 450W">
+    <Daten Min="200" Max="425" Quali="30"/>
+    <Preisvergleiche>
+      <DE>
+        http://geizhals.de/super-flower-golden-green-hx-450w-atx-2-3-sf-450p14xe-hx-a1039307.html
+      </DE>
+      <CH>
+        http://www.toppreise.ch/prod_254328.html
+      </CH>
+      <AT>
+        http://geizhals.at/super-flower-golden-green-hx-450w-atx-2-3-sf-450p14xe-hx-a1039307.html
+      </AT>
+    </Preisvergleiche>
+    <Testberichte/>
+  </Netzteil>
+  <Netzteil Name="Be quiet! System Power 7 450W">
+    <Daten Min="-1" Max="350" Quali="30"/>
+    <Preisvergleiche>
+      <DE>
+        http://geizhals.de/be-quiet-system-power-7-450w-atx-2-31-bn143-a871343.html
+      </DE>
+      <AT>
+        http://geizhals.at/be-quiet-system-power-7-450w-atx-2-31-bn143-a871343.html
+      </AT>
+      <CH>
+        http://www.toppreise.ch/prod_300065.html
+      </CH>
+    </Preisvergleiche>
+    <Testberichte>
+      <Test>
+        www.computerbase.de/2013-05/be-quiet-system-power-7-450-watt-test/
+      </Test>
+    </Testberichte>
+  </Netzteil>
+  <Netzteil Name="SuperFlower HX 350 Golden Green 350W">
+    <Daten Min="100" Max="325" Quali="29"/>
+    <Preisvergleiche>
+      <DE>
+        http://geizhals.de/super-flower-golden-green-hx-350w-atx-2-3-sf-350p14xe-hx-a1039316.html
+      </DE>
+      <CH>
+        http://www.toppreise.ch/prod_360027.html
+      </CH>
+      <AT>
+        http://geizhals.at/super-flower-golden-green-hx-350w-atx-2-3-sf-350p14xe-hx-a1039316.html
+      </AT>
+    </Preisvergleiche>
+    <Testberichte>
+      <Test>
+        www.computerbase.de/2014-05/super-flower-golden-green-hx-350w-netzteil-test/
+      </Test>
+    </Testberichte>
+  </Netzteil>
+  <Netzteil Name="">
+    <Daten Min="-1" Max="0" Quali="0"/>
+    <Preisvergleiche/>
+    <Testberichte/>
+  </Netzteil>
+</Netzteile>
