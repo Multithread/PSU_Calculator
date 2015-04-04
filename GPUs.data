@@ -1,0 +1,105 @@
+<GPUs>
+  <Component Name="AMD Radeon R7 240" TDP="30" Type="GPU"/>
+  <Component Name="AMD Radeon R7 250" TDP="75" Type="GPU"/>
+  <Component Name="AMD Radeon R7 250x" TDP="95" Type="GPU"/>
+  <Component Name="AMD Radeon R7 260" TDP="95" Type="GPU"/>
+  <Component Name="AMD Radeon R7 260x" TDP="115" Type="GPU"/>
+  <Component Name="AMD Radeon R9 270" TDP="150" Type="GPU"/>
+  <Component Name="AMD Radeon R9 270x" TDP="180" Type="GPU"/>
+  <Component Name="AMD Radeon R9 280" TDP="240" Type="GPU"/>
+  <Component Name="AMD Radeon R9 280X" TDP="250" Type="GPU"/>
+  <Component Name="AMD Radeon R9 285" TDP="215" Type="GPU"/>
+  <Component Name="AMD Radeon R9 290" TDP="250" Type="GPU"/>
+  <Component Name="AMD Radeon R9 290x" TDP="250" Type="GPU"/>
+  <Component Name="AMD Radeon R9 295 X2" TDP="450" Type="GPU"/>
+  <Component Name="" TDP="0" Type="Empty"/>
+  <Component Name="Nvidia GeForce GTX 750" TDP="55" Type="GPU"/>
+  <Component Name="Nvidia GeForce GTX 750ti" TDP="60" Type="GPU"/>
+  <Component Name="Nvidia GeForce GTX 760" TDP="170" Type="GPU"/>
+  <Component Name="Nvidia GeForce GTX 770" TDP="200" Type="GPU"/>
+  <Component Name="Nvidia GeForce GTX 780" TDP="250" Type="GPU"/>
+  <Component Name="Nvidia GeForce GTX 780ti" TDP="250" Type="GPU"/>
+  <Component Name="Nvidia GeForce GTX Titan" TDP="230" Type="GPU"/>
+  <Component Name="Nvidia GeForce GTX Titan Black" TDP="250" Type="GPU"/>
+  <Component Name="Nvidia GeForce GTX Titan X" TDP="250" Type="GPU"/>
+  <Component Name="" TDP="0" Type="Empty"/>
+  <Component Name="Nvidia GeForce GTX 960" TDP="90" Type="GPU"/>
+  <Component Name="Nvidia GeForce GTX 970" TDP="170" Type="GPU"/>
+  <Component Name="Nvidia GeForce GTX 980" TDP="200" Type="GPU"/>
+  <Component Name="" TDP="0" Type="Empty"/>
+  <Component Name="AMD Radeon HD 7770 GHz Edition" TDP="80" Type="GPU"/>
+  <Component Name="AMD Radeon HD 7850" TDP="130" Type="GPU"/>
+  <Component Name="AMD Radeon HD 7870" TDP="175" Type="GPU"/>
+  <Component Name="AMD Radeon HD 7870 XT" TDP="210" Type="GPU"/>
+  <Component Name="AMD Radeon HD 7950" TDP="200" Type="GPU"/>
+  <Component Name="AMD Radeon HD 7970" TDP="250" Type="GPU"/>
+  <Component Name="AMD Radeon HD 7990" TDP="375" Type="GPU"/>
+  <Component Name="" TDP="0" Type="Empty"/>
+  <Component Name="Nvidia GeForce GTX 650ti" TDP="80" Type="GPU"/>
+  <Component Name="Nvidia GeForce GTX 650" TDP="64" Type="GPU"/>
+  <Component Name="Nvidia GeForce GTX 660" TDP="140" Type="GPU"/>
+  <Component Name="Nvidia GeForce GTX 660ti" TDP="170" Type="GPU"/>
+  <Component Name="Nvidia GeForce GTX 670" TDP="170" Type="GPU"/>
+  <Component Name="Nvidia GeForce GTX 680" TDP="195" Type="GPU"/>
+  <Component Name="Nvidia GeForce GTX 690" TDP="417" Type="GPU"/>
+  <Component Name="" TDP="0" Type="Empty"/>
+  <Component Name="AMD Radeon HD 6350" TDP="20" Type="GPU"/>
+  <Component Name="AMD Radeon HD 6450" TDP="30" Type="GPU"/>
+  <Component Name="AMD Radeon HD 6570" TDP="60" Type="GPU"/>
+  <Component Name="AMD Radeon HD 6670" TDP="70" Type="GPU"/>
+  <Component Name="AMD Radeon HD 6750" TDP="90" Type="GPU"/>
+  <Component Name="AMD Radeon HD 6770" TDP="110" Type="GPU"/>
+  <Component Name="AMD Radeon HD 6790" TDP="150" Type="GPU"/>
+  <Component Name="AMD Radeon HD 6850" TDP="130" Type="GPU"/>
+  <Component Name="AMD Radeon HD 6870" TDP="150" Type="GPU"/>
+  <Component Name="AMD Radeon HD 6950" TDP="200" Type="GPU"/>
+  <Component Name="AMD Radeon HD 6970" TDP="200" Type="GPU"/>
+  <Component Name="AMD Radeon HD 6990" TDP="375" Type="GPU"/>
+  <Component Name="" TDP="0" Type="Empty"/>
+  <Component Name="Nvidia GeForce GT 510" TDP="25" Type="GPU"/>
+  <Component Name="Nvidia GeForce GT 520" TDP="29" Type="GPU"/>
+  <Component Name="Nvidia GeForce GT 530" TDP="50" Type="GPU"/>
+  <Component Name="Nvidia GeForce GT 545" TDP="70" Type="GPU"/>
+  <Component Name="Nvidia GeForce GTX 550" TDP="105" Type="GPU"/>
+  <Component Name="Nvidia GeForce GTX 555" TDP="116" Type="GPU"/>
+  <Component Name="Nvidia GeForce GTX 560 SE" TDP="150" Type="GPU"/>
+  <Component Name="Nvidia GeForce GTX 560" TDP="150" Type="GPU"/>
+  <Component Name="Nvidia GeForce GTX 560ti" TDP="170" Type="GPU"/>
+  <Component Name="Nvidia GeForce GTX 570" TDP="219" Type="GPU"/>
+  <Component Name="Nvidia GeForce GTX 580" TDP="244" Type="GPU"/>
+  <Component Name="Nvidia GeForce GTX 590" TDP="365" Type="GPU"/>
+  <Component Name="" TDP="0" Type="Empty"/>
+  <Component Name="AMD Radeon HD 5450" TDP="25" Type="GPU"/>
+  <Component Name="AMD Radeon HD 5550" TDP="29" Type="GPU"/>
+  <Component Name="AMD Radeon HD 5570" TDP="50" Type="GPU"/>
+  <Component Name="AMD Radeon HD 5670" TDP="70" Type="GPU"/>
+  <Component Name="AMD Radeon HD 5750" TDP="105" Type="GPU"/>
+  <Component Name="AMD Radeon HD 5770" TDP="116" Type="GPU"/>
+  <Component Name="AMD Radeon HD 5830" TDP="150" Type="GPU"/>
+  <Component Name="AMD Radeon HD 5850" TDP="150" Type="GPU"/>
+  <Component Name="AMD Radeon HD 5870" TDP="170" Type="GPU"/>
+  <Component Name="AMD Radeon HD 5970" TDP="219" Type="GPU"/>
+  <Component Name="" TDP="0" Type="Empty"/>
+  <Component Name="Nvidia GeForce GT 420" TDP="50" Type="GPU"/>
+  <Component Name="Nvidia GeForce GT 430" TDP="49" Type="GPU"/>
+  <Component Name="Nvidia GeForce GT 440" TDP="65" Type="GPU"/>
+  <Component Name="Nvidia GeForce GTS 450" TDP="106" Type="GPU"/>
+  <Component Name="Nvidia GeForce GTX 460" TDP="150" Type="GPU"/>
+  <Component Name="Nvidia GeForce GTX 465" TDP="200" Type="GPU"/>
+  <Component Name="Nvidia GeForce GTX 470" TDP="215" Type="GPU"/>
+  <Component Name="Nvidia GeForce GTX 480" TDP="250" Type="GPU"/>
+  <Component Name="" TDP="0" Type="Empty"/>
+  <Component Name="ATI Radeon 4350" TDP="20" Type="GPU"/>
+  <Component Name="ATI Radeon HD 4770" TDP="90" Type="GPU"/>
+  <Component Name="ATI Radeon HD 4850" TDP="170" Type="GPU"/>
+  <Component Name="ATI Radeon HD 4870" TDP="220" Type="GPU"/>
+  <Component Name="ATI Radeon HD 4870 X2" TDP="400" Type="GPU"/>
+  <Component Name="ATI Radeon HD 4890" TDP="250" Type="GPU"/>
+  <Component Name="" TDP="0" Type="Empty"/>
+  <Component Name="Nvidia GeForce GTS 250" TDP="150" Type="GPU"/>
+  <Component Name="Nvidia GeForce GTX 260" TDP="202" Type="GPU"/>
+  <Component Name="Nvidia GeForce GTX 275" TDP="219" Type="GPU"/>
+  <Component Name="Nvidia GeForce GTX 280" TDP="236" Type="GPU"/>
+  <Component Name="Nvidia GeForce GTX 285" TDP="204" Type="GPU"/>
+  <Component Name="Nvidia GeForce GTX 295" TDP="289" Type="GPU"/>
+</GPUs>
