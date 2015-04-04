@@ -8,7 +8,7 @@ namespace PSU_Calculator.Komponenten
   class CoolingSolution : PcComponent
   {
     public CoolingSolution(string _bez, int _tdp, bool _gpu, CoolingTyp _coolingsolution, bool _onlyOnce)
-      : base(_bez, _tdp, _tdp)
+      : base(_bez, _tdp,"Cooling")
     {
       GPU = _gpu;
       CoolingTypTyp = _coolingsolution;

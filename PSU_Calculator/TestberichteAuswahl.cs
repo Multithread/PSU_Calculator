@@ -54,7 +54,7 @@ namespace PSU_Calculator
       public NTLinkHelper(string show, string link)
       {
         Show = show;
-        Link = link;
+        Link = link.Trim();
       }
 
       private string Show = "";

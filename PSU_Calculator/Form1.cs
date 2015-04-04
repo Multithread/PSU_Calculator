@@ -24,9 +24,11 @@ namespace PSU_Calculator
     public Form1()
     {
       PSUCalculatorSettings.Get();
-
       InitializeComponent();
+      SetTags();
       addGPU();
+      ActiveComponents.Get().CbxCoolingSolution = cbxCooling;
+      ActiveComponents.Get().CbxOC = cbxOverclocking;
 
       new Updater().RunUpdateAsync();
 
@@ -51,6 +53,41 @@ namespace PSU_Calculator
       t.Start();
       berechneVerbrauch(this, null);
       AddPriceComparorsToToolStrip();
+    }
+
+    private void SetTags()
+    {
+      soundblaster.Tag = new PcComponent("Soundblaster", 12, "None");
+      soundblasterwfront.Tag = new PcComponent("SoundblasterwFront", 15, "None");
+      tvtuner.Tag = new PcComponent("TV-Tuner", 11, "None");
+      raidcard.Tag = new PcComponent("Raidcard", 8, "None");
+      fancontroll.Tag = new PcComponent("Fancontroll", 5, "None");
+      cardreader.Tag = new PcComponent("Cardreader", 2, "None");
+      lcd.Tag = new PcComponent("LCD", 4, "None");
+
+      //Drop down Boxen mit den entsprechenden Werten versehen
+      cbxKaltlicht.Items.Clear();
+      cbxKaltlicht.Items.AddRange(CountList(5, 5,"Kaltlicht"));
+      cbxHDD.Items.Clear();
+      cbxHDD.Items.AddRange(CountList(5, 15, "HDD"));
+      cbxLaufwerke.Items.Clear();
+      cbxLaufwerke.Items.AddRange(CountList(5, 10, "Laufwerke"));
+      cbxSSD.Items.Clear();
+      cbxSSD.Items.AddRange(CountList(4, 10, "SSD"));
+      cbxFans.Items.Clear();
+      cbxFans.Items.AddRange(CountList(2, 30, "Lüfter"));
+      cbxLED.Items.Clear();
+      cbxLED.Items.AddRange(CountList(3, 5, "LED"));
+    }
+
+    private object[] CountList(int tdp ,int maxvalue, string type)
+    {
+      object[] output= new object[maxvalue + 1];
+      for (int i = 0; i <= maxvalue; i++)
+      {
+        output[i] = new PcComponent(i.ToString(), tdp * i, type);
+      }
+      return output;
     }
 
     //Updates herunterladen von Github.
@@ -154,15 +191,16 @@ namespace PSU_Calculator
       cbxCooling.SelectedIndex = 0;
       cbxLED.SelectedIndex = 0;
 
-      foreach (Control c in this.gbxDaten.Controls)
+      foreach (Control tmpControl in this.gbxDaten.Controls)
       {
-        if (c is CheckBox)
+        ActiveComponents.Get().AddControl(tmpControl);
+        if (tmpControl is CheckBox)
         {
-          (c as CheckBox).CheckedChanged += new System.EventHandler(this.berechneVerbrauch);
+          (tmpControl as CheckBox).CheckedChanged += new System.EventHandler(this.berechneVerbrauch);
         }
-        else if (c is ComboBox)
+        else if (tmpControl is ComboBox)
         {
-          (c as ComboBox).SelectedIndexChanged += new System.EventHandler(this.berechneVerbrauch);
+          (tmpControl as ComboBox).SelectedIndexChanged += new System.EventHandler(this.berechneVerbrauch);
         }
       }
     }
@@ -174,105 +212,8 @@ namespace PSU_Calculator
     /// <param name="e"></param>
     void berechneVerbrauch(object sender, System.EventArgs e)
     {
-      OC oc = cbxOverclocking.SelectedItem as OC; //Übertaktung auslesen zur weiteren bearbeitung
-      verbrauch = 20;//Verbrauch MB mit Controlern
-      CoolingSolution kuehlloesung = (cbxCooling.SelectedItem as CoolingSolution);//Kühlung merken, wichtig für OC
-
-      //Kühllösung Strommverbrauch hinzufügen
-      if (kuehlloesung.OnlyOnce)
-      {
-        verbrauch += kuehlloesung.TDP;
-      }
-      else
-      {
-        if (cbxCpu.SelectedItem is PcComponent && (cbxCpu.SelectedItem as PcComponent).TDP > 0)
-        {
-          verbrauch += kuehlloesung.TDP;
-        }
-        if (chkdualcpu.Checked && cbxCPU2.SelectedItem is PcComponent && (cbxCPU2.SelectedItem as PcComponent).TDP > 0)
-        {
-          verbrauch += kuehlloesung.TDP;
-        }
-      }
-
-      //CPU
-      if (cbxCpu.SelectedItem is PcComponent)
-      {
-        verbrauch += oc.CalculateCPU_OCUsageInWatt((cbxCpu.SelectedItem as PcComponent).TDP, kuehlloesung);
-      }
-      if (chkdualcpu.Checked && cbxCPU2.SelectedItem is PcComponent)
-      {
-        verbrauch += oc.CalculateCPU_OCUsageInWatt((cbxCPU2.SelectedItem as PcComponent).TDP, kuehlloesung);
-      }
-
-      //GPU
-      foreach (ComboBox box in cbxGrakaList)
-      {
-        if (box.SelectedItem is PcComponent)
-        {
-          verbrauch += oc.CalculateGPU_OCUsageInWatt((box.SelectedItem as PcComponent).TDP, kuehlloesung);
-        }
-        if (!chkCFSLI.Checked)
-        {
-          break;
-        }
-      }
-      if (cbxPhysx.SelectedItem is PcComponent)
-      {
-        verbrauch += (cbxPhysx.SelectedItem as PcComponent).TDP;
-      }
-
-      //Laufwerke/HDD/SSD/Lüfter
-      verbrauch += cbxHDD.SelectedIndex * 5;
-      verbrauch += cbxSSD.SelectedIndex * 4;
-      verbrauch += cbxLaufwerke.SelectedIndex * 5;
-      verbrauch += cbxFans.SelectedIndex * 2;
-
-      //Weiteres
-      verbrauch += cbxKaltlicht.SelectedIndex * 5;
-      verbrauch += cbxLED.SelectedIndex * 3;
-      if (soundblaster.Checked)
-      {
-        verbrauch += 12;
-      }
-      if (soundblasterwfront.Checked)
-      {
-        verbrauch += 15;
-      }
-      if (tvtuner.Checked)
-      {
-        verbrauch += 11;
-      }
-      if (raidcard.Checked)
-      {
-        verbrauch += 8;
-      }
-      if (fancontroll.Checked)
-      {
-        verbrauch += 5;
-      }
-      if (cardreader.Checked)
-      {
-        verbrauch += 2;
-      }
-      if (lcd.Checked)
-      {
-        verbrauch += 4;
-      }
-
-      if (verbrauch < 1001)
-      {
-        pgbEffizienz.Value = verbrauch;
-      }
-      else
-      {
-        pgbEffizienz.Value = 1000;
-      }
-
-      lblVerbrauch.Text = verbrauch.ToString();
-
       //EMpfehlenswerte Netzteile anzeigen lassen
-      AddToView(EmpfehleNetzteile(verbrauch));
+      AddToView(EmpfehleNetzteile(ActiveComponents.Get().GetWattage()));
     }
 
     /// <summary>
@@ -464,6 +405,7 @@ namespace PSU_Calculator
       PlaziereElemente();
       LoaderModul.getInstance().LoadGPU(cbxGraka);
       LoaderModul.getInstance().setGPUSearchEvent(cbxGraka);
+      ActiveComponents.Get().AddControl(cbxGraka);
       renameGPULabels();
     }
 
@@ -516,7 +458,7 @@ namespace PSU_Calculator
       //Keine Leeren, neue GPU anfügen
       if (nrOfEmpty == 0)
       {
-        addGPU();
+        addGPU(); 
         return;
       }
       else if (nrOfEmpty == 1)//1 Leere, nix tun
@@ -540,6 +482,7 @@ namespace PSU_Calculator
         }
         if (nrOfEmpty > 1 && cbxGrakaList.Count > 2)
         {
+          ActiveComponents.Get().RemoveControl(cbxGrakaList[i]);
           cbxGrakaList.Remove(cbxGrakaList[i]);
           lblGrakaList.Remove(lblGrakaList[i]);
         }
@@ -659,22 +602,18 @@ namespace PSU_Calculator
 
     private void cmdCopySystem_Click(object sender, EventArgs e)
     {
-      StringJoiner sj = new StringJoiner();
-      sj.Put("CPU1", GetItem(cbxCpu.SelectedItem));
-      sj.Put("CPU2", GetItem(cbxCPU2.SelectedItem));
-      int grakacount = 1;
-      foreach (ComboBox box in cbxGrakaList)
+      Element ele = new Element("Choosen");
+      foreach (PcComponent com in ActiveComponents.Get().GetAktiveComponents())
       {
-        sj.Put("GPU_"+grakacount, GetItem(cbxCPU2.SelectedItem));
-        grakacount++;
+        if (com.IsEmpty())
+        {
+          continue;
+        }
+        ele.addElement(com.XML);
       }
-      sj.Put("PhysX", GetItem(cbxPhysx.SelectedItem));
-      sj.Put("Lüfter", GetItem(cbxFans.SelectedItem));
-      sj.Put("HDD", GetItem(cbxHDD.SelectedItem));
-      sj.Put("SSD", GetItem(cbxSSD.SelectedItem));
-      sj.Put("Laufwerke", GetItem(cbxLaufwerke.SelectedItem));
-      sj.Put("OC", GetItem(cbxOverclocking.SelectedItem));
-      System.Windows.Forms.Clipboard.SetDataObject(sj.ToString(), true);
+      ele.addElement(new Element("Watt", ActiveComponents.Get().GetWattage().ToString()));
+      System.Windows.Forms.Clipboard.SetDataObject(ele.getXML(), true);
+      StorageMapper.WriteToFilesystem(PSUCalculatorSettings.GetXmlFilePath(PSUCalculatorSettings.MySystem), ele.getXML());
     }
 
     private string GetItem(object o)

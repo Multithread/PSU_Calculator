@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 
@@ -124,7 +125,7 @@ namespace PSU_Calculator.DataWorker
     {
       string data = GetValueForKey(key);
       double output;
-      if (double.TryParse(data, out output))
+      if (double.TryParse(data,  NumberStyles.AllowDecimalPoint,CultureInfo.InvariantCulture, out output))
       {
         return output;
       }

@@ -73,10 +73,11 @@
     <ApplicationManifest>Properties\app.manifest</ApplicationManifest>
   </PropertyGroup>
   <PropertyGroup>
-    <SignManifests>true</SignManifests>
+    <SignManifests>false</SignManifests>
   </PropertyGroup>
   <PropertyGroup>
-    <ApplicationIcon>icon.ico</ApplicationIcon>
+    <ApplicationIcon>
+    </ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -97,6 +98,8 @@
     <Compile Include="About.Designer.cs">
       <DependentUpon>About.cs</DependentUpon>
     </Compile>
+    <Compile Include="DataWorker\ActiveComponents.cs" />
+    <Compile Include="DataWorker\ComponentsOfPC.cs" />
     <Compile Include="DataWorker\Element.cs" />
     <Compile Include="DataWorker\StringJoiner.cs" />
     <Compile Include="Dateizugriffe\StorageMapper.cs" />

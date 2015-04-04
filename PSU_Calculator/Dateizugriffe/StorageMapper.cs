@@ -241,7 +241,7 @@ namespace PSU_Calculator.Dateizugriffe
         sw.Write(daten);
         sw.Close();
       }
-      catch (Exception ex)
+      catch (Exception)
       {
         try
         {

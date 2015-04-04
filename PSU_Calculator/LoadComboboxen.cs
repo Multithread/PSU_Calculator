@@ -393,18 +393,33 @@ namespace PSU_Calculator
         {
           case 0:
           case 1:
-            componentList.Add(new PcComponent("", 0, 0));
+            componentList.Add(new PcComponent("", 0, ""));
             break;
           case 2:
             int.TryParse(columns[1], out tdp);
-            componentList.Add(new PcComponent(columns[0], tdp, tdp));
+            componentList.Add(new PcComponent(columns[0], tdp, "CPU"));
             break;
           case 3:
             int.TryParse(columns[1], out tdp);
             int.TryParse(columns[2], out benchmark);
-            componentList.Add(new PcComponent(columns[0], tdp, benchmark));
+            componentList.Add(new PcComponent(columns[0], tdp, "CPU"));
             break;
         }
+      }
+      return componentList;
+    }
+
+    /// <summary>
+    /// Get Komponenten aufgrund einer XML datei mit PcComponenten
+    /// </summary>
+    /// <param name="_rows"></param>
+    /// <returns></returns>
+    public List<PcComponent> GetComponentsFromXML(Element xml)
+    {
+      List<PcComponent> componentList = new List<PcComponent>();
+      foreach (Element ele in xml. getAlleElementeByName(PcComponent.ComponentString))
+      {
+        componentList.Add(new PcComponent(ele));
       }
       return componentList;
     }
@@ -434,9 +449,19 @@ namespace PSU_Calculator
     {
       if (gpuComponentList == null)
       {
+        Element tmpEle= StorageMapper.GetXML(PSUCalculatorSettings.GetFilePath(PSUCalculatorSettings.GPU));
+        gpuComponentList = GetComponentsFromXML(tmpEle);
+        return gpuComponentList;
+    
         string[] zeilen = getAssemblyText("GPUs.txt").Split(new string[] { Environment.NewLine }, StringSplitOptions.None);
-
+ 
         gpuComponentList = GetComponents(zeilen);
+        Element ele = new Element("GPUs");
+        foreach (PcComponent com in GPU)
+        {
+          ele.addElement(com.XML);
+        }
+        StorageMapper.WriteToFilesystem(PSUCalculatorSettings.GetFilePath(PSUCalculatorSettings.GPU),ele.getXML());
       }
       return gpuComponentList;
     }
@@ -451,7 +476,7 @@ namespace PSU_Calculator
       if (powersupplyList == null)
       {
         powersupplyList = new List<PowerSupply>();
-        Element e = StorageMapper.GetXML(PSUCalculatorSettings.GetXmlFilePath(PSUCalculatorSettings.PowerSupply));
+        Element e = StorageMapper.GetXML(PSUCalculatorSettings.GetFilePath(PSUCalculatorSettings.PowerSupply));
         foreach (Element NT in e.getAlleElementeByName("Netzteil"))
         {
           var psu = new PowerSupply(NT);

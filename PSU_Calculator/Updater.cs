@@ -107,7 +107,7 @@ namespace PSU_Calculator
       {
         data= c.DownloadString(url);
       }
-      catch (Exception ex)
+      catch (Exception)
       {
 
       }

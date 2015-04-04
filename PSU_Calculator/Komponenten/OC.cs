@@ -8,7 +8,7 @@ namespace PSU_Calculator.Komponenten
   class OC : PcComponent
   {
     public OC(string _bez, bool _isCPU, bool _isGPU)
-      : base(_bez, 0, 0)
+      : base(_bez, 0,"OC")
     {
       CPU = _isCPU;
       GPU = _isGPU;

@@ -18,10 +18,6 @@ namespace PSU_Calculator.Komponenten
     {
       this.XML = ele;
     }
-    public void test()
-    {
-
-    }
 
     private bool AddToPreisvergleich(string key)
     {
@@ -31,16 +27,6 @@ namespace PSU_Calculator.Komponenten
         return true;
       }
       return false;
-    }
-
-    private int getIntForString(string data)
-    {
-      int value = 0;
-      if (int.TryParse(data, out value))
-      {
-        return value;
-      }
-      return 0;
     }
 
     public string CurrentPresvergleichLink
@@ -91,7 +77,7 @@ namespace PSU_Calculator.Komponenten
       }
     }
 
-    public Element XML
+    public override Element XML
     {
       get
       {
@@ -99,9 +85,9 @@ namespace PSU_Calculator.Komponenten
         e.addAttribut("Name", Name);
         Element daten = new Element("Daten");
         daten.addAttribut("Min", UsageLoadMinimum.ToString());
-        daten.addAttribut("Max", GPGPU.ToString());
+        daten.addAttribut("Max", UsageLoadMaximum.ToString());
         daten.addAttribut("Quali", Quality.ToString());
-        //daten.addAttribut("TDP", Quality.ToString());
+
         e.addElement(daten);
 
         daten = new Element("Preisvergleiche");
@@ -130,9 +116,8 @@ namespace PSU_Calculator.Komponenten
         Name = e.getAttribut("Name");
         Element data = e.getElement("Daten");
         UsageLoadMinimum = getIntForString(data.getAttribut("Min"));
-        GPGPU = getIntForString(data.getAttribut("Max"));
+        UsageLoadMaximum = getIntForString(data.getAttribut("Max"));
         Quality = getIntForString(data.getAttribut("Quali"));
-        TDP = getIntForString(data.getAttribut("TDP"));
 
         data = e.getElement("Preisvergleiche");
         if (data != null)
@@ -140,7 +125,7 @@ namespace PSU_Calculator.Komponenten
           foreach (Element ele in data.getAllEntries())
           {
             AddToPreisvergleich(ele.Name);
-            PriceCompareDict.Add(ele.Name, ele.Text);
+            PriceCompareDict.Add(ele.Name, ele.Text.Trim());
           }
         }
 
@@ -149,7 +134,7 @@ namespace PSU_Calculator.Komponenten
         {
           foreach (Element ele in data.getAllEntries())
           {
-            tests.Add(ele.Text);
+            tests.Add(ele.Text.Trim());
           }
         }
       }
@@ -163,10 +148,8 @@ namespace PSU_Calculator.Komponenten
 
     public int UsageLoadMaximum
     {
-      get
-      {
-        return GPGPU;
-      }
+      get;
+      set;
     }
 
     public int UsageLoadMinimum

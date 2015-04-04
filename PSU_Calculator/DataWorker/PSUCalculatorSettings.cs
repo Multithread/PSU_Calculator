@@ -1,6 +1,7 @@
 ﻿using PSU_Calculator.Dateizugriffe;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -15,6 +16,8 @@ namespace PSU_Calculator.DataWorker
     public static string CPU = "CPUs";
     public static string GPU = "GPUs";
     public static string PowerSupply = "Netzteile";
+    public static string MySystem = "MySystem";
+    public static string ChoosenComponents = "Components";
     public static string Einstellungen = "Einstellungen";
     public static string DataPath = "PSU_Calculator_Data";
     public static string SearchEngineString = "Suchmaschine";
@@ -110,7 +113,7 @@ namespace PSU_Calculator.DataWorker
     private double GetAsDouble(string data)
     {
       double output;
-      if (double.TryParse(data, out output))
+      if (double.TryParse(data, NumberStyles.AllowDecimalPoint, CultureInfo.InvariantCulture, out output))
       {
         return output;
       }
