@@ -1,4 +1,5 @@
 ﻿using PSU_Calculator.DataWorker;
+using PSU_Calculator.DataWorker.Elementworker;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
@@ -108,6 +109,11 @@ namespace PSU_Calculator.Komponenten
         }
       }
       return false;
+    }
+
+    public ElementDataContainer GetDataWorker()
+    {
+      return new ElementDataContainer(Data);
     }
 
     public readonly static PcComponent Empty = new PcComponent("", 0, "Empty");

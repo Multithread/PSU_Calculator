@@ -30,8 +30,6 @@ namespace PSU_Calculator
       ActiveComponents.Get().CbxCoolingSolution = cbxCooling;
       ActiveComponents.Get().CbxOC = cbxOverclocking;
 
-      new Updater().RunUpdateAsync();
-
       LoaderModul m = LoaderModul.getInstance();
 
       m.LoadCPU(this.cbxCpu);
@@ -47,10 +45,8 @@ namespace PSU_Calculator
 
       setUpdateVerbrauchEvent();
 
-      //Nach Updates suchen nachdem das Programm inizialisiert wurde
-      t = new Thread(new ParameterizedThreadStart(TestForUpdates));
-      t.IsBackground = true;
-      t.Start();
+      new Updater().RunUpdateAsync();
+
       berechneVerbrauch(this, null);
       AddPriceComparorsToToolStrip();
     }
@@ -212,8 +208,18 @@ namespace PSU_Calculator
     /// <param name="e"></param>
     void berechneVerbrauch(object sender, System.EventArgs e)
     {
+      int verbrauch = ActiveComponents.Get().GetWattage();
+      lblVerbrauch.Text = verbrauch.ToString();
+      if (verbrauch > 1000)
+      {
+        pgbEffizienz.Value = 1000;
+      }
+      else
+      {
+        pgbEffizienz.Value = verbrauch;
+      }
       //EMpfehlenswerte Netzteile anzeigen lassen
-      AddToView(EmpfehleNetzteile(ActiveComponents.Get().GetWattage()));
+      AddToView(EmpfehleNetzteile(verbrauch));
     }
 
     /// <summary>

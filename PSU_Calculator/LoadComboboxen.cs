@@ -433,9 +433,20 @@ namespace PSU_Calculator
     {
       if (cpuComponentList == null)
       {
-        string[] zeilen = getAssemblyText("CPUs.txt").Split(new string[] { Environment.NewLine }, StringSplitOptions.None);
+        Element tmpEle = StorageMapper.GetXML(PSUCalculatorSettings.GetFilePath(PSUCalculatorSettings.CPU));
+        cpuComponentList = GetComponentsFromXML(tmpEle);
 
-        cpuComponentList = GetComponents(zeilen);
+        //string[] zeilen = getAssemblyText("CPUs.txt").Split(new string[] { Environment.NewLine }, StringSplitOptions.None);
+
+        //cpuComponentList = GetComponents(zeilen);
+
+        //Element ele = new Element("CPUs");
+        //foreach (PcComponent com in cpuComponentList)
+        //{
+        //  ele.addElement(com.XML);
+
+        //}
+        //StorageMapper.WriteToFilesystem(PSUCalculatorSettings.GetFilePath(PSUCalculatorSettings.CPU), ele.getXML());
       }
       return cpuComponentList;
     }
@@ -451,17 +462,6 @@ namespace PSU_Calculator
       {
         Element tmpEle= StorageMapper.GetXML(PSUCalculatorSettings.GetFilePath(PSUCalculatorSettings.GPU));
         gpuComponentList = GetComponentsFromXML(tmpEle);
-        return gpuComponentList;
-    
-        string[] zeilen = getAssemblyText("GPUs.txt").Split(new string[] { Environment.NewLine }, StringSplitOptions.None);
- 
-        gpuComponentList = GetComponents(zeilen);
-        Element ele = new Element("GPUs");
-        foreach (PcComponent com in GPU)
-        {
-          ele.addElement(com.XML);
-        }
-        StorageMapper.WriteToFilesystem(PSUCalculatorSettings.GetFilePath(PSUCalculatorSettings.GPU),ele.getXML());
       }
       return gpuComponentList;
     }
@@ -482,17 +482,6 @@ namespace PSU_Calculator
           var psu = new PowerSupply(NT);
           powersupplyList.Add(psu);
         }
-
-        //string[] rows = StorageMapper.ReadFromFilesystem(PSUCalculatorSettings.GetFilePath(PSUCalculatorSettings.PowerSupply)).Split(new string[] { Environment.NewLine,"\n","\r" }, StringSplitOptions.None);
-        //powersupplyList = GetPowerSupplysFromArray(rows); 
-
-        //Generate XML out of PSU file
-        //Element ele = new Element("Netzteile");
-        //foreach (PowerSupply psu in powersupplyList)
-        //{
-        //  ele.addElement(psu.XML);
-        //}
-        //StorageMapper.WriteToFilesystem("C:\\Netzteile.xml", ele.getXML());
       }
       return powersupplyList;
     }

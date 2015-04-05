@@ -98,7 +98,12 @@ namespace PSU_Calculator.DataWorker
         version.addElement(Element.New(CPU).addAttribut("Version", Daten.GetValueForKeyAsDouble(CPU).ToString()));
         version.addElement(Element.New(PowerSupply).addAttribut("Version", Daten.GetValueForKeyAsDouble(PowerSupply).ToString()));
 
-        Settings.addElement(new Element(SearchEngineString, Daten.GetValueForKey(SearchEngineString)));
+        string search = Daten.GetValueForKey(SearchEngineString);
+        if (string.IsNullOrEmpty(search))
+        {
+          search = "DE";
+        }
+        Settings.addElement(new Element(SearchEngineString, search));
         hasChanged = true;
       }
       version = Settings.getElementByName("Version");

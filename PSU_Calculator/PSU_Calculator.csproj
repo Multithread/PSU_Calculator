@@ -76,8 +76,7 @@
     <SignManifests>false</SignManifests>
   </PropertyGroup>
   <PropertyGroup>
-    <ApplicationIcon>
-    </ApplicationIcon>
+    <ApplicationIcon>icon.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -99,8 +98,10 @@
       <DependentUpon>About.cs</DependentUpon>
     </Compile>
     <Compile Include="DataWorker\ActiveComponents.cs" />
-    <Compile Include="DataWorker\ComponentsOfPC.cs" />
-    <Compile Include="DataWorker\Element.cs" />
+    <Compile Include="DataWorker\Elementworker\Element.cs" />
+    <Compile Include="DataWorker\Elementworker\ElementDataContainer.cs" />
+    <Compile Include="DataWorker\Elementworker\Energy.cs" />
+    <Compile Include="DataWorker\Elementworker\Stecker.cs" />
     <Compile Include="DataWorker\StringJoiner.cs" />
     <Compile Include="Dateizugriffe\StorageMapper.cs" />
     <Compile Include="DataWorker\PSUCalculatorSettings.cs" />
