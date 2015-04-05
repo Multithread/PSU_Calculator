@@ -1,0 +1,182 @@
+<CPUs>
+  <Component Name="Intel Core i5 4440" TDP="84" Type="CPU"/>
+  <Component Name="Intel Core i5 4460" TDP="84" Type="CPU"/>
+  <Component Name="Intel Core i5 4570" TDP="84" Type="CPU"/>
+  <Component Name="Intel Core i5 4590" TDP="84" Type="CPU"/>
+  <Component Name="Intel Core i5 4670(k)" TDP="84" Type="CPU"/>
+  <Component Name="Intel Core i5 4690" TDP="84" Type="CPU"/>
+  <Component Name="Intel Core i5 2300" TDP="95" Type="CPU"/>
+  <Component Name="Intel Core i5 2310" TDP="95" Type="CPU"/>
+  <Component Name="Intel Core i5 2320" TDP="95" Type="CPU"/>
+  <Component Name="Intel Core i5 2400" TDP="95" Type="CPU"/>
+  <Component Name="Intel Core i5 2500(k)" TDP="95" Type="CPU"/>
+  <Component Name="Intel Core i5 2550(k)" TDP="95" Type="CPU"/>
+  <Component Name="Intel Core i5 3330" TDP="77" Type="CPU"/>
+  <Component Name="Intel Core i5 3450" TDP="77" Type="CPU"/>
+  <Component Name="Intel Core i5 3550" TDP="77" Type="CPU"/>
+  <Component Name="Intel Core i5 3570" TDP="70" Type="CPU"/>
+  <Component Name="Intel Core i5 3570(k)" TDP="77" Type="CPU"/>
+  <Component Name="Intel Core i5 4690(k)" TDP="88" Type="CPU"/>
+  <Component Name="" TDP="0" Type="Empty"/>
+  <Component Name="Intel Core i7 860" TDP="95" Type="CPU"/>
+  <Component Name="Intel Core i7 860S" TDP="82" Type="CPU"/>
+  <Component Name="Intel Core i7 870" TDP="95" Type="CPU"/>
+  <Component Name="Intel Core i7 920" TDP="130" Type="CPU"/>
+  <Component Name="Intel Core i7 960" TDP="130" Type="CPU"/>
+  <Component Name="Intel Core i7 2600(k)" TDP="95" Type="CPU"/>
+  <Component Name="Intel Core i7 3770(k)" TDP="77" Type="CPU"/>
+  <Component Name="Intel Core i7 3820(k)" TDP="130" Type="CPU"/>
+  <Component Name="Intel Core i7 3930k" TDP="130" Type="CPU"/>
+  <Component Name="Intel Core i7 3960x" TDP="130" Type="CPU"/>
+  <Component Name="Intel Core i7 3970x" TDP="150" Type="CPU"/>
+  <Component Name="Intel Core i7 4770(k)" TDP="84" Type="CPU"/>
+  <Component Name="Intel Core i7 4930(k)" TDP="190" Type="CPU"/>
+  <Component Name="Intel Core i7 4960x" TDP="190" Type="CPU"/>
+  <Component Name="Intel Core i7 5820k" TDP="140" Type="CPU"/>
+  <Component Name="Intel Core i7 5930k" TDP="140" Type="CPU"/>
+  <Component Name="Intel Core i7 5960x" TDP="140" Type="CPU"/>
+  <Component Name="Intel Core i7 4790(k)" TDP="84" Type="CPU"/>
+  <Component Name="" TDP="0" Type="Empty"/>
+  <Component Name="Intel Xeon E3 1220" TDP="80" Type="CPU"/>
+  <Component Name="Intel Xeon E3 1220L" TDP="20" Type="CPU"/>
+  <Component Name="Intel Xeon E3 1225" TDP="95" Type="CPU"/>
+  <Component Name="Intel Xeon E3 1230" TDP="80" Type="CPU"/>
+  <Component Name="Intel Xeon E3 1231" TDP="80" Type="CPU"/>
+  <Component Name="Intel Xeon E3 1235" TDP="95" Type="CPU"/>
+  <Component Name="Intel Xeon E3 1240" TDP="80" Type="CPU"/>
+  <Component Name="Intel Xeon E3 1245" TDP="95" Type="CPU"/>
+  <Component Name="Intel Xeon E3 1260L" TDP="45" Type="CPU"/>
+  <Component Name="Intel Xeon E3 1270" TDP="80" Type="CPU"/>
+  <Component Name="Intel Xeon E3 1275" TDP="80" Type="CPU"/>
+  <Component Name="Intel Xeon E3 1280" TDP="95" Type="CPU"/>
+  <Component Name="" TDP="0" Type="Empty"/>
+  <Component Name="Intel Xeon E5-2670v2" TDP="115" Type="CPU"/>
+  <Component Name="Intel Xeon E5-2630v2" TDP="80" Type="CPU"/>
+  <Component Name="Intel Xeon E5-2620v2" TDP="80" Type="CPU"/>
+  <Component Name="Intel Xeon E5-2609v2" TDP="80" Type="CPU"/>
+  <Component Name="Intel Xeon E5-2609" TDP="80" Type="CPU"/>
+  <Component Name="" TDP="0" Type="Empty"/>
+  <Component Name="Intel Core 2 Duo E4300" TDP="65" Type="CPU"/>
+  <Component Name="Intel Core 2 Duo E4400" TDP="65" Type="CPU"/>
+  <Component Name="Intel Core 2 Duo E4500" TDP="65" Type="CPU"/>
+  <Component Name="Intel Core 2 Duo E4600" TDP="65" Type="CPU"/>
+  <Component Name="Intel Core 2 Duo E4700" TDP="65" Type="CPU"/>
+  <Component Name="Intel Core 2 Duo E6300" TDP="65" Type="CPU"/>
+  <Component Name="Intel Core 2 Duo E6320" TDP="65" Type="CPU"/>
+  <Component Name="Intel Core 2 Duo E6400" TDP="65" Type="CPU"/>
+  <Component Name="Intel Core 2 Duo E6420" TDP="65" Type="CPU"/>
+  <Component Name="Intel Core 2 Duo E6540" TDP="65" Type="CPU"/>
+  <Component Name="Intel Core 2 Duo E6550" TDP="65" Type="CPU"/>
+  <Component Name="Intel Core 2 Duo E6700" TDP="65" Type="CPU"/>
+  <Component Name="Intel Core 2 Duo E6750" TDP="65" Type="CPU"/>
+  <Component Name="Intel Core 2 Duo E6850" TDP="65" Type="CPU"/>
+  <Component Name="Intel Core 2 Duo E8400" TDP="65" Type="CPU"/>
+  <Component Name="Intel Core 2 Duo E8500" TDP="65" Type="CPU"/>
+  <Component Name="Intel Core 2 Duo E8600" TDP="65" Type="CPU"/>
+  <Component Name="" TDP="0" Type="Empty"/>
+  <Component Name="AMD Phenom II X4 945" TDP="125" Type="CPU"/>
+  <Component Name="AMD Phenom II X4 955" TDP="125" Type="CPU"/>
+  <Component Name="AMD Phenom II X4 955 BE" TDP="125" Type="CPU"/>
+  <Component Name="AMD Phenom II X4 960T BE" TDP="95" Type="CPU"/>
+  <Component Name="AMD Phenom II X4 965 BE" TDP="125" Type="CPU"/>
+  <Component Name="AMD Phenom II X4 970 BE" TDP="125" Type="CPU"/>
+  <Component Name="AMD Phenom II X4 975 BE" TDP="125" Type="CPU"/>
+  <Component Name="AMD Phenom II X4 980 BE" TDP="125" Type="CPU"/>
+  <Component Name="AMD Phenom II X6 1035T" TDP="95" Type="CPU"/>
+  <Component Name="AMD Phenom II X6 1045T" TDP="95" Type="CPU"/>
+  <Component Name="AMD Phenom II X6 1055T" TDP="125" Type="CPU"/>
+  <Component Name="AMD Phenom II X6 1075T" TDP="125" Type="CPU"/>
+  <Component Name="AMD Phenom II X6 1090T BE " TDP="125" Type="CPU"/>
+  <Component Name="AMD Phenom II X6 1100T BE" TDP="125" Type="CPU"/>
+  <Component Name="" TDP="0" Type="Empty"/>
+  <Component Name="AMD FX-4100" TDP="95" Type="CPU"/>
+  <Component Name="AMD FX-4170" TDP="125" Type="CPU"/>
+  <Component Name="AMD FX-4300" TDP="95" Type="CPU"/>
+  <Component Name="AMD FX-4350" TDP="125" Type="CPU"/>
+  <Component Name="AMD FX-6100" TDP="95" Type="CPU"/>
+  <Component Name="AMD FX-6200" TDP="125" Type="CPU"/>
+  <Component Name="AMD FX-6300" TDP="95" Type="CPU"/>
+  <Component Name="AMD FX-6350" TDP="125" Type="CPU"/>
+  <Component Name="AMD FX-8120" TDP="125" Type="CPU"/>
+  <Component Name="AMD FX-8150" TDP="125" Type="CPU"/>
+  <Component Name="AMD FX-8320" TDP="125" Type="CPU"/>
+  <Component Name="AMD FX-8350" TDP="125" Type="CPU"/>
+  <Component Name="AMD FX-9370" TDP="220" Type="CPU"/>
+  <Component Name="AMD FX-9590" TDP="220" Type="CPU"/>
+  <Component Name="" TDP="0" Type="Empty"/>
+  <Component Name="AMD Athlon 5150" TDP="25" Type="CPU"/>
+  <Component Name="AMD Athlon 5350" TDP="25" Type="CPU"/>
+  <Component Name="AMD Athlon X2 340" TDP="65" Type="CPU"/>
+  <Component Name="AMD Athlon X2 370K" TDP="65" Type="CPU"/>
+  <Component Name="AMD Athlon X4 740" TDP="65" Type="CPU"/>
+  <Component Name="AMD Athlon X4 750K" TDP="100" Type="CPU"/>
+  <Component Name="AMD Athlon X4 760K" TDP="100" Type="CPU"/>
+  <Component Name="AMD Athlon X4 860K Black Edition" TDP="95" Type="CPU"/>
+  <Component Name="" TDP="0" Type="Empty"/>
+  <Component Name="AMD Athlon 64 X2 3600+" TDP="89" Type="CPU"/>
+  <Component Name="AMD Athlon 64 X2 3800+" TDP="89" Type="CPU"/>
+  <Component Name="AMD Athlon 64 X2 4000+" TDP="65" Type="CPU"/>
+  <Component Name="AMD Athlon 64 X2 4200+" TDP="89" Type="CPU"/>
+  <Component Name="AMD Athlon 64 X2 4400+" TDP="65" Type="CPU"/>
+  <Component Name="AMD Athlon 64 X2 4600+" TDP="89" Type="CPU"/>
+  <Component Name="AMD Athlon 64 X2 4800+" TDP="89" Type="CPU"/>
+  <Component Name="AMD Athlon 64 X2 5000+" TDP="89" Type="CPU"/>
+  <Component Name="AMD Athlon 64 X2 5200+" TDP="89" Type="CPU"/>
+  <Component Name="AMD Athlon 64 X2 5400+" TDP="89" Type="CPU"/>
+  <Component Name="AMD Athlon 64 X2 5600+" TDP="89" Type="CPU"/>
+  <Component Name="AMD Athlon 64 X2 6000+" TDP="125" Type="CPU"/>
+  <Component Name="AMD Athlon 64 X2 6400+" TDP="125" Type="CPU"/>
+  <Component Name="AMD Sempron 2650" TDP="25" Type="CPU"/>
+  <Component Name="AMD Sempron 3850" TDP="25" Type="CPU"/>
+  <Component Name="" TDP="0" Type="Empty"/>
+  <Component Name="AMD A4-4000" TDP="65" Type="CPU"/>
+  <Component Name="AMD A4-4020" TDP="65" Type="CPU"/>
+  <Component Name="AMD A4-5300" TDP="65" Type="CPU"/>
+  <Component Name="AMD A4-6300" TDP="65" Type="CPU"/>
+  <Component Name="AMD A4-6320" TDP="65" Type="CPU"/>
+  <Component Name="AMD A4-6400" TDP="65" Type="CPU"/>
+  <Component Name="AMD A4-7300" TDP="65" Type="CPU"/>
+  <Component Name="AMD A6-5400K" TDP="65" Type="CPU"/>
+  <Component Name="AMD A6-6400K" TDP="65" Type="CPU"/>
+  <Component Name="AMD A6-6420K Black Edition" TDP="65" Type="CPU"/>
+  <Component Name="AMD A6-7400K Black Edition" TDP="95" Type="CPU"/>
+  <Component Name="AMD A8-5500" TDP="65" Type="CPU"/>
+  <Component Name="AMD A8-5600K" TDP="100" Type="CPU"/>
+  <Component Name="AMD A8-6500" TDP="65" Type="CPU"/>
+  <Component Name="AMD A8-6500T" TDP="45" Type="CPU"/>
+  <Component Name="AMD A8-6600K" TDP="100" Type="CPU"/>
+  <Component Name="AMD A8-7600" TDP="65" Type="CPU"/>
+  <Component Name="AMD A10-5700" TDP="65" Type="CPU"/>
+  <Component Name="AMD A10-5800K" TDP="100" Type="CPU"/>
+  <Component Name="AMD A10-6700" TDP="65" Type="CPU"/>
+  <Component Name="AMD A10-6700T" TDP="45" Type="CPU"/>
+  <Component Name="AMD A10-6790K Black Edition" TDP="100" Type="CPU"/>
+  <Component Name="AMD A10-6800K" TDP="100" Type="CPU"/>
+  <Component Name="AMD A10-7700K Black Edition" TDP="95" Type="CPU"/>
+  <Component Name="AMD A10-7800" TDP="65" Type="CPU"/>
+  <Component Name="AMD A10-7850K Black Edition" TDP="95" Type="CPU"/>
+  <Component Name="" TDP="0" Type="Empty"/>
+  <Component Name="Intel Core 2 Quad Q6400" TDP="89" Type="CPU"/>
+  <Component Name="Intel Core 2 Quad Q6600" TDP="91" Type="CPU"/>
+  <Component Name="Intel Core 2 Quad Q6700" TDP="92" Type="CPU"/>
+  <Component Name="Intel Core 2 Quad Q8200" TDP="95" Type="CPU"/>
+  <Component Name="Intel Core 2 Quad Q8200S" TDP="65" Type="CPU"/>
+  <Component Name="Intel Core 2 Quad Q8300" TDP="95" Type="CPU"/>
+  <Component Name="Intel Core 2 Quad Q8400" TDP="95" Type="CPU"/>
+  <Component Name="Intel Core 2 Quad Q8400S" TDP="65" Type="CPU"/>
+  <Component Name="Intel Core 2 Quad Q9300" TDP="95" Type="CPU"/>
+  <Component Name="Intel Core 2 Quad Q9500" TDP="95" Type="CPU"/>
+  <Component Name="" TDP="0" Type="Empty"/>
+  <Component Name="Intel Core i3 3210" TDP="55" Type="CPU"/>
+  <Component Name="Intel Core i3 3220" TDP="55" Type="CPU"/>
+  <Component Name="Intel Core i3 3225" TDP="55" Type="CPU"/>
+  <Component Name="Intel Core i3 3250" TDP="55" Type="CPU"/>
+  <Component Name="Intel Core i3 4130" TDP="53" Type="CPU"/>
+  <Component Name="Intel Core i3 4150" TDP="54" Type="CPU"/>
+  <Component Name="Intel Core i3 4160" TDP="54" Type="CPU"/>
+  <Component Name="Intel Core i3 4330" TDP="54" Type="CPU"/>
+  <Component Name="Intel Core i3 4340" TDP="54" Type="CPU"/>
+  <Component Name="Intel Core i3 4360" TDP="54" Type="CPU"/>
+  <Component Name="Intel Core i3 4370" TDP="54" Type="CPU"/>
+  <Component Name="" TDP="0" Type="Empty"/>
+</CPUs>
