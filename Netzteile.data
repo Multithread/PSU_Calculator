@@ -1,11 +1,11 @@
 <Netzteile>
   <Netzteil Name="Cooler Master G450M">
-    <Daten Min="100" Max="340" Quali="31">	  
-	  <Kabel Modular="Semi">
-		<PCIE SixPlusTwo="2"/>
-	  </Kabel>
-	  <Rail PCIE="34"/>
-	</Daten>
+    <Daten Min="100" Max="340" Quali="31"/>
+	<Data>
+	  <Stecker PCIE68="2" Sata="6" Molex="3" ATX12="1"/>
+	  <Kabel Modular="Semi"/>
+	  <Energy PCIE="34"/>
+	</Data>
     <Preisvergleiche>
       <DE>
         http://geizhals.de/cooler-master-g450m-450w-atx-2-31-rs-450-amaa-b1-a1010337.html
@@ -24,12 +24,12 @@
     </Testberichte>
   </Netzteil>
   <Netzteil Name="Antec Edge 550W">
-    <Daten Min="250" Max="400" Quali="40">	  
-	  <Kabel Modular="Voll">
-		<PCIE SixPlusTwo="2"/>
-	  </Kabel>
-	  <Rail PCIE="30"/>
-	</Daten>
+    <Daten Min="250" Max="400" Quali="40"/>
+	<Data>
+	  <Stecker PCIE68="2" Sata="8" Molex="3" ATX12="1"/>
+	  <Kabel Modular="Voll"/>
+	  <Energy PCIE="30"/>
+	</Data>
     <Preisvergleiche>
       <DE>
         http://geizhals.de/antec-edge-550w-atx-2-4-0761345-05055-5-a1136283.html
@@ -49,6 +49,11 @@
   </Netzteil>
   <Netzteil Name="Be quiet! Dark Power P10 550W">
     <Daten Min="-1" Max="550" Quali="100"/>
+	<Data>
+	  <Stecker PCIE68="4" PCIE6="1" Sata="9" Molex="7" ATX12="2"/>
+	  <Kabel Modular="Semi"/>
+	  <Energy PCIE="50"/>
+	</Data>
     <Preisvergleiche>
       <DE>
         http://geizhals.de/be-quiet-dark-power-pro-10-550w-atx-2-31-p10-550w-bn200-a790408.html
@@ -71,6 +76,11 @@
   </Netzteil>
   <Netzteil Name="Antec High Current Pro HCP-850 Platinum 850W">
     <Daten Min="500" Max="800" Quali="100"/>
+	<Data>
+	  <Stecker PCIE68="6" Sata="9" Molex="6" ATX12="1" EPS12="1"/>
+	  <Kabel Modular="Voll"/>
+	  <Energy PCIE="80"/>
+	</Data>
     <Preisvergleiche>
       <DE>
         http://geizhals.de/antec-high-current-pro-hcp-850-platinum-0761345-06250-3-0761345-06251-0-a1018539.html
@@ -87,6 +97,11 @@
   </Netzteil>
   <Netzteil Name="Antec High Current Pro HCP-1000 Platinum 1000W">
     <Daten Min="700" Max="900" Quali="99"/>
+	<Data>
+	  <Stecker PCIE68="6" Sata="9" Molex="6" ATX12="1" EPS12="1"/>
+	  <Kabel Modular="Voll"/>
+	  <Energy PCIE="80"/>
+	</Data>
     <Preisvergleiche>
       <DE>
         http://geizhals.de/antec-high-current-pro-hcp-1000-platinum-0-761345-06248-0-0-761345-06249-7-a1079951.html
@@ -99,6 +114,11 @@
   </Netzteil>
   <Netzteil Name="Antec High Current Pro HCP-1300 Platinum 1300W">
     <Daten Min="850" Max="1150" Quali="98"/>
+	<Data>
+	  <Stecker PCIE68="10" Sata="9" Molex="6" ATX12="1" EPS12="1"/>
+	  <Kabel Modular="Voll"/>
+	  <Energy PCIE="100"/>
+	</Data>
     <Preisvergleiche>
       <DE>
         http://geizhals.de/antec-high-current-pro-hcp-1300-platinum-0-761345-06260-2-0-761345-06261-9-a1018481.html
@@ -111,6 +131,11 @@
   </Netzteil>
   <Netzteil Name="Be quiet! Dark Power P10 750W">
     <Daten Min="450" Max="650" Quali="97"/>
+	<Data>
+	  <Stecker PCIE68="6" PCIE6="1" Sata="9" Molex="9" ATX12="2" ATX4="1" EPS12="1"/>
+	  <Kabel Modular="Semi"/>
+	  <Energy PCIE="60"/>
+	</Data>
     <Preisvergleiche>
       <DE>
         http://geizhals.de/be-quiet-dark-power-pro-10-750w-atx-2-31-p10-750w-bn202-a790490.html
@@ -123,6 +148,11 @@
   </Netzteil>
   <Netzteil Name="Be quiet! Dark Power P10 1000W">
     <Daten Min="650" Max="880" Quali="96"/>
+	<Data>
+	  <Stecker PCIE68="8" PCIE6="1" Sata="11" Molex="9" ATX12="2" ATX4="1" EPS12="1"/>
+	  <Kabel Modular="Semi"/>
+	  <Energy PCIE="80"/>
+	</Data>
     <Preisvergleiche>
       <DE>
         http://geizhals.de/be-quiet-dark-power-pro-10-1000w-atx-2-31-p10-1000w-bn204-a790601.html
@@ -135,6 +165,11 @@
   </Netzteil>
   <Netzteil Name="Be quiet! Dark Power P10 1200W">
     <Daten Min="800" Max="1100" Quali="95"/>
+	<Data>
+	  <Stecker PCIE68="8" PCIE6="1" Sata="11" Molex="9" ATX12="2" ATX4="1" EPS12="1"/>
+	  <Kabel Modular="Semi"/>
+	  <Energy PCIE="80"/>
+	</Data>
     <Preisvergleiche>
       <DE>
         http://geizhals.de/be-quiet-dark-power-pro-10-1200w-atx-2-31-p10-1200w-bn205-a790611.html
@@ -147,6 +182,11 @@
   </Netzteil>
   <Netzteil Name="Be quiet! Straight Power E10 400W">
     <Daten Min="150" Max="320" Quali="85"/>
+	<Data>
+	  <Stecker PCIE68="2" Sata="6" Molex="3" ATX12="1"/>
+	  <Kabel Modular="None/Semi"/>
+	  <Energy PCIE="18"/>
+	</Data>
     <Preisvergleiche>
       <DE>
         http://geizhals.de/be-quiet-straight-power-e10-400w-atx-2-4-e10-400w-bn230-a1165465.html
@@ -159,6 +199,11 @@
   </Netzteil>
   <Netzteil Name="Be quiet! Straight Power E10 500W">
     <Daten Min="-1" Max="430" Quali="80"/>
+	<Data>
+	  <Stecker PCIE68="2" Sata="9" Molex="3" ATX12="1"/>
+	  <Kabel Modular="None/Semi"/>
+	  <Energy PCIE="36"/>
+	</Data>
     <Preisvergleiche>
       <DE>
         http://geizhals.de/be-quiet-straight-power-e10-500w-atx-2-4-e10-500w-bn231-a1165594.html
@@ -197,6 +242,11 @@
   </Netzteil>
   <Netzteil Name="Sea Sonic G-Series G-550 550W PCGH-Edition">
     <Daten Min="-1" Max="450" Quali="50"/>
+	<Data>
+	  <Stecker PCIE68="2" Sata="6" Molex="5" ATX12="1"/>
+	  <Kabel Modular="Semi"/>
+	  <Energy PCIE="45"/>
+	</Data>
     <Preisvergleiche>
       <DE>
         http://geizhals.de/sea-sonic-g-series-g-550-550w-pcgh-edition-atx-2-3-ssr-550rm-a1098704.html
@@ -209,6 +259,11 @@
   </Netzteil>
   <Netzteil Name="LC-Power LC 9450 400W">
     <Daten Min="150" Max="300" Quali="45"/>
+	<Data>
+	  <Stecker PCIE68="1" PCIE6="1" Sata="4" Molex="2" ATX12="1"/>
+	  <Kabel Modular="None"/>
+	  <Energy PCIE="30"/>
+	</Data>
     <Preisvergleiche>
       <DE>
         http://geizhals.de/lc-power-gold-series-lc9450-v2-3-400w-atx-2-3-a861221.html
@@ -228,6 +283,11 @@
   </Netzteil>
   <Netzteil Name="Antec True Power Classic 450W">
     <Daten Min="-1" Max="425" Quali="41"/>
+	<Data>
+	  <Stecker PCIE68="2" Sata="4" Molex="3" ATX12="1"/>
+	  <Kabel Modular="None"/>
+	  <Energy PCIE="20"/>
+	</Data>
     <Preisvergleiche>
       <DE>
         http://geizhals.de/antec-truepower-classic-tp-450c-0761345-07700-2-0761345-07701-9-a1035122.html
@@ -237,6 +297,11 @@
   </Netzteil>
   <Netzteil Name="Antec TruePower Classic TP-550C">
     <Daten Min="-1" Max="425" Quali="40"/>
+	<Data>
+	  <Stecker PCIE68="2" Sata="6" Molex="5" ATX12="1"/>
+	  <Kabel Modular="None"/>
+	  <Energy PCIE="30"/>
+	</Data>
     <Preisvergleiche>
       <DE>
         http://geizhals.de/antec-truepower-classic-tp-550c-0761345-07702-6-0761345-07703-3-a1035130.html
@@ -252,6 +317,11 @@
   </Netzteil>
   <Netzteil Name="LC-Power LC 9550 500W">
     <Daten Min="-1" Max="400" Quali="40"/>
+	<Data>
+	  <Stecker PCIE68="2" Sata="6" Molex="2" ATX12="1"/>
+	  <Kabel Modular="None"/>
+	  <Energy PCIE="34"/>
+	</Data>
     <Preisvergleiche>
       <DE>
         http://geizhals.de/lc-power-gold-series-lc9550-v2-3-500w-atx-2-3-a861223.html
@@ -271,6 +341,11 @@
   </Netzteil>
   <Netzteil Name="SuperFlower HX 450 Golden Green 450W">
     <Daten Min="200" Max="425" Quali="30"/>
+	<Data>
+	  <Stecker PCIE68="2" Sata="4" Molex="3" ATX12="1"/>
+	  <Kabel Modular="None"/>
+	  <Energy PCIE="37"/>
+	</Data>
     <Preisvergleiche>
       <DE>
         http://geizhals.de/super-flower-golden-green-hx-450w-atx-2-3-sf-450p14xe-hx-a1039307.html
@@ -286,6 +361,11 @@
   </Netzteil>
   <Netzteil Name="Be quiet! System Power 7 450W">
     <Daten Min="-1" Max="350" Quali="30"/>
+	<Data>
+	  <Stecker PCIE68="2" Sata="6" Molex="2" ATX12="1"/>
+	  <Kabel Modular="None"/>
+	  <Energy PCIE="20"/>
+	</Data>
     <Preisvergleiche>
       <DE>
         http://geizhals.de/be-quiet-system-power-7-450w-atx-2-31-bn143-a871343.html
@@ -305,6 +385,11 @@
   </Netzteil>
   <Netzteil Name="SuperFlower HX 350 Golden Green 350W">
     <Daten Min="100" Max="325" Quali="29"/>
+	<Data>
+	  <Stecker PCIE68="2" Sata="4" Molex="3" ATX12="1"/>
+	  <Kabel Modular="None"/>
+	  <Energy PCIE="29"/>
+	</Data>
     <Preisvergleiche>
       <DE>
         http://geizhals.de/super-flower-golden-green-hx-350w-atx-2-3-sf-350p14xe-hx-a1039316.html
