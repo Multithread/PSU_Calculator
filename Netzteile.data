@@ -22,6 +22,30 @@
         http://www.hardwareluxx.de/index.php/artikel/hardware/netzteile/29562-roundup500w0114.html?start=2
       </Test>
     </Testberichte>
+  </Netzteil>  
+  <Netzteil Name="Cooler Master V550">
+    <Daten Min="200" Max="440" Quali="73"/>
+	<Data>
+	  <Stecker PCIE68="2" Sata="6" Molex="3" ATX12="1"/>
+	  <Kabel Modular="Semi"/>
+	  <Energy PCIE="45"/>
+	</Data>
+    <Preisvergleiche>
+      <DE>
+        http://geizhals.de/cooler-master-vs-series-v550sm-550w-atx-2-31-rs550-amaa-g1-a1010430.html
+      </DE>
+      <AT>
+        http://geizhals.at/cooler-master-vs-series-v550sm-550w-atx-2-31-rs550-amaa-g1-a1010430.html
+      </AT>
+      <CH>
+        http://www.toppreise.ch/prod_332910.html
+      </CH>
+    </Preisvergleiche>
+    <Testberichte>
+      <Test>
+        http://extreme.pcgameshardware.de/netzteile-und-gehaeuse/362193-review-cooler-master-v550sm-premium-qualitaet-zum-einstiegspreis.html
+      </Test>
+    </Testberichte>
   </Netzteil>
   <Netzteil Name="Antec Edge 550W">
     <Daten Min="250" Max="400" Quali="40"/>
