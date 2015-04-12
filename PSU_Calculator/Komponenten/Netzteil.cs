@@ -1,4 +1,5 @@
 ﻿using PSU_Calculator.DataWorker;
+using PSU_Calculator.DataWorker.Elementworker;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,12 +11,14 @@ namespace PSU_Calculator.Komponenten
   public class PowerSupply : PcComponent
   {
     public static List<string> PriceComparer = new List<string>(); //Liste der Preisvergleiche
+    private Dictionary<string, string> PriceDict = new Dictionary<string, string>();
 
-    private Dictionary<String, String> PriceCompareDict = new Dictionary<string, string>();
+    private Dictionary<string, string> PriceCompareDict = new Dictionary<string, string>();
     private List<string> tests = new List<string>();
 
     public PowerSupply(Element ele)
     {
+      Price = "";
       this.XML = ele;
     }
 
@@ -89,6 +92,11 @@ namespace PSU_Calculator.Komponenten
         daten.addAttribut("Quali", Quality.ToString());
 
         e.addElement(daten);
+        //Data element hinzufügen
+        if (Data != null)
+        {
+          e.addElement(Data);
+        }
 
         daten = new Element("Preisvergleiche");
         foreach (string key in PriceCompareDict.Keys)
@@ -118,6 +126,8 @@ namespace PSU_Calculator.Komponenten
         UsageLoadMinimum = getIntForString(data.getAttribut("Min"));
         UsageLoadMaximum = getIntForString(data.getAttribut("Max"));
         Quality = getIntForString(data.getAttribut("Quali"));
+
+        Data = e.getElementByName("Data");
 
         data = e.getElement("Preisvergleiche");
         if (data != null)
@@ -158,6 +168,27 @@ namespace PSU_Calculator.Komponenten
       set;
     }
 
+    public string Price
+    {
+      get
+      {
+        string price;
+        if (PriceDict.TryGetValue(CurrentPresvergleichLink, out price))
+        {
+          return price;
+        }
+        return "";
+      }
+      set
+      {
+        if (PriceDict.ContainsKey(CurrentPresvergleichLink))
+        {
+          PriceDict.Remove(CurrentPresvergleichLink);
+        }
+        PriceDict.Add(CurrentPresvergleichLink, value);
+      }
+    }
+
     public override string GetOrginalString()
     {
       StringBuilder db = new StringBuilder();
@@ -168,6 +199,15 @@ namespace PSU_Calculator.Komponenten
     {
       set;
       get;
+    }
+
+    public override string ToString()
+    {
+      if (string.IsNullOrEmpty(Price))
+      {
+        return base.ToString();
+      }
+      return string.Format("{0}  {1:0.00}", Name, Price);
     }
   }
 }

@@ -1,4 +1,5 @@
-﻿using PSU_Calculator.Komponenten;
+﻿using PSU_Calculator.DataWorker.Elementworker;
+using PSU_Calculator.Komponenten;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -24,6 +25,7 @@ namespace PSU_Calculator.DataWorker
     }
 
     private List<Control> Controls = new List<Control>();
+    public List<PowerSupply> LastEmpfohlenePowerSupplys = new List<PowerSupply>();
 
     public ComboBox CbxCoolingSolution
     {
@@ -158,6 +160,112 @@ namespace PSU_Calculator.DataWorker
         return PcComponent.Empty;
       }
       return com;
+    }
+
+    /// <summary>
+    /// Anzahl Stecker für die Komponenten zusammenzählen.
+    /// </summary>
+    /// <returns></returns>
+    public Stecker GetNeededStecker()
+    {
+      Element ele = new Element("Stecker");
+      int PCIE8 = 0;
+      int PCIE6 = 0;
+      int Molex = 0;
+      int Sata = 0;
+
+      foreach (PcComponent com in GetAktiveComponents())
+      {
+        var datacontainer= new ElementDataContainer(com.Data);
+        var stecker = datacontainer.Conectors;
+        PCIE8 += stecker.PCIE8;
+        PCIE6 += stecker.PCIE6;
+        Molex += stecker.Molex;
+        Sata += stecker.Sata;
+      }
+
+      ele.addAttribut(Stecker.SteckerType.PCIE8.ToString(), PCIE8.ToString());
+      ele.addAttribut(Stecker.SteckerType.PCIE6.ToString(), PCIE6.ToString());
+      ele.addAttribut(Stecker.SteckerType.Molex.ToString(), Molex.ToString());
+      ele.addAttribut(Stecker.SteckerType.Sata.ToString(), Sata.ToString());
+      return new Stecker(ele);
+    }
+
+    /// <summary>
+    /// Netzteile für den Rechner empfehlen
+    /// </summary>
+    /// <param name="Watt"></param>
+    public List<PowerSupply> EmpfohleneNetzteile()
+    {
+      return EmpfohleneNetzteile(-1);
+    }
+
+    private int getGPUWattage()
+    {
+      int wattage = 0;
+      foreach (PcComponent com in GetAktiveComponents())
+      {
+        if ("GPU".Equals(com.Type))
+        {
+          wattage += com.TDP;
+        }
+      }
+      return wattage;
+    }
+
+    /// <summary>
+    /// Netzteile für den Rechner empfehlen
+    /// </summary>
+    /// <param name="Watt"></param>
+    public List<PowerSupply> EmpfohleneNetzteile(int Watt)
+    {
+      if (Watt == -1)
+      {
+        Watt = GetWattage();
+      }
+      int gpuWattage= getGPUWattage();
+
+      Stecker neededConectors = ActiveComponents.Get().GetNeededStecker();
+      ElementDataContainer psuDataContainer;
+      List<PowerSupply> empfehlenswerte = new List<PowerSupply>();
+      foreach (PowerSupply nt in LoaderModul.getInstance().GetPowerSupplys())
+      {
+        if (nt.UsageLoadMaximum < Watt)
+        {
+          continue;
+        }
+        if (nt.UsageLoadMinimum != -1)
+        {
+          if (nt.UsageLoadMinimum >= Watt)
+          {
+            continue;
+          }
+        }else if (nt.UsageLoadMaximum >= (Watt + 100 + (nt.TDP * 0.1)))
+        {
+          continue;
+        }
+
+        psuDataContainer = nt.DataContainer;
+        //Netzteil muss genügend Stecker haben.
+        if (PSUCalculatorSettings.Get().ConnectorsHaveToFit)
+        {
+          if (!psuDataContainer.Conectors.HasMoreOrEqualPlugsAs(neededConectors))
+          {
+            continue;
+          }
+        }
+        //12V Grafikkartenleistung beachten.
+        if (psuDataContainer.GpuEnergy.Watt != 0 && psuDataContainer.GpuEnergy.Watt < gpuWattage)
+        {
+          gpuWattage++;
+          continue;
+        }
+
+        //Empfehlen
+        empfehlenswerte.Add(nt);
+      }
+      LastEmpfohlenePowerSupplys = empfehlenswerte;
+      return empfehlenswerte;
     }
   }
 }

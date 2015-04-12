@@ -111,9 +111,12 @@ namespace PSU_Calculator.Komponenten
       return false;
     }
 
-    public ElementDataContainer GetDataWorker()
+    public ElementDataContainer DataContainer
     {
-      return new ElementDataContainer(Data);
+      get
+      {
+        return new ElementDataContainer(Data);
+      }
     }
 
     public readonly static PcComponent Empty = new PcComponent("", 0, "Empty");

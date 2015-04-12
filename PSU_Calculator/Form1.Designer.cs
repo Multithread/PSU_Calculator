@@ -42,7 +42,6 @@ namespace PSU_Calculator
       this.wieManAlsLaieEinGünstigesVonEinemBilligenNetzteilUnterscheidetToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
       this.optionenToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
       this.themeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-      this.classicToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
       this.einstellungenToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
       this.spracheToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
       this.deutschToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -64,6 +63,7 @@ namespace PSU_Calculator
       this.Label16 = new System.Windows.Forms.Label();
       this.lblVerbrauch = new System.Windows.Forms.Label();
       this.gbxDaten = new System.Windows.Forms.GroupBox();
+      this.cmdCopySystem = new System.Windows.Forms.Button();
       this.label9 = new System.Windows.Forms.Label();
       this.cbxPhysx = new System.Windows.Forms.ComboBox();
       this.lblPhysX = new System.Windows.Forms.Label();
@@ -98,7 +98,7 @@ namespace PSU_Calculator
       this.cbxOverclocking = new System.Windows.Forms.ComboBox();
       this.cbxCPU2 = new System.Windows.Forms.ComboBox();
       this.lblCPU2 = new System.Windows.Forms.Label();
-      this.cmdCopySystem = new System.Windows.Forms.Button();
+      this.cbxConectors = new System.Windows.Forms.CheckBox();
       this.menuStrip1.SuspendLayout();
       this.PnlContent.SuspendLayout();
       this.gbxNetzteile.SuspendLayout();
@@ -119,7 +119,7 @@ namespace PSU_Calculator
             this.einstellungenToolStripMenuItem});
       this.menuStrip1.Location = new System.Drawing.Point(0, 0);
       this.menuStrip1.Name = "menuStrip1";
-      this.menuStrip1.Size = new System.Drawing.Size(258, 24);
+      this.menuStrip1.Size = new System.Drawing.Size(307, 24);
       this.menuStrip1.TabIndex = 0;
       this.menuStrip1.Text = "menuStrip1";
       // 
@@ -190,23 +190,15 @@ namespace PSU_Calculator
       this.optionenToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.themeToolStripMenuItem});
       this.optionenToolStripMenuItem.Name = "optionenToolStripMenuItem";
-      this.optionenToolStripMenuItem.Size = new System.Drawing.Size(69, 20);
-      this.optionenToolStripMenuItem.Text = "Optionen";
-      this.optionenToolStripMenuItem.Visible = false;
+      this.optionenToolStripMenuItem.Size = new System.Drawing.Size(49, 20);
+      this.optionenToolStripMenuItem.Text = "Extras";
       // 
       // themeToolStripMenuItem
       // 
-      this.themeToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.classicToolStripMenuItem});
       this.themeToolStripMenuItem.Name = "themeToolStripMenuItem";
-      this.themeToolStripMenuItem.Size = new System.Drawing.Size(111, 22);
-      this.themeToolStripMenuItem.Text = "Theme";
-      // 
-      // classicToolStripMenuItem
-      // 
-      this.classicToolStripMenuItem.Name = "classicToolStripMenuItem";
-      this.classicToolStripMenuItem.Size = new System.Drawing.Size(110, 22);
-      this.classicToolStripMenuItem.Text = "Classic";
+      this.themeToolStripMenuItem.Size = new System.Drawing.Size(169, 22);
+      this.themeToolStripMenuItem.Text = "Aktualisiere Preise";
+      this.themeToolStripMenuItem.Click += new System.EventHandler(this.themeToolStripMenuItem_Click);
       // 
       // einstellungenToolStripMenuItem
       // 
@@ -296,6 +288,7 @@ namespace PSU_Calculator
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
       this.gbxNetzteile.BackColor = System.Drawing.Color.White;
+      this.gbxNetzteile.Controls.Add(this.cbxConectors);
       this.gbxNetzteile.Controls.Add(this.radioTestberichte);
       this.gbxNetzteile.Controls.Add(this.radioPreisvergleich);
       this.gbxNetzteile.Controls.Add(this.cmdCopyToForum);
@@ -487,6 +480,17 @@ namespace PSU_Calculator
       this.gbxDaten.TabIndex = 0;
       this.gbxDaten.TabStop = false;
       this.gbxDaten.Text = "Daten";
+      // 
+      // cmdCopySystem
+      // 
+      this.cmdCopySystem.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+      this.cmdCopySystem.Location = new System.Drawing.Point(283, 325);
+      this.cmdCopySystem.Name = "cmdCopySystem";
+      this.cmdCopySystem.Size = new System.Drawing.Size(168, 23);
+      this.cmdCopySystem.TabIndex = 122;
+      this.cmdCopySystem.Text = "Kopiere Informationen";
+      this.cmdCopySystem.UseVisualStyleBackColor = true;
+      this.cmdCopySystem.Click += new System.EventHandler(this.cmdCopySystem_Click);
       // 
       // label9
       // 
@@ -920,16 +924,18 @@ namespace PSU_Calculator
       this.lblCPU2.Text = "CPU 2:";
       this.lblCPU2.Visible = false;
       // 
-      // cmdCopySystem
+      // cbxConectors
       // 
-      this.cmdCopySystem.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-      this.cmdCopySystem.Location = new System.Drawing.Point(283, 325);
-      this.cmdCopySystem.Name = "cmdCopySystem";
-      this.cmdCopySystem.Size = new System.Drawing.Size(168, 23);
-      this.cmdCopySystem.TabIndex = 122;
-      this.cmdCopySystem.Text = "Kopiere Informationen";
-      this.cmdCopySystem.UseVisualStyleBackColor = true;
-      this.cmdCopySystem.Click += new System.EventHandler(this.cmdCopySystem_Click);
+      this.cbxConectors.AutoSize = true;
+      this.cbxConectors.Checked = true;
+      this.cbxConectors.CheckState = System.Windows.Forms.CheckState.Checked;
+      this.cbxConectors.Location = new System.Drawing.Point(235, 19);
+      this.cbxConectors.Name = "cbxConectors";
+      this.cbxConectors.Size = new System.Drawing.Size(106, 17);
+      this.cbxConectors.TabIndex = 118;
+      this.cbxConectors.Text = "Beachte Stecker";
+      this.cbxConectors.UseVisualStyleBackColor = true;
+      this.cbxConectors.CheckedChanged += new System.EventHandler(this.cbxConectors_CheckedChanged);
       // 
       // Form1
       // 
@@ -1113,7 +1119,6 @@ namespace PSU_Calculator
     private System.Windows.Forms.ToolStripMenuItem singleRailVsMultiRailWasIstDasVorteileUndNachteileToolStripMenuItem;
     private System.Windows.Forms.ToolStripMenuItem wieManAlsLaieEinGünstigesVonEinemBilligenNetzteilUnterscheidetToolStripMenuItem;
     private System.Windows.Forms.ToolStripMenuItem themeToolStripMenuItem;
-    private System.Windows.Forms.ToolStripMenuItem classicToolStripMenuItem;
     private System.Windows.Forms.Button cmdCopyToForum;
     internal System.Windows.Forms.FlowLayoutPanel pnlNetzteile;
     private System.Windows.Forms.ToolStripMenuItem einstellungenToolStripMenuItem;
@@ -1123,6 +1128,7 @@ namespace PSU_Calculator
     private System.Windows.Forms.RadioButton radioPreisvergleich;
     private System.Windows.Forms.RadioButton radioTestberichte;
     private System.Windows.Forms.Button cmdCopySystem;
+    private System.Windows.Forms.CheckBox cbxConectors;
 
   }
 }

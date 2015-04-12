@@ -70,30 +70,30 @@ namespace PSU_Calculator.Dateizugriffe
       return e;
     }
 
-    public static void GetLocalData(PSU_Calculator.Form1.boxInvoke del)
-    {
-      if (!StorageMapper.Existiert(PSUCalculatorSettings.DirectoryPath))
-      {
-        return;
-      }
-      LoaderModul m = LoaderModul.getInstance();
-      string[] daten = null;
-      //CPU's euinlesen
-      daten = leseZeilen(PSUCalculatorSettings.CPUPath);
-      if (daten != null)
-      {
-        m.AddCPURange(m.GetComponents(daten));
-        del(true);
-      }
+    //public static void GetLocalData(PSU_Calculator.Form1.boxInvoke del)
+    //{
+    //  if (!StorageMapper.Existiert(PSUCalculatorSettings.DirectoryPath))
+    //  {
+    //    return;
+    //  }
+    //  LoaderModul m = LoaderModul.getInstance();
+    //  string[] daten = null;
+    //  //CPU's euinlesen
+    //  daten = leseZeilen(PSUCalculatorSettings.CPUPath);
+    //  if (daten != null)
+    //  {
+    //    m.AddCPURange(m.GetComponents(daten));
+    //    del(true);
+    //  }
 
-      //GPU's einlesen
-      daten = leseZeilen(PSUCalculatorSettings.GPUPath);
-      if (daten != null)
-      {
-        m.AddGPURange(m.GetComponents(daten));
-        del(false);
-      }
-    }
+    //  //GPU's einlesen
+    //  daten = leseZeilen(PSUCalculatorSettings.GPUPath);
+    //  if (daten != null)
+    //  {
+    //    m.AddGPURange(m.GetComponents(daten));
+    //    del(false);
+    //  }
+    //}
 
     public static bool Existiert(string pfad)
     {

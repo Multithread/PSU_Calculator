@@ -102,6 +102,7 @@
     <Compile Include="DataWorker\Elementworker\ElementDataContainer.cs" />
     <Compile Include="DataWorker\Elementworker\Energy.cs" />
     <Compile Include="DataWorker\Elementworker\Stecker.cs" />
+    <Compile Include="DataWorker\Prices.cs" />
     <Compile Include="DataWorker\StringJoiner.cs" />
     <Compile Include="Dateizugriffe\StorageMapper.cs" />
     <Compile Include="DataWorker\PSUCalculatorSettings.cs" />

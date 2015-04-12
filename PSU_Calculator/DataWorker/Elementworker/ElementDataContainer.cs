@@ -32,24 +32,30 @@ namespace PSU_Calculator.DataWorker.Elementworker
       private set;
     }
 
-    public Stecker GetStecker()
+    public Stecker Conectors
     {
-      Element e = Data.getElement("Stecker");
-      if (e == null)
+      get
       {
-        return new Stecker(new Element("Empty"));
+        Element e = Data.getElement("Stecker");
+        if (e == null)
+        {
+          return new Stecker(new Element("Empty"));
+        }
+        return new Stecker(e);
       }
-      return new Stecker(e);
     }
 
-    public Energy GetEnergy()
+    public Energy GpuEnergy
     {
-      Element e = Data.getElement("Energy");
-      if (e == null)
+      get
       {
-        return new Energy(new Element("Empty"));
+        Element e = Data.getElement("Energy");
+        if (e == null)
+        {
+          return new Energy(new Element("Empty"));
+        }
+        return new Energy(e);
       }
-      return new Energy(e);
     }
   }
 }

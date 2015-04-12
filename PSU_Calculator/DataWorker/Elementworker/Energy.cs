@@ -22,6 +22,14 @@ namespace PSU_Calculator.DataWorker.Elementworker
       }
     }
 
+    public int Watt
+    {
+      get
+      {
+        return GetFromElementAsInt("PCIE") * 11;
+      }
+    }
+
     public int Voltage
     {
       get

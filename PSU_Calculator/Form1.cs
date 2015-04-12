@@ -20,7 +20,6 @@ namespace PSU_Calculator
   public partial class Form1 : Form
   {
     int verbrauch = 20;
-    Thread t = null;
     public Form1()
     {
       PSUCalculatorSettings.Get();
@@ -49,6 +48,7 @@ namespace PSU_Calculator
 
       berechneVerbrauch(this, null);
       AddPriceComparorsToToolStrip();
+      DoubleBuffered = true;
     }
 
     private void SetTags()
@@ -63,115 +63,41 @@ namespace PSU_Calculator
 
       //Drop down Boxen mit den entsprechenden Werten versehen
       cbxKaltlicht.Items.Clear();
-      cbxKaltlicht.Items.AddRange(CountList(5, 5,"Kaltlicht"));
+      cbxKaltlicht.Items.AddRange(CountList(5, 5, "Kaltlicht", Stecker.SteckerType.Molex.ToString()));
       cbxHDD.Items.Clear();
-      cbxHDD.Items.AddRange(CountList(5, 15, "HDD"));
+      cbxHDD.Items.AddRange(CountList(5, 15, "HDD", Stecker.SteckerType.Sata.ToString()));
       cbxLaufwerke.Items.Clear();
-      cbxLaufwerke.Items.AddRange(CountList(5, 10, "Laufwerke"));
+      cbxLaufwerke.Items.AddRange(CountList(5, 10, "Laufwerke", Stecker.SteckerType.Sata.ToString()));
       cbxSSD.Items.Clear();
-      cbxSSD.Items.AddRange(CountList(4, 10, "SSD"));
+      cbxSSD.Items.AddRange(CountList(4, 10, "SSD", Stecker.SteckerType.Sata.ToString()));
       cbxFans.Items.Clear();
       cbxFans.Items.AddRange(CountList(2, 30, "Lüfter"));
       cbxLED.Items.Clear();
-      cbxLED.Items.AddRange(CountList(3, 5, "LED"));
+      cbxLED.Items.AddRange(CountList(3, 5, "LED", Stecker.SteckerType.Molex.ToString()));
     }
 
-    private object[] CountList(int tdp ,int maxvalue, string type)
+    private object[] CountList(int tdp, int maxvalue, string type, string steckertyp)
     {
-      object[] output= new object[maxvalue + 1];
+      object[] output = new object[maxvalue + 1];
+      PcComponent com;
       for (int i = 0; i <= maxvalue; i++)
       {
-        output[i] = new PcComponent(i.ToString(), tdp * i, type);
+        com = new PcComponent(i.ToString(), tdp * i, type);
+
+        if (!string.IsNullOrEmpty(steckertyp))
+        {
+          Element ele = new Element("Stecker");
+          ele.addAttribut(steckertyp, i.ToString());
+          com.XML = com.XML.addElement(Element.New("Data").addElement(ele));
+        }
+        output[i] = com;
       }
       return output;
     }
-
-    //Updates herunterladen von Github.
-    void TestForUpdates(object _data)
+    private object[] CountList(int tdp, int maxvalue, string type)
     {
-      try
-      {
-        StorageMapper.GetLocalData(addToBoxInvvoke);
-
-        WebClient c = new WebClient();
-        LoaderModul m = LoaderModul.getInstance();
-        string version = c.DownloadString("https://raw.githubusercontent.com/Multithread/PSU_Calculator/master/" + PSUCalculatorSettings.Version);
-        version = version.Replace("\n", "");
-        if (Properties.Einstellungen.Default.Version.Equals(version))
-        {
-          return;
-        }
-
-        //CPU liste updaten
-        string b = c.DownloadString("https://raw.githubusercontent.com/Multithread/PSU_Calculator/master/" + PSUCalculatorSettings.CPU);
-        string[] cpu = b.Split(new string[] { "\n" }, StringSplitOptions.RemoveEmptyEntries);
-        m.AddCPURange(m.GetComponents(cpu));
-
-        addToBoxInvvoke(true);
-
-        //GPU liste updaten
-        b = c.DownloadString("https://raw.githubusercontent.com/Multithread/PSU_Calculator/master/" + PSUCalculatorSettings.GPU);
-        string[] gpu = b.Split(new string[] { "\n" }, StringSplitOptions.RemoveEmptyEntries);
-        m.AddGPURange(m.GetComponents(gpu));
-
-        addToBoxInvvoke(false);
-
-        if (StorageMapper.SetLocalData(version, m.GPU, m.CPU, m.Netzteile))
-        {
-          Properties.Einstellungen.Default.Version = version;
-        }
-        Properties.Einstellungen.Default.Save();
-      }
-      catch (Exception ex)
-      {
-        int b = ex.ToString().Length;
-        if (b > 10)
-        {
-          b = 10;
-        }
-      }
+      return CountList(tdp, maxvalue, type, "");
     }
-
-    //Invoke für das hinzufügen von Elementen zu einer Combobox
-    public void addToBoxInvvoke(bool _isCPU)
-    {
-      if (this.InvokeRequired)
-      {
-        this.Invoke(new boxInvoke(addToBoxInvvoke), new object[] { _isCPU });
-        return;
-      }
-      object o = null;
-      //CPU's aktualsisieren
-      if (_isCPU)
-      {
-        o = this.cbxCpu.SelectedItem;
-        LoaderModul.getInstance().LoadCPU(this.cbxCpu);
-        if (o != null)
-        {
-          this.cbxCpu.SelectedItem = o;
-        }
-        o = this.cbxCPU2.SelectedItem;
-        LoaderModul.getInstance().LoadCPU(this.cbxCPU2);
-        if (o != null)
-        {
-          this.cbxCPU2.SelectedItem = o;
-        }
-      }
-      else
-      {
-        //GPU's aktualisieren
-        foreach (ComboBox box in cbxGrakaList)
-        {
-          o = box.SelectedItem;
-          LoaderModul.getInstance().LoadGPU(box);
-          if (o != null)
-          {
-            box.SelectedItem = o;
-          }
-        }
-      }
-    }
-    public delegate void boxInvoke(bool _isCPU);
 
     /// <summary>
     /// DAs event setzten für das Updaten des verbrauches und der Netzteilemepfehlungen
@@ -219,7 +145,7 @@ namespace PSU_Calculator
         pgbEffizienz.Value = verbrauch;
       }
       //EMpfehlenswerte Netzteile anzeigen lassen
-      AddToView(EmpfehleNetzteile(verbrauch));
+      SetPsuGuiList(ActiveComponents.Get().EmpfohleneNetzteile(verbrauch));
     }
 
     /// <summary>
@@ -256,10 +182,9 @@ namespace PSU_Calculator
     /// Erstellt die Labels mit Farbe für die ANzeige in der Linklist.
     /// </summary>
     /// <param name="empfehlenswerte"></param>
-    private void AddToView(List<PowerSupply> empfehlenswerte)
+    private void SetPsuGuiList(List<PowerSupply> empfehlenswerte)
     {
-      pnlNetzteile.SuspendLayout();
-      pnlNetzteile.Controls.Clear();
+      List<Control> tmpControls = new List<Control>();
       foreach (PowerSupply nt in empfehlenswerte)
       {
         var color = Color.Blue;
@@ -293,7 +218,7 @@ namespace PSU_Calculator
         l.Name = link;
         l.Size = new System.Drawing.Size(35, 15);
         l.TabIndex = 64;
-        l.Text = nt.Name;
+        l.Text = nt.ToString();
         l.LinkColor = color;
         l.Click += GoToLink;
         l.Tag = nt;
@@ -302,9 +227,24 @@ namespace PSU_Calculator
         p.AutoSize = true;
         p.Controls.Add(l);
 
-        pnlNetzteile.Controls.Add(p);
+        tmpControls.Add(p);
       }
-      pnlNetzteile.ResumeLayout();
+      FlowLayoutPanel pnl = new FlowLayoutPanel();
+      pnl.Anchor = pnlNetzteile.Anchor;
+      pnl.FlowDirection = pnlNetzteile.FlowDirection;
+      pnl.Location = pnlNetzteile.Location;
+      pnl.Name = pnlNetzteile.Name;
+      pnl.Size = pnlNetzteile.Size;
+      pnl.TabIndex = pnlNetzteile.TabIndex;
+      pnl.Controls.AddRange(tmpControls.ToArray());
+
+      gbxNetzteile.Controls.Remove(pnlNetzteile);
+      gbxNetzteile.Controls.Add(pnl);
+      pnlNetzteile = pnl;
+      //pnlNetzteile.SuspendLayout();
+      //pnlNetzteile.Controls.Clear();
+      //pnlNetzteile.Controls.AddRange(tmpControls.ToArray());
+      //pnlNetzteile.ResumeLayout();
     }
 
     void GoToLink(object sender, System.EventArgs e)
@@ -464,7 +404,7 @@ namespace PSU_Calculator
       //Keine Leeren, neue GPU anfügen
       if (nrOfEmpty == 0)
       {
-        addGPU(); 
+        addGPU();
         return;
       }
       else if (nrOfEmpty == 1)//1 Leere, nix tun
@@ -629,6 +569,22 @@ namespace PSU_Calculator
         return "";
       }
       return o.ToString();
+    }
+
+    void Form1_UpdatePricesEvent(Prices sender, PowerSupply psu)
+    {
+      SetPsuGuiList(ActiveComponents.Get().EmpfohleneNetzteile());
+    }
+
+    private void themeToolStripMenuItem_Click(object sender, EventArgs e)
+    {
+      Prices.Get().UpdatePricesEvent += Form1_UpdatePricesEvent;
+      Prices.Get().Start(this);
+    }
+
+    private void cbxConectors_CheckedChanged(object sender, EventArgs e)
+    {
+      PSUCalculatorSettings.Get().ConnectorsHaveToFit = (sender as CheckBox).Checked;
     }
   }
 }

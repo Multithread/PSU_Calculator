@@ -18,7 +18,7 @@ namespace PSU_Calculator.DataWorker
     {
       get
       {
-        return GetFromElementAsInt("PCIE6");
+        return GetFromElementAsInt(SteckerType.PCIE6.ToString());
       }
     }
 
@@ -26,7 +26,7 @@ namespace PSU_Calculator.DataWorker
     {
       get
       {
-        return GetFromElementAsInt("PCIE8");
+        return GetFromElementAsInt(SteckerType.PCIE8.ToString());
       }
     }
 
@@ -34,7 +34,15 @@ namespace PSU_Calculator.DataWorker
     {
       get
       {
-        return GetFromElementAsInt("PCIE68");
+        return GetFromElementAsInt(SteckerType.PCIE68.ToString());
+      }
+    }
+
+    public int ATX12
+    {
+      get
+      {
+        return GetFromElementAsInt(SteckerType.ATX12.ToString());
       }
     }
 
@@ -42,7 +50,7 @@ namespace PSU_Calculator.DataWorker
     {
       get
       {
-        return GetFromElementAsInt("Sata");
+        return GetFromElementAsInt(SteckerType.Sata.ToString());
       }
     }
 
@@ -50,7 +58,7 @@ namespace PSU_Calculator.DataWorker
     {
       get
       {
-        return GetFromElementAsInt("Molex");
+        return GetFromElementAsInt(SteckerType.Molex.ToString());
       }
     }
 
@@ -100,6 +108,17 @@ namespace PSU_Calculator.DataWorker
         return false;
       }
       return true;
+    }
+
+    public enum SteckerType
+    {
+      None = 0,
+      PCIE8 = 1,
+      PCIE68 = 2,
+      PCIE6 = 3,
+      Molex = 4,
+      Sata = 5,
+      ATX12 = 6
     }
   }
 }

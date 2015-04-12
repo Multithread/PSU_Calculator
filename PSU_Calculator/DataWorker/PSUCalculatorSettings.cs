@@ -80,6 +80,7 @@ namespace PSU_Calculator.DataWorker
     private PSUCalculatorSettings()
     {
       ShowPriceComparer = true;
+      ConnectorsHaveToFit = true;
     }
 
     private void Load()
@@ -174,6 +175,12 @@ namespace PSU_Calculator.DataWorker
     }
 
     public bool ShowPriceComparer
+    {
+      get;
+      set;
+    }
+
+    public bool ConnectorsHaveToFit
     {
       get;
       set;
