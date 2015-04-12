@@ -19,7 +19,7 @@ namespace PSU_Calculator
       Application.EnableVisualStyles();
       Application.SetCompatibleTextRenderingDefault(false);
 
-      if (!StorageMapper.Existiert(PSUCalculatorSettings.DirectoryPath))
+      if (!StorageMapper.Existiert(PSUCalculatorSettings.Get().DirectoryPath))
       {
         FirstUsageInfoBox boxie = new FirstUsageInfoBox();
         boxie.ShowDialog();

@@ -19,11 +19,11 @@ namespace PSU_Calculator
 {
   public partial class Form1 : Form
   {
-    int verbrauch = 20;
     public Form1()
     {
       PSUCalculatorSettings.Get();
       InitializeComponent();
+
       SetTags();
       addGPU();
       ActiveComponents.Get().CbxCoolingSolution = cbxCooling;
@@ -43,6 +43,7 @@ namespace PSU_Calculator
       m.LoadOCVariations(this.cbxOverclocking);
 
       setUpdateVerbrauchEvent();
+      cbxConectors.Checked = PSUCalculatorSettings.Get().ConnectorsHaveToFit;
 
       new Updater().RunUpdateAsync();
 
@@ -100,7 +101,7 @@ namespace PSU_Calculator
     }
 
     /// <summary>
-    /// DAs event setzten für das Updaten des verbrauches und der Netzteilemepfehlungen
+    /// Das event setzten für das Updaten des verbrauches und der Netzteilemepfehlungen
     /// </summary>
     private void setUpdateVerbrauchEvent()
     {
@@ -130,6 +131,13 @@ namespace PSU_Calculator
     /// <summary>
     /// Berechnet den Verbrauch des Rechners anhand der TDP und stösst danach die Anzeige der guten Netzteile an.
     /// </summary>
+    void berechneVerbrauch()
+    {
+      berechneVerbrauch(null, null);
+    }
+    /// <summary>
+    /// Berechnet den Verbrauch des Rechners anhand der TDP und stösst danach die Anzeige der guten Netzteile an.
+    /// </summary>
     /// <param name="sender"></param>
     /// <param name="e"></param>
     void berechneVerbrauch(object sender, System.EventArgs e)
@@ -149,37 +157,7 @@ namespace PSU_Calculator
     }
 
     /// <summary>
-    /// Netzteile für den Rechner empfehlen
-    /// </summary>
-    /// <param name="Watt"></param>
-    public List<PowerSupply> EmpfehleNetzteile(int Watt)
-    {
-      List<PowerSupply> empfehlenswerte = new List<PowerSupply>();
-      foreach (PowerSupply nt in LoaderModul.getInstance().GetPowerSupplys())
-      {
-        if (nt.UsageLoadMaximum < Watt)
-        {
-          continue;
-        }
-        if (nt.UsageLoadMinimum != -1)
-        {
-          if (nt.UsageLoadMinimum < Watt)
-          {
-            empfehlenswerte.Add(nt);
-          }
-          continue;
-        }
-        if (nt.UsageLoadMaximum < (Watt + 100 + (nt.TDP * 0.1)))
-        {
-          //Empfehlen
-          empfehlenswerte.Add(nt);
-        }
-      }
-      return empfehlenswerte;
-    }
-
-    /// <summary>
-    /// Erstellt die Labels mit Farbe für die ANzeige in der Linklist.
+    /// Erstellt die Labels mit Farbe für die Anzeige in der Linklist.
     /// </summary>
     /// <param name="empfehlenswerte"></param>
     private void SetPsuGuiList(List<PowerSupply> empfehlenswerte)
@@ -477,7 +455,7 @@ namespace PSU_Calculator
     //Netzteile in die Zwischenablage Kopieren für ein einfügen im Forum.
     private void cmdCopyToForum_Click(object sender, EventArgs e)
     {
-      List<PowerSupply> netzteile = EmpfehleNetzteile(verbrauch);
+      List<PowerSupply> netzteile = ActiveComponents.Get().EmpfohleneNetzteile();
       StringBuilder sb = new StringBuilder();
       foreach (PowerSupply nt in netzteile)
       {
@@ -499,7 +477,6 @@ namespace PSU_Calculator
     {
       foreach (string comparer in PowerSupply.PriceComparer)
       {
-
         var toolStripMenuEntrie = new ToolStripMenuItem();
         toolStripMenuEntrie.Name = comparer + "ToolStripMenuItem";
         toolStripMenuEntrie.Size = new System.Drawing.Size(152, 22);
@@ -573,7 +550,7 @@ namespace PSU_Calculator
 
     void Form1_UpdatePricesEvent(Prices sender, PowerSupply psu)
     {
-      SetPsuGuiList(ActiveComponents.Get().EmpfohleneNetzteile());
+      berechneVerbrauch();
     }
 
     private void themeToolStripMenuItem_Click(object sender, EventArgs e)
@@ -585,6 +562,23 @@ namespace PSU_Calculator
     private void cbxConectors_CheckedChanged(object sender, EventArgs e)
     {
       PSUCalculatorSettings.Get().ConnectorsHaveToFit = (sender as CheckBox).Checked;
+      berechneVerbrauch();
+    }
+
+    /// <summary>
+    /// Speichere Daten im Lokalen Ordner
+    /// </summary>
+    private void lokalerOrdnerToolStripMenuItem_Click(object sender, EventArgs e)
+    {
+      PSUCalculatorSettings.Get().ChangeDataPathToLocal();
+    }
+
+    /// <summary>
+    /// Speichere Daten unter Appdata/PSU_Calculator_Data
+    /// </summary>
+    private void appDataToolStripMenuItem_Click(object sender, EventArgs e)
+    {
+      PSUCalculatorSettings.Get().ChangeDataPathToAppdata();
     }
   }
 }

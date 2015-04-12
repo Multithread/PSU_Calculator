@@ -22,8 +22,15 @@ namespace PSU_Calculator.DataWorker
     public static string DataPath = "PSU_Calculator_Data";
     public static string SearchEngineString = "Suchmaschine";
     public static string DefaultSearchEngine = "de";
+    private static string BoolValues = "Booleans";
 
     private string searchEngineString = "";
+
+    public string PathToDataOrdner
+    {
+      get;
+      set;
+    }
 
     public double GPUVersion
     {
@@ -77,10 +84,30 @@ namespace PSU_Calculator.DataWorker
       return instance;
     }
 
+    private static string AppDataPath
+    {
+      get
+      {
+        return Environment.ExpandEnvironmentVariables("%appdata%");
+      }
+    }
+
+    private static string LocalPath
+    {
+      get
+      {
+        return Application.StartupPath;
+      }
+    }
+
     private PSUCalculatorSettings()
     {
-      ShowPriceComparer = true;
-      ConnectorsHaveToFit = true;
+      PathToDataOrdner = AppDataPath;
+      if (Directory.Exists(DirectoryPath))
+      {
+        return;
+      }
+      PathToDataOrdner = LocalPath;
     }
 
     private void Load()
@@ -105,7 +132,9 @@ namespace PSU_Calculator.DataWorker
           search = "DE";
         }
         Settings.addElement(new Element(SearchEngineString, search));
+        Settings.addElement(new Element(BoolValues));
         hasChanged = true;
+        SaveSettings();
       }
       version = Settings.getElementByName("Version");
       //ElementDict abfüllen.
@@ -113,7 +142,86 @@ namespace PSU_Calculator.DataWorker
       ElementDict.Add(CPU, version.getElementByName(CPU));
       ElementDict.Add(PowerSupply, version.getElementByName(PowerSupply));
       ElementDict.Add(SearchEngineString, Settings.getElementByName(SearchEngineString));
+      if (Settings.getElementByName(BoolValues) != null)
+      {
+        ElementDict.Add(BoolValues, Settings.getElementByName(BoolValues));
+      }
       SetSearchEngine(Settings.getElementByName(SearchEngineString).Text);
+    }
+
+    public void ChangeDataPathToLocal()
+    {
+      string tmpPath=LocalPath + Path.DirectorySeparatorChar + DataPath;
+      if (Directory.Exists(tmpPath))
+      {
+        return;
+      }
+      Directory.CreateDirectory(tmpPath);
+      DirectoryCopy(DirectoryPath, tmpPath, true);
+      string oldPath = DirectoryPath;
+      PathToDataOrdner = LocalPath;
+      Directory.Delete(oldPath, true);
+    }
+
+    public void ChangeDataPathToAppdata()
+    {
+      string tmpPath = AppDataPath + Path.DirectorySeparatorChar + DataPath;
+      if (Directory.Exists(tmpPath))
+      {
+        return;
+      }
+      Directory.CreateDirectory(tmpPath);
+      DirectoryCopy(DirectoryPath, tmpPath, true);
+      string oldPath=DirectoryPath;
+      PathToDataOrdner = AppDataPath;
+      Directory.Delete(oldPath, true);
+    }
+
+    private void DirectoryCopy(string sourceDirName, string destDirName, bool copySubDirs)
+    {
+      DirectoryInfo dir = new DirectoryInfo(sourceDirName);
+      DirectoryInfo[] dirs = dir.GetDirectories();
+
+      // If the source directory does not exist, throw an exception.
+      if (!dir.Exists)
+      {
+        throw new DirectoryNotFoundException(
+            "Source directory does not exist or could not be found: "
+            + sourceDirName);
+      }
+
+      // If the destination directory does not exist, create it.
+      if (!Directory.Exists(destDirName))
+      {
+        Directory.CreateDirectory(destDirName);
+      }
+
+
+      // Get the file contents of the directory to copy.
+      FileInfo[] files = dir.GetFiles();
+
+      foreach (FileInfo file in files)
+      {
+        // Create the path to the new copy of the file.
+        string temppath = Path.Combine(destDirName, file.Name);
+
+        // Copy the file.
+        file.CopyTo(temppath, false);
+      }
+
+      // If copySubDirs is true, copy the subdirectories.
+      if (copySubDirs)
+      {
+
+        foreach (DirectoryInfo subdir in dirs)
+        {
+          // Create the subdirectory.
+          string temppath = Path.Combine(destDirName, subdir.Name);
+
+          // Copy the subdirectories.
+          DirectoryCopy(subdir.FullName, temppath, copySubDirs);
+        }
+      }
     }
 
     private double GetAsDouble(string data)
@@ -157,6 +265,20 @@ namespace PSU_Calculator.DataWorker
       //Daten.Put(key, value);
     }
 
+    public void OverrideSetting(string key, Element newElement)
+    {
+      hasChanged = true;
+      Element oldElement;
+      if (ElementDict.TryGetValue(key, out oldElement))
+      {
+        ElementDict.Remove(key);
+        Settings.removeElement(oldElement);
+      }
+      Settings.addElement(newElement);
+      ElementDict.Add(key, newElement);
+      SaveSettings();
+    }
+
     public void SaveSettings()
     {
       if (hasChanged)
@@ -179,24 +301,77 @@ namespace PSU_Calculator.DataWorker
       get;
       set;
     }
+    //public bool ShowPriceComparer
+    //{
+    //  get
+    //  {
+    //    return GetBoolValue("ShowPriceComparer");
+    //  }
+    //  set
+    //  {
+    //    SetBoolValue("ShowPriceComparer", value);
+    //  }
+    //}
 
     public bool ConnectorsHaveToFit
     {
-      get;
-      set;
+      get
+      {
+        return GetBoolValue("ConnectorsHaveToFit");
+      }
+      set
+      {
+        SetBoolValue("ConnectorsHaveToFit", value);
+      }
+    }
+
+    /// <summary>
+    /// Setzt einen Boolschen Wert in das Setting Element
+    /// </summary>
+    /// <param name="key">Name des Boolschen wertes</param>
+    /// <param name="value">Wert</param>
+    private void SetBoolValue(string key, bool value)
+    {
+      Element ele;
+      if (!ElementDict.TryGetValue(BoolValues, out ele))
+      {
+        ele = new Element(BoolValues);
+      }
+      ele.addAttribut(key, value.ToString());
+      OverrideSetting(BoolValues, ele);
+    }
+
+    /// <summary>
+    /// gibt einen Boolschen wert asu dem Settings Element zurück.
+    /// </summary>
+    /// <param name="key"></param>
+    /// <returns></returns>
+    private bool GetBoolValue(string key)
+    {
+      Element ele;
+      if (!ElementDict.TryGetValue(BoolValues, out ele))
+      {
+        return true;
+      }
+      Boolean output = false;
+      if (Boolean.TryParse(ele.getAttribut(key), out output))
+      {
+        return output;
+      }
+      return true;
     }
 
     public static string GetFilePath(string filename)
     {
-      return GetPath(filename, "data");
+      return PSUCalculatorSettings.Get().GetPath(filename, "data");
     }
 
     public static string GetXmlFilePath(string filename)
     {
-      return GetPath(filename, "xml");
+      return PSUCalculatorSettings.Get().GetPath(filename, "xml");
     }
 
-    private static string GetPath(string filename, string ending)
+    private string GetPath(string filename, string ending)
     {
       return string.Format("{0}{1}.{2}", AbsolutDataPath, filename, ending);
     }
@@ -213,35 +388,36 @@ namespace PSU_Calculator.DataWorker
       }
     }
 
-    private static string AbsolutDataPath
+    private string AbsolutDataPath
     {
       get
       {
-        return string.Format("{0}{2}{1}{2}", Application.StartupPath, PSUCalculatorSettings.DataPath, Path.DirectorySeparatorChar);
+        return string.Format("{0}{2}{1}{2}", PathToDataOrdner, PSUCalculatorSettings.DataPath, Path.DirectorySeparatorChar);
       }
     }
 
     //Pfade im Dateisystem
-    public static string CPUPath
+    public string CPUPath
     {
       get
       {
-        return string.Format("{0}{3}{1}{3}{2}.txt", Application.StartupPath, PSUCalculatorSettings.DataPath, PSUCalculatorSettings.CPU, Path.DirectorySeparatorChar);
+        return string.Format("{0}{3}{1}{3}{2}.txt", PathToDataOrdner, PSUCalculatorSettings.DataPath, PSUCalculatorSettings.CPU, Path.DirectorySeparatorChar);
       }
     }
-    public static string GPUPath
+
+    public string GPUPath
     {
       get
       {
-        return string.Format("{0}{3}{1}{3}{2}.txt", Application.StartupPath, PSUCalculatorSettings.DataPath, PSUCalculatorSettings.GPU, Path.DirectorySeparatorChar);
+        return string.Format("{0}{3}{1}{3}{2}.txt", PathToDataOrdner, PSUCalculatorSettings.DataPath, PSUCalculatorSettings.GPU, Path.DirectorySeparatorChar);
       }
     }
-   
-    public static string DirectoryPath
+
+    public string DirectoryPath
     {
       get
       {
-        return string.Format("{0}{2}{1}", Application.StartupPath, PSUCalculatorSettings.DataPath, Path.DirectorySeparatorChar);
+        return string.Format("{0}{2}{1}", PathToDataOrdner, PSUCalculatorSettings.DataPath, Path.DirectorySeparatorChar);
       }
     }
 

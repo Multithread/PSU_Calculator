@@ -118,7 +118,11 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="RichTextBox1.Text" xml:space="preserve">
-    <value>Version 1.7
+    <value>Version 1.8
++ Netzteilempfehlungen nun mit Steckern und der 12V Leistung für Grafikkarten
++ Settings erweitert.
+
+Version 1.7
 + CPU+GPU als XML gespeichert und abgerufen.
 + Netzteilempfehlungen bug behoben.
 

@@ -1,5 +1,4 @@
-﻿using PSU_Calculator.Komponenten;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 namespace PSU_Calculator
 {
   partial class Form1
@@ -51,6 +50,7 @@ namespace PSU_Calculator
       this.LinkLabel4 = new System.Windows.Forms.LinkLabel();
       this.Label17 = new System.Windows.Forms.Label();
       this.gbxNetzteile = new System.Windows.Forms.GroupBox();
+      this.cbxConectors = new System.Windows.Forms.CheckBox();
       this.radioTestberichte = new System.Windows.Forms.RadioButton();
       this.radioPreisvergleich = new System.Windows.Forms.RadioButton();
       this.cmdCopyToForum = new System.Windows.Forms.Button();
@@ -98,7 +98,9 @@ namespace PSU_Calculator
       this.cbxOverclocking = new System.Windows.Forms.ComboBox();
       this.cbxCPU2 = new System.Windows.Forms.ComboBox();
       this.lblCPU2 = new System.Windows.Forms.Label();
-      this.cbxConectors = new System.Windows.Forms.CheckBox();
+      this.datenSpeicherortToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+      this.lokalerOrdnerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+      this.appDataToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
       this.menuStrip1.SuspendLayout();
       this.PnlContent.SuspendLayout();
       this.gbxNetzteile.SuspendLayout();
@@ -119,7 +121,7 @@ namespace PSU_Calculator
             this.einstellungenToolStripMenuItem});
       this.menuStrip1.Location = new System.Drawing.Point(0, 0);
       this.menuStrip1.Name = "menuStrip1";
-      this.menuStrip1.Size = new System.Drawing.Size(307, 24);
+      this.menuStrip1.Size = new System.Drawing.Size(399, 24);
       this.menuStrip1.TabIndex = 0;
       this.menuStrip1.Text = "menuStrip1";
       // 
@@ -188,7 +190,8 @@ namespace PSU_Calculator
       // optionenToolStripMenuItem
       // 
       this.optionenToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.themeToolStripMenuItem});
+            this.themeToolStripMenuItem,
+            this.datenSpeicherortToolStripMenuItem});
       this.optionenToolStripMenuItem.Name = "optionenToolStripMenuItem";
       this.optionenToolStripMenuItem.Size = new System.Drawing.Size(49, 20);
       this.optionenToolStripMenuItem.Text = "Extras";
@@ -198,6 +201,7 @@ namespace PSU_Calculator
       this.themeToolStripMenuItem.Name = "themeToolStripMenuItem";
       this.themeToolStripMenuItem.Size = new System.Drawing.Size(169, 22);
       this.themeToolStripMenuItem.Text = "Aktualisiere Preise";
+      this.themeToolStripMenuItem.Visible = false;
       this.themeToolStripMenuItem.Click += new System.EventHandler(this.themeToolStripMenuItem_Click);
       // 
       // einstellungenToolStripMenuItem
@@ -214,7 +218,7 @@ namespace PSU_Calculator
       this.spracheToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.deutschToolStripMenuItem});
       this.spracheToolStripMenuItem.Name = "spracheToolStripMenuItem";
-      this.spracheToolStripMenuItem.Size = new System.Drawing.Size(151, 22);
+      this.spracheToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
       this.spracheToolStripMenuItem.Text = "Sprache";
       // 
       // deutschToolStripMenuItem
@@ -227,7 +231,7 @@ namespace PSU_Calculator
       // suchmaschineToolStripMenuItem
       // 
       this.suchmaschineToolStripMenuItem.Name = "suchmaschineToolStripMenuItem";
-      this.suchmaschineToolStripMenuItem.Size = new System.Drawing.Size(151, 22);
+      this.suchmaschineToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
       this.suchmaschineToolStripMenuItem.Text = "Suchmaschine";
       // 
       // PnlHeader
@@ -299,6 +303,19 @@ namespace PSU_Calculator
       this.gbxNetzteile.TabIndex = 32;
       this.gbxNetzteile.TabStop = false;
       this.gbxNetzteile.Text = "Empfehlenswerte Netzteile";
+      // 
+      // cbxConectors
+      // 
+      this.cbxConectors.AutoSize = true;
+      this.cbxConectors.Checked = true;
+      this.cbxConectors.CheckState = System.Windows.Forms.CheckState.Checked;
+      this.cbxConectors.Location = new System.Drawing.Point(235, 19);
+      this.cbxConectors.Name = "cbxConectors";
+      this.cbxConectors.Size = new System.Drawing.Size(106, 17);
+      this.cbxConectors.TabIndex = 118;
+      this.cbxConectors.Text = "Beachte Stecker";
+      this.cbxConectors.UseVisualStyleBackColor = true;
+      this.cbxConectors.CheckedChanged += new System.EventHandler(this.cbxConectors_CheckedChanged);
       // 
       // radioTestberichte
       // 
@@ -924,18 +941,28 @@ namespace PSU_Calculator
       this.lblCPU2.Text = "CPU 2:";
       this.lblCPU2.Visible = false;
       // 
-      // cbxConectors
+      // datenSpeicherortToolStripMenuItem
       // 
-      this.cbxConectors.AutoSize = true;
-      this.cbxConectors.Checked = true;
-      this.cbxConectors.CheckState = System.Windows.Forms.CheckState.Checked;
-      this.cbxConectors.Location = new System.Drawing.Point(235, 19);
-      this.cbxConectors.Name = "cbxConectors";
-      this.cbxConectors.Size = new System.Drawing.Size(106, 17);
-      this.cbxConectors.TabIndex = 118;
-      this.cbxConectors.Text = "Beachte Stecker";
-      this.cbxConectors.UseVisualStyleBackColor = true;
-      this.cbxConectors.CheckedChanged += new System.EventHandler(this.cbxConectors_CheckedChanged);
+      this.datenSpeicherortToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.lokalerOrdnerToolStripMenuItem,
+            this.appDataToolStripMenuItem});
+      this.datenSpeicherortToolStripMenuItem.Name = "datenSpeicherortToolStripMenuItem";
+      this.datenSpeicherortToolStripMenuItem.Size = new System.Drawing.Size(169, 22);
+      this.datenSpeicherortToolStripMenuItem.Text = "Daten Speicherort";
+      // 
+      // lokalerOrdnerToolStripMenuItem
+      // 
+      this.lokalerOrdnerToolStripMenuItem.Name = "lokalerOrdnerToolStripMenuItem";
+      this.lokalerOrdnerToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+      this.lokalerOrdnerToolStripMenuItem.Text = "Lokaler Ordner";
+      this.lokalerOrdnerToolStripMenuItem.Click += new System.EventHandler(this.lokalerOrdnerToolStripMenuItem_Click);
+      // 
+      // appDataToolStripMenuItem
+      // 
+      this.appDataToolStripMenuItem.Name = "appDataToolStripMenuItem";
+      this.appDataToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+      this.appDataToolStripMenuItem.Text = "AppData";
+      this.appDataToolStripMenuItem.Click += new System.EventHandler(this.appDataToolStripMenuItem_Click);
       // 
       // Form1
       // 
@@ -1129,6 +1156,9 @@ namespace PSU_Calculator
     private System.Windows.Forms.RadioButton radioTestberichte;
     private System.Windows.Forms.Button cmdCopySystem;
     private System.Windows.Forms.CheckBox cbxConectors;
+    private System.Windows.Forms.ToolStripMenuItem datenSpeicherortToolStripMenuItem;
+    private System.Windows.Forms.ToolStripMenuItem lokalerOrdnerToolStripMenuItem;
+    private System.Windows.Forms.ToolStripMenuItem appDataToolStripMenuItem;
 
   }
 }

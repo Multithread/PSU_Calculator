@@ -17,12 +17,12 @@ namespace PSU_Calculator.Dateizugriffe
       //erstesmal?
       if (!Properties.Einstellungen.Default.AskSaveLocal)
       {
-        if (!StorageMapper.Existiert(PSUCalculatorSettings.DirectoryPath))
+        if (!StorageMapper.Existiert(PSUCalculatorSettings.Get().DirectoryPath))
         {
           DialogResult dialogResult = MessageBox.Show("Wollen Sie die geupdateten Daten vom Server lokal bei sich Speichern?", "Speichern", MessageBoxButtons.YesNoCancel);
           if (dialogResult == DialogResult.Yes)
           {
-            StorageMapper.erstelleOrdner(PSUCalculatorSettings.DirectoryPath);
+            StorageMapper.erstelleOrdner(PSUCalculatorSettings.Get().DirectoryPath);
           }
           else if (dialogResult == DialogResult.No)
           {
@@ -37,11 +37,11 @@ namespace PSU_Calculator.Dateizugriffe
 
       }
       //Daten schreiben wenn Ordner vorhanden
-      if (StorageMapper.Existiert(PSUCalculatorSettings.DirectoryPath))
+      if (StorageMapper.Existiert(PSUCalculatorSettings.Get().DirectoryPath))
       {
         //wenn alles geschrieben werden konnte ist alles io:)
-        if(addZeilen(PSUCalculatorSettings.GPUPath, _gpu)
-        && addZeilen(PSUCalculatorSettings.CPUPath, _cpu))
+        if (addZeilen(PSUCalculatorSettings.Get().GPUPath, _gpu)
+        && addZeilen(PSUCalculatorSettings.Get().CPUPath, _cpu))
         {
           return true;
         }
@@ -69,31 +69,6 @@ namespace PSU_Calculator.Dateizugriffe
       Element e = new Element(doc.FirstChild);
       return e;
     }
-
-    //public static void GetLocalData(PSU_Calculator.Form1.boxInvoke del)
-    //{
-    //  if (!StorageMapper.Existiert(PSUCalculatorSettings.DirectoryPath))
-    //  {
-    //    return;
-    //  }
-    //  LoaderModul m = LoaderModul.getInstance();
-    //  string[] daten = null;
-    //  //CPU's euinlesen
-    //  daten = leseZeilen(PSUCalculatorSettings.CPUPath);
-    //  if (daten != null)
-    //  {
-    //    m.AddCPURange(m.GetComponents(daten));
-    //    del(true);
-    //  }
-
-    //  //GPU's einlesen
-    //  daten = leseZeilen(PSUCalculatorSettings.GPUPath);
-    //  if (daten != null)
-    //  {
-    //    m.AddGPURange(m.GetComponents(daten));
-    //    del(false);
-    //  }
-    //}
 
     public static bool Existiert(string pfad)
     {
@@ -258,7 +233,7 @@ namespace PSU_Calculator.Dateizugriffe
 
     public static void CreateStructure()
     {
-      Directory.CreateDirectory(PSUCalculatorSettings.DirectoryPath);
+      Directory.CreateDirectory(PSUCalculatorSettings.Get().DirectoryPath);
     }
   }
 }
