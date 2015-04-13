@@ -31,6 +31,18 @@ namespace PSU_Calculator
 
       LoaderModul m = LoaderModul.getInstance();
 
+      List<ShowableComponent> others = m.LoadOthers();
+
+      foreach (ShowableComponent sc in others)
+      {
+        pnlTest.Controls.Add(sc.Control);
+        if (sc.DataContainerControl != null)
+        {
+          ActiveComponents.Get().AddControl(sc.DataContainerControl);
+        }
+      }
+
+
       m.LoadCPU(this.cbxCpu);
       m.LoadCPU(this.cbxCPU2);
       m.setCPUSearchEvent(this.cbxCpu);

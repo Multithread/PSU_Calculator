@@ -54,8 +54,21 @@ namespace PSU_Calculator.DataWorker
         return false;
       }
       Controls.Add(inCbx);
+      if (inCbx is CheckBox)
+      {
+        (inCbx as CheckBox).CheckedChanged += Control_Changed;
+      }
+      else if (inCbx is ComboBox)
+      {
+        (inCbx as ComboBox).SelectedIndexChanged += Control_Changed;
+      }
       return true;
     }
+
+    void Control_Changed(object sender, EventArgs e)
+    {
+    }
+
     public bool RemoveControl(Control c)
     {
       Controls.Remove(c);

@@ -435,18 +435,6 @@ namespace PSU_Calculator
       {
         Element tmpEle = StorageMapper.GetXML(PSUCalculatorSettings.GetFilePath(PSUCalculatorSettings.CPU));
         cpuComponentList = GetComponentsFromXML(tmpEle);
-
-        //string[] zeilen = getAssemblyText("CPUs.txt").Split(new string[] { Environment.NewLine }, StringSplitOptions.None);
-
-        //cpuComponentList = GetComponents(zeilen);
-
-        //Element ele = new Element("CPUs");
-        //foreach (PcComponent com in cpuComponentList)
-        //{
-        //  ele.addElement(com.XML);
-
-        //}
-        //StorageMapper.WriteToFilesystem(PSUCalculatorSettings.GetFilePath(PSUCalculatorSettings.CPU), ele.getXML());
       }
       return cpuComponentList;
     }
@@ -493,6 +481,24 @@ namespace PSU_Calculator
     {
       powersupplyList = null;
       GetPowerSupplys();
+    }
+
+    public List<ShowableComponent> LoadOthers()
+    {
+      List<ShowableComponent> outlist = new List<ShowableComponent>();
+      Element tmpEle = StorageMapper.GetXML(PSUCalculatorSettings.GetFilePath("Anderes"));
+      foreach (Element ele in tmpEle.getAlleElementeByName("Component"))
+      {
+        outlist.Add(new ShowableComponent(ele));
+      }
+      outlist.Sort();
+      int posFromTop = 0;
+      foreach (ShowableComponent tmpSc in outlist)
+      {
+        tmpSc.Control.Location = new System.Drawing.Point(0, posFromTop);
+        posFromTop += tmpSc.Control.Size.Height;
+      }
+      return outlist;
     }
   }
 }
