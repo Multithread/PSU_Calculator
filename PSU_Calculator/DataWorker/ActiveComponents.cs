@@ -67,7 +67,13 @@ namespace PSU_Calculator.DataWorker
 
     void Control_Changed(object sender, EventArgs e)
     {
+      if (ActiveComponentChangedEvent != null)
+      {
+        ActiveComponentChangedEvent(sender);
+      }
     }
+    public delegate void ActiveComponentUpdateDelegate(object sender);
+    public event ActiveComponentUpdateDelegate ActiveComponentChangedEvent;
 
     public bool RemoveControl(Control c)
     {

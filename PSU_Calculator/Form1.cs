@@ -61,7 +61,14 @@ namespace PSU_Calculator
 
       berechneVerbrauch(this, null);
       AddPriceComparorsToToolStrip();
+
+      ActiveComponents.Get().ActiveComponentChangedEvent += ActiveComponentChangedEvent;
       DoubleBuffered = true;
+    }
+
+    void ActiveComponentChangedEvent(object sender)
+    {
+      berechneVerbrauch(sender, null);
     }
 
     private void SetTags()

@@ -88,6 +88,7 @@ namespace PSU_Calculator.Komponenten
         check.Name = Name;
         check.Size = new Size(200, 17);
         check.AutoSize = true;
+        check.Tag= new PcComponent(Name, TDP , "None");
         check.TabIndex = TabIndex++;
       }
       else if ("DropDown".Equals(this.Type))
