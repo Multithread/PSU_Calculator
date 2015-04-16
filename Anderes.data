@@ -1,19 +1,19 @@
 <Components>
-	<Component TitleOrder="1"  Order="0" Name="PCI-E Karten:" Type="Label"/>
-	<Component TitleOrder="2"  Order="0" Name="Andere Geräte:" Type="Label"/>
-	<Component TitleOrder="2" Order="3" Name="LCD Front" TDP="4" Type="CheckBox"/>
-	<Component TitleOrder="2" Order="2" Name="Kartenlesegerät" TDP="2" Type="CheckBox"/>
-	<Component TitleOrder="2" Order="1" Name="Lüftersteuerung" TDP="5" Type="CheckBox"/>
-	<Component TitleOrder="1" Order="4" Name="Raid Karte" TDP="8" Type="CheckBox"/>
-	<Component TitleOrder="1" Order="3" Name="TV-Tuner" TDP="11" Type="CheckBox"/>
-	<Component TitleOrder="1" Order="2" Name="Soundblaster m. Frontblende" TDP="15" Type="CheckBox"/>
-	<Component TitleOrder="1" Order="1" Name="Soundblaster" TDP="12" Type="CheckBox"/>
-	<Component TitleOrder="3" Amount="5" Order="1" Name="LED Stripes:" TDP="3" Type="DropDown">
+	<Component TitleOrder="1"  Order="0" Row="2" Name="PCI-E Karten:" Type="Label"/>
+	<Component TitleOrder="2"  Order="0" Row="2" Name="Andere Geräte:" Type="Label"/>
+	<Component TitleOrder="2" Order="3" Row="2" Name="LCD Front" TDP="4" Type="CheckBox"/>
+	<Component TitleOrder="2" Order="2" Row="2" Name="Kartenlesegerät" TDP="2" Type="CheckBox"/>
+	<Component TitleOrder="2" Order="1" Row="2" Name="Lüftersteuerung" TDP="5" Type="CheckBox"/>
+	<Component TitleOrder="1" Order="4" Row="2" Name="Raid Karte" TDP="8" Type="CheckBox"/>
+	<Component TitleOrder="1" Order="3" Row="2" Name="TV-Tuner" TDP="11" Type="CheckBox"/>
+	<Component TitleOrder="1" Order="2" Row="2" Name="Soundblaster m. Frontblende" TDP="15" Type="CheckBox"/>
+	<Component TitleOrder="1" Order="1" Row="2" Name="Soundblaster" TDP="12" Type="CheckBox"/>
+	<Component TitleOrder="3" Amount="5" Order="1" Row="2" Name="LED Stripes:" TDP="3" Type="DropDown">
 		<Data>
 			<Stecker Molex="1"/>
 		</Data>
 	</Component>
-	<Component TitleOrder="3" Amount="5" Order="1" Name="Kaltlichtdioden:" TDP="5" Type="DropDown">
+	<Component TitleOrder="3" Amount="5" Order="1" Row="2" Name="Kaltlichtdioden:" TDP="5" Type="DropDown">
 		<Data>
 			<Stecker Molex="1"/>
 		</Data>
