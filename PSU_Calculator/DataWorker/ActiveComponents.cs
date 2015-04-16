@@ -27,6 +27,12 @@ namespace PSU_Calculator.DataWorker
     private List<Control> Controls = new List<Control>();
     public List<PowerSupply> LastEmpfohlenePowerSupplys = new List<PowerSupply>();
 
+    public List<ShowableComponent> ShowableComponentList
+    {
+      get;
+      set;
+    }
+
     public ComboBox CbxCoolingSolution
     {
       get;
@@ -39,8 +45,40 @@ namespace PSU_Calculator.DataWorker
       set;
     }
 
+    public int GetShowableComponentsHeight()
+    {
+      int maxHeigh = 0;
+      maxHeigh = Math.Max(maxHeigh, ShowableHeight(1));
+      maxHeigh = Math.Max(maxHeigh, ShowableHeight(2));
+      maxHeigh = Math.Max(maxHeigh, ShowableHeight(3));
+      return maxHeigh;
+    }
+
+    private int ShowableHeight(int row)
+    {
+      if (ShowableComponentList == null)
+      {
+        return 0;
+      }
+      int posFromTop = 0;
+      foreach (ShowableComponent tmpSc in ShowableComponentList)
+      {
+        if (tmpSc.Row != row)
+        {
+          continue;
+        }
+        tmpSc.Control.Location = new System.Drawing.Point(tmpSc.Control.Location.X, posFromTop);
+        posFromTop += tmpSc.Control.Size.Height;
+      }
+      return posFromTop;
+    }
+
     public bool AddControl(Control inCbx)
     {
+      if (inCbx == null)
+      {
+        return false;
+      }
       if (inCbx == CbxOC)
       {
         return false;

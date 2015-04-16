@@ -114,6 +114,7 @@
     <Compile Include="FirstUsageInfoBox.Designer.cs">
       <DependentUpon>FirstUsageInfoBox.cs</DependentUpon>
     </Compile>
+    <Compile Include="Komponenten\PcComponentList.cs" />
     <Compile Include="Komponenten\ShowableComponent.cs" />
     <Compile Include="TestberichteAuswahl.cs">
       <SubType>Form</SubType>

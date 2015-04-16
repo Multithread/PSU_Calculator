@@ -24,23 +24,28 @@ namespace PSU_Calculator
       PSUCalculatorSettings.Get();
       InitializeComponent();
 
-      SetTags();
-      addGPU();
-      ActiveComponents.Get().CbxCoolingSolution = cbxCooling;
-      ActiveComponents.Get().CbxOC = cbxOverclocking;
-
       LoaderModul m = LoaderModul.getInstance();
 
       List<ShowableComponent> others = m.LoadOthers();
 
       foreach (ShowableComponent sc in others)
       {
-        pnlTest.Controls.Add(sc.Control);
+        if (sc.Row != 2)
+        {
+          continue;
+        }
+        pnlRow2.Controls.Add(sc.Control);
         if (sc.DataContainerControl != null)
         {
           ActiveComponents.Get().AddControl(sc.DataContainerControl);
         }
       }
+
+      SetTags();
+
+      ActiveComponents.Get().CbxCoolingSolution = cbxCooling;
+      ActiveComponents.Get().CbxOC = cbxOverclocking;
+
 
 
       m.LoadCPU(this.cbxCpu);
@@ -64,6 +69,9 @@ namespace PSU_Calculator
 
       ActiveComponents.Get().ActiveComponentChangedEvent += ActiveComponentChangedEvent;
       DoubleBuffered = true;
+
+      //Last GPU hinzufügen und positionen, sowie grösse aktualisieren
+      addGPU();
     }
 
     void ActiveComponentChangedEvent(object sender)
@@ -73,17 +81,6 @@ namespace PSU_Calculator
 
     private void SetTags()
     {
-      soundblaster.Tag = new PcComponent("Soundblaster", 12, "None");
-      soundblasterwfront.Tag = new PcComponent("SoundblasterwFront", 15, "None");
-      tvtuner.Tag = new PcComponent("TV-Tuner", 11, "None");
-      raidcard.Tag = new PcComponent("Raidcard", 8, "None");
-      fancontroll.Tag = new PcComponent("Fancontroll", 5, "None");
-      cardreader.Tag = new PcComponent("Cardreader", 2, "None");
-      lcd.Tag = new PcComponent("LCD", 4, "None");
-
-      //Drop down Boxen mit den entsprechenden Werten versehen
-      cbxKaltlicht.Items.Clear();
-      cbxKaltlicht.Items.AddRange(CountList(5, 5, "Kaltlicht", Stecker.SteckerType.Molex.ToString()));
       cbxHDD.Items.Clear();
       cbxHDD.Items.AddRange(CountList(5, 15, "HDD", Stecker.SteckerType.Sata.ToString()));
       cbxLaufwerke.Items.Clear();
@@ -92,8 +89,6 @@ namespace PSU_Calculator
       cbxSSD.Items.AddRange(CountList(4, 10, "SSD", Stecker.SteckerType.Sata.ToString()));
       cbxFans.Items.Clear();
       cbxFans.Items.AddRange(CountList(2, 30, "Lüfter"));
-      cbxLED.Items.Clear();
-      cbxLED.Items.AddRange(CountList(3, 5, "LED", Stecker.SteckerType.Molex.ToString()));
     }
 
     private object[] CountList(int tdp, int maxvalue, string type, string steckertyp)
@@ -129,9 +124,7 @@ namespace PSU_Calculator
       cbxLaufwerke.SelectedIndex = 0;
       cbxOverclocking.SelectedIndex = 0;
       cbxFans.SelectedIndex = 0;
-      cbxKaltlicht.SelectedIndex = 0;
       cbxCooling.SelectedIndex = 0;
-      cbxLED.SelectedIndex = 0;
 
       foreach (Control tmpControl in this.gbxDaten.Controls)
       {
@@ -366,6 +359,91 @@ namespace PSU_Calculator
           lblGrakaList[i].Text = string.Format("Grafikkarte {0}:", i + 1);
         }
       }
+    }
+
+    /// <summary>
+    /// Komponenten anpassen wenn mehr hinzukommen
+    /// AUsserdem setzten des Tabstopes
+    /// </summary>
+    public void PlaziereElemente()
+    {
+      this.gbxDaten.SuspendLayout();
+      int vonoben = 13;
+      int vonlinks = 9;
+      int abstand = 29;
+      int tabstop = 1;
+      lblCPU.SetBounds(vonlinks, vonoben + 3, lblCPU.Bounds.Width, lblCPU.Bounds.Height);
+      cbxCpu.SetBounds(cbxCpu.Bounds.Left, vonoben, cbxCpu.Bounds.Width, cbxCpu.Bounds.Height); vonoben += abstand;
+      cbxCpu.TabIndex = tabstop++;
+      if (chkdualcpu.Checked)
+      {
+        lblCPU2.Visible = true;
+        cbxCPU2.Visible = true;
+        lblCPU2.SetBounds(vonlinks, vonoben + 3, lblCPU2.Bounds.Width, lblCPU2.Bounds.Height);
+        cbxCPU2.SetBounds(cbxCPU2.Bounds.Left, vonoben, cbxCPU2.Bounds.Width, cbxCPU2.Bounds.Height); vonoben += abstand;
+        cbxCPU2.TabIndex = tabstop++;
+      }
+      else
+      {
+        lblCPU2.Visible = false;
+        cbxCPU2.Visible = false;
+      }
+
+      lblKuehlung.SetBounds(vonlinks, vonoben + 3, lblKuehlung.Bounds.Width, lblKuehlung.Bounds.Height);
+      cbxCooling.SetBounds(cbxCooling.Bounds.Left, vonoben, cbxCooling.Bounds.Width, cbxCooling.Bounds.Height); vonoben += abstand;
+      cbxCooling.TabIndex = tabstop++;
+
+      for (int i = 0; i < cbxGrakaList.Count; i++)
+      {
+        lblGrakaList[i].SetBounds(vonlinks, vonoben + 3, lblGrakaList[i].Bounds.Width, lblGrakaList[i].Bounds.Height);
+        cbxGrakaList[i].SetBounds(cbxGrakaList[i].Bounds.Left, vonoben, cbxGrakaList[i].Bounds.Width, cbxGrakaList[i].Bounds.Height); vonoben += abstand;
+        cbxGrakaList[i].TabIndex = tabstop++;
+
+        if (!chkCFSLI.Checked)
+        {
+          break;
+        }
+      }
+
+      lblPhysX.SetBounds(vonlinks, vonoben + 3, lblPhysX.Bounds.Width, lblPhysX.Bounds.Height);
+      cbxPhysx.SetBounds(cbxPhysx.Bounds.Left, vonoben, cbxPhysx.Bounds.Width, cbxPhysx.Bounds.Height); vonoben += abstand;
+      cbxPhysx.TabIndex = tabstop++;
+
+      lblHDD.SetBounds(vonlinks, vonoben + 3, lblHDD.Bounds.Width, lblHDD.Bounds.Height);
+      cbxHDD.SetBounds(cbxHDD.Bounds.Left, vonoben, cbxHDD.Bounds.Width, cbxHDD.Bounds.Height); vonoben += abstand;
+      cbxHDD.TabIndex = tabstop++;
+
+      lblSSD.SetBounds(vonlinks, vonoben + 3, lblSSD.Bounds.Width, lblSSD.Bounds.Height);
+      cbxSSD.SetBounds(cbxSSD.Bounds.Left, vonoben, cbxSSD.Bounds.Width, cbxSSD.Bounds.Height); vonoben += abstand;
+      cbxSSD.TabIndex = tabstop++;
+
+      lblLaufwerke.SetBounds(vonlinks, vonoben + 3, lblLaufwerke.Bounds.Width, lblLaufwerke.Bounds.Height);
+      cbxLaufwerke.SetBounds(cbxLaufwerke.Bounds.Left, vonoben, cbxLaufwerke.Bounds.Width, cbxLaufwerke.Bounds.Height); vonoben += abstand;
+      cbxLaufwerke.TabIndex = tabstop++;
+
+      lblLuefter.SetBounds(vonlinks, vonoben + 3, lblLuefter.Bounds.Width, lblLuefter.Bounds.Height);
+      cbxFans.SetBounds(cbxFans.Bounds.Left, vonoben, cbxFans.Bounds.Width, cbxFans.Bounds.Height); vonoben += abstand;
+      cbxFans.TabIndex = tabstop++;
+
+      lblOC.SetBounds(vonlinks, vonoben + 3, lblOC.Bounds.Width, lblOC.Bounds.Height);
+      cbxOverclocking.SetBounds(cbxOverclocking.Bounds.Left, vonoben, cbxOverclocking.Bounds.Width, cbxOverclocking.Bounds.Height); vonoben += abstand;
+      cbxOverclocking.TabIndex = tabstop++;
+
+      //Fenstergrösse anpassen bei vielen GPU's
+      int height = vonoben + abstand + 144;
+      height = Math.Max(height, ActiveComponents.Get().GetShowableComponentsHeight() + 248);
+      if (height > 400)
+      {
+        this.Size = new System.Drawing.Size(this.Size.Width, height);
+        this.MinimumSize = new Size(MinimumSize.Width, height);
+      }
+      else
+      {
+        this.Size = new System.Drawing.Size(this.Size.Width, 400);
+        this.MinimumSize = new Size(MinimumSize.Width, 400);
+      }
+
+      this.gbxDaten.ResumeLayout();
     }
 
     /// <summary>

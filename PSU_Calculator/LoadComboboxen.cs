@@ -448,10 +448,20 @@ namespace PSU_Calculator
     {
       if (gpuComponentList == null)
       {
-        Element tmpEle= StorageMapper.GetXML(PSUCalculatorSettings.GetFilePath(PSUCalculatorSettings.GPU));
+        Element tmpEle = StorageMapper.GetXML(PSUCalculatorSettings.GetFilePath(PSUCalculatorSettings.GPU));
         gpuComponentList = GetComponentsFromXML(tmpEle);
       }
       return gpuComponentList;
+    }
+
+    /// <summary>
+    /// Laden einer Liste von PcComponenten aus einer .data Datei.
+    /// </summary>
+    /// <returns></returns>
+    public List<PcComponent> GetComponentsFromFile(string dataDatei)
+    {  
+      Element tmpEle = StorageMapper.GetXML(PSUCalculatorSettings.GetFilePath(dataDatei));
+        return GetComponentsFromXML(tmpEle);
     }
 
     /// <summary>
@@ -489,15 +499,12 @@ namespace PSU_Calculator
       Element tmpEle = StorageMapper.GetXML(PSUCalculatorSettings.GetFilePath("Anderes"));
       foreach (Element ele in tmpEle.getAlleElementeByName("Component"))
       {
-        outlist.Add(new ShowableComponent(ele));
+        var tmpShowable = new ShowableComponent(ele);
+        outlist.Add(tmpShowable);
+        ActiveComponents.Get().AddControl(tmpShowable.DataContainerControl);
       }
       outlist.Sort();
-      int posFromTop = 0;
-      foreach (ShowableComponent tmpSc in outlist)
-      {
-        tmpSc.Control.Location = new System.Drawing.Point(0, posFromTop);
-        posFromTop += tmpSc.Control.Size.Height;
-      }
+      ActiveComponents.Get().ShowableComponentList = outlist;
       return outlist;
     }
   }

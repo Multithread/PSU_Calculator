@@ -2,6 +2,7 @@
 using PSU_Calculator.DataWorker.Elementworker;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Globalization;
 using System.Linq;
 using System.Text;
@@ -9,6 +10,7 @@ using System.Threading.Tasks;
 
 namespace PSU_Calculator.Komponenten
 {
+  [DebuggerDisplay("{XML}")]
   public class PcComponent
   {
     public static string ComponentString = "Component";

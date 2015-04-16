@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using PSU_Calculator.DataWorker;
+using System;
+using System.Collections.Generic;
 namespace PSU_Calculator
 {
   partial class Form1
@@ -66,27 +68,15 @@ namespace PSU_Calculator
       this.Label16 = new System.Windows.Forms.Label();
       this.lblVerbrauch = new System.Windows.Forms.Label();
       this.gbxDaten = new System.Windows.Forms.GroupBox();
+      this.pnlRow2 = new System.Windows.Forms.Panel();
       this.cmdCopySystem = new System.Windows.Forms.Button();
       this.label9 = new System.Windows.Forms.Label();
       this.cbxPhysx = new System.Windows.Forms.ComboBox();
       this.lblPhysX = new System.Windows.Forms.Label();
       this.chkCFSLI = new System.Windows.Forms.CheckBox();
-      this.Label11 = new System.Windows.Forms.Label();
-      this.Label10 = new System.Windows.Forms.Label();
-      this.cbxLED = new System.Windows.Forms.ComboBox();
-      this.cbxKaltlicht = new System.Windows.Forms.ComboBox();
       this.lblSSD = new System.Windows.Forms.Label();
       this.cbxSSD = new System.Windows.Forms.ComboBox();
       this.chkdualcpu = new System.Windows.Forms.CheckBox();
-      this.lcd = new System.Windows.Forms.CheckBox();
-      this.cardreader = new System.Windows.Forms.CheckBox();
-      this.fancontroll = new System.Windows.Forms.CheckBox();
-      this.Label26 = new System.Windows.Forms.Label();
-      this.raidcard = new System.Windows.Forms.CheckBox();
-      this.tvtuner = new System.Windows.Forms.CheckBox();
-      this.soundblasterwfront = new System.Windows.Forms.CheckBox();
-      this.Label20 = new System.Windows.Forms.Label();
-      this.soundblaster = new System.Windows.Forms.CheckBox();
       this.cbxCpu = new System.Windows.Forms.ComboBox();
       this.lblCPU = new System.Windows.Forms.Label();
       this.lblKuehlung = new System.Windows.Forms.Label();
@@ -101,7 +91,6 @@ namespace PSU_Calculator
       this.cbxOverclocking = new System.Windows.Forms.ComboBox();
       this.cbxCPU2 = new System.Windows.Forms.ComboBox();
       this.lblCPU2 = new System.Windows.Forms.Label();
-      this.pnlTest = new System.Windows.Forms.Panel();
       this.menuStrip1.SuspendLayout();
       this.PnlContent.SuspendLayout();
       this.gbxNetzteile.SuspendLayout();
@@ -267,7 +256,7 @@ namespace PSU_Calculator
       this.PnlHeader.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
       this.PnlHeader.Location = new System.Drawing.Point(0, 24);
       this.PnlHeader.Name = "PnlHeader";
-      this.PnlHeader.Size = new System.Drawing.Size(852, 70);
+      this.PnlHeader.Size = new System.Drawing.Size(882, 70);
       this.PnlHeader.TabIndex = 1;
       // 
       // PnlContent
@@ -282,14 +271,14 @@ namespace PSU_Calculator
       this.PnlContent.Controls.Add(this.gbxDaten);
       this.PnlContent.Location = new System.Drawing.Point(0, 87);
       this.PnlContent.Name = "PnlContent";
-      this.PnlContent.Size = new System.Drawing.Size(852, 640);
+      this.PnlContent.Size = new System.Drawing.Size(882, 399);
       this.PnlContent.TabIndex = 2;
       // 
       // LinkLabel4
       // 
       this.LinkLabel4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
       this.LinkLabel4.AutoSize = true;
-      this.LinkLabel4.Location = new System.Drawing.Point(12, 608);
+      this.LinkLabel4.Location = new System.Drawing.Point(12, 367);
       this.LinkLabel4.Name = "LinkLabel4";
       this.LinkLabel4.Size = new System.Drawing.Size(140, 13);
       this.LinkLabel4.TabIndex = 53;
@@ -303,7 +292,7 @@ namespace PSU_Calculator
       this.Label17.AutoSize = true;
       this.Label17.BackColor = System.Drawing.Color.Transparent;
       this.Label17.ForeColor = System.Drawing.Color.Red;
-      this.Label17.Location = new System.Drawing.Point(370, 602);
+      this.Label17.Location = new System.Drawing.Point(400, 361);
       this.Label17.Name = "Label17";
       this.Label17.Size = new System.Drawing.Size(459, 26);
       this.Label17.TabIndex = 49;
@@ -321,9 +310,9 @@ namespace PSU_Calculator
       this.gbxNetzteile.Controls.Add(this.radioPreisvergleich);
       this.gbxNetzteile.Controls.Add(this.cmdCopyToForum);
       this.gbxNetzteile.Controls.Add(this.pnlNetzteile);
-      this.gbxNetzteile.Location = new System.Drawing.Point(476, 106);
+      this.gbxNetzteile.Location = new System.Drawing.Point(487, 106);
       this.gbxNetzteile.Name = "gbxNetzteile";
-      this.gbxNetzteile.Size = new System.Drawing.Size(373, 490);
+      this.gbxNetzteile.Size = new System.Drawing.Size(392, 249);
       this.gbxNetzteile.TabIndex = 32;
       this.gbxNetzteile.TabStop = false;
       this.gbxNetzteile.Text = "Empfehlenswerte Netzteile";
@@ -369,9 +358,9 @@ namespace PSU_Calculator
       // 
       this.cmdCopyToForum.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-      this.cmdCopyToForum.Location = new System.Drawing.Point(11, 459);
+      this.cmdCopyToForum.Location = new System.Drawing.Point(11, 218);
       this.cmdCopyToForum.Name = "cmdCopyToForum";
-      this.cmdCopyToForum.Size = new System.Drawing.Size(356, 23);
+      this.cmdCopyToForum.Size = new System.Drawing.Size(375, 23);
       this.cmdCopyToForum.TabIndex = 115;
       this.cmdCopyToForum.Text = "Netzteile in die Zwischenablage Kopieren";
       this.cmdCopyToForum.UseVisualStyleBackColor = true;
@@ -385,7 +374,7 @@ namespace PSU_Calculator
       this.pnlNetzteile.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
       this.pnlNetzteile.Location = new System.Drawing.Point(13, 43);
       this.pnlNetzteile.Name = "pnlNetzteile";
-      this.pnlNetzteile.Size = new System.Drawing.Size(351, 416);
+      this.pnlNetzteile.Size = new System.Drawing.Size(370, 175);
       this.pnlNetzteile.TabIndex = 1;
       // 
       // gbxVerbrauch
@@ -399,9 +388,9 @@ namespace PSU_Calculator
       this.gbxVerbrauch.Controls.Add(this.PictureBox4);
       this.gbxVerbrauch.Controls.Add(this.Label16);
       this.gbxVerbrauch.Controls.Add(this.lblVerbrauch);
-      this.gbxVerbrauch.Location = new System.Drawing.Point(476, 3);
+      this.gbxVerbrauch.Location = new System.Drawing.Point(487, 3);
       this.gbxVerbrauch.Name = "gbxVerbrauch";
-      this.gbxVerbrauch.Size = new System.Drawing.Size(373, 100);
+      this.gbxVerbrauch.Size = new System.Drawing.Size(392, 100);
       this.gbxVerbrauch.TabIndex = 30;
       this.gbxVerbrauch.TabStop = false;
       this.gbxVerbrauch.Text = "Verbrauch";
@@ -411,7 +400,7 @@ namespace PSU_Calculator
       this.PictureBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
       this.PictureBox1.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("PictureBox1.BackgroundImage")));
       this.PictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-      this.PictureBox1.Location = new System.Drawing.Point(321, 51);
+      this.PictureBox1.Location = new System.Drawing.Point(340, 51);
       this.PictureBox1.Name = "PictureBox1";
       this.PictureBox1.Size = new System.Drawing.Size(48, 46);
       this.PictureBox1.TabIndex = 27;
@@ -436,7 +425,7 @@ namespace PSU_Calculator
       this.pgbEffizienz.Location = new System.Drawing.Point(13, 58);
       this.pgbEffizienz.Maximum = 1000;
       this.pgbEffizienz.Name = "pgbEffizienz";
-      this.pgbEffizienz.Size = new System.Drawing.Size(302, 10);
+      this.pgbEffizienz.Size = new System.Drawing.Size(321, 10);
       this.pgbEffizienz.TabIndex = 25;
       this.pgbEffizienz.Value = 20;
       // 
@@ -447,7 +436,7 @@ namespace PSU_Calculator
       this.PictureBox4.Image = ((System.Drawing.Image)(resources.GetObject("PictureBox4.Image")));
       this.PictureBox4.Location = new System.Drawing.Point(13, 74);
       this.PictureBox4.Name = "PictureBox4";
-      this.PictureBox4.Size = new System.Drawing.Size(302, 15);
+      this.PictureBox4.Size = new System.Drawing.Size(321, 15);
       this.PictureBox4.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
       this.PictureBox4.TabIndex = 24;
       this.PictureBox4.TabStop = false;
@@ -480,28 +469,15 @@ namespace PSU_Calculator
       // 
       this.gbxDaten.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left)));
-      this.gbxDaten.Controls.Add(this.pnlTest);
+      this.gbxDaten.Controls.Add(this.pnlRow2);
       this.gbxDaten.Controls.Add(this.cmdCopySystem);
       this.gbxDaten.Controls.Add(this.label9);
       this.gbxDaten.Controls.Add(this.cbxPhysx);
       this.gbxDaten.Controls.Add(this.lblPhysX);
       this.gbxDaten.Controls.Add(this.chkCFSLI);
-      this.gbxDaten.Controls.Add(this.Label11);
-      this.gbxDaten.Controls.Add(this.Label10);
-      this.gbxDaten.Controls.Add(this.cbxLED);
-      this.gbxDaten.Controls.Add(this.cbxKaltlicht);
       this.gbxDaten.Controls.Add(this.lblSSD);
       this.gbxDaten.Controls.Add(this.cbxSSD);
       this.gbxDaten.Controls.Add(this.chkdualcpu);
-      this.gbxDaten.Controls.Add(this.lcd);
-      this.gbxDaten.Controls.Add(this.cardreader);
-      this.gbxDaten.Controls.Add(this.fancontroll);
-      this.gbxDaten.Controls.Add(this.Label26);
-      this.gbxDaten.Controls.Add(this.raidcard);
-      this.gbxDaten.Controls.Add(this.tvtuner);
-      this.gbxDaten.Controls.Add(this.soundblasterwfront);
-      this.gbxDaten.Controls.Add(this.Label20);
-      this.gbxDaten.Controls.Add(this.soundblaster);
       this.gbxDaten.Controls.Add(this.cbxCpu);
       this.gbxDaten.Controls.Add(this.lblCPU);
       this.gbxDaten.Controls.Add(this.lblKuehlung);
@@ -518,15 +494,25 @@ namespace PSU_Calculator
       this.gbxDaten.Controls.Add(this.lblCPU2);
       this.gbxDaten.Location = new System.Drawing.Point(3, 3);
       this.gbxDaten.Name = "gbxDaten";
-      this.gbxDaten.Size = new System.Drawing.Size(467, 593);
+      this.gbxDaten.Size = new System.Drawing.Size(478, 352);
       this.gbxDaten.TabIndex = 0;
       this.gbxDaten.TabStop = false;
       this.gbxDaten.Text = "Daten";
       // 
+      // pnlRow2
+      // 
+      this.pnlRow2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
+      this.pnlRow2.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+      this.pnlRow2.Location = new System.Drawing.Point(270, 74);
+      this.pnlRow2.Name = "pnlRow2";
+      this.pnlRow2.Size = new System.Drawing.Size(200, 238);
+      this.pnlRow2.TabIndex = 123;
+      // 
       // cmdCopySystem
       // 
       this.cmdCopySystem.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-      this.cmdCopySystem.Location = new System.Drawing.Point(283, 559);
+      this.cmdCopySystem.Location = new System.Drawing.Point(294, 318);
       this.cmdCopySystem.Name = "cmdCopySystem";
       this.cmdCopySystem.Size = new System.Drawing.Size(168, 23);
       this.cmdCopySystem.TabIndex = 122;
@@ -540,7 +526,7 @@ namespace PSU_Calculator
       this.label9.BackColor = System.Drawing.Color.Transparent;
       this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
       this.label9.ForeColor = System.Drawing.Color.Black;
-      this.label9.Location = new System.Drawing.Point(280, 184);
+      this.label9.Location = new System.Drawing.Point(273, 14);
       this.label9.Name = "label9";
       this.label9.Size = new System.Drawing.Size(127, 18);
       this.label9.TabIndex = 119;
@@ -570,73 +556,13 @@ namespace PSU_Calculator
       // chkCFSLI
       // 
       this.chkCFSLI.AutoSize = true;
-      this.chkCFSLI.Location = new System.Drawing.Point(283, 221);
+      this.chkCFSLI.Location = new System.Drawing.Point(276, 51);
       this.chkCFSLI.Name = "chkCFSLI";
       this.chkCFSLI.Size = new System.Drawing.Size(66, 17);
       this.chkCFSLI.TabIndex = 105;
       this.chkCFSLI.Text = "SLI / CF";
       this.chkCFSLI.UseVisualStyleBackColor = true;
       this.chkCFSLI.CheckedChanged += new System.EventHandler(this.chkCFSLI_CheckedChanged);
-      // 
-      // Label11
-      // 
-      this.Label11.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-      this.Label11.AutoSize = true;
-      this.Label11.BackColor = System.Drawing.Color.Transparent;
-      this.Label11.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-      this.Label11.ForeColor = System.Drawing.Color.Black;
-      this.Label11.Location = new System.Drawing.Point(280, 529);
-      this.Label11.Name = "Label11";
-      this.Label11.Size = new System.Drawing.Size(75, 15);
-      this.Label11.TabIndex = 113;
-      this.Label11.Text = "LED Stripes:";
-      // 
-      // Label10
-      // 
-      this.Label10.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-      this.Label10.AutoSize = true;
-      this.Label10.BackColor = System.Drawing.Color.Transparent;
-      this.Label10.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-      this.Label10.ForeColor = System.Drawing.Color.Black;
-      this.Label10.Location = new System.Drawing.Point(280, 501);
-      this.Label10.Name = "Label10";
-      this.Label10.Size = new System.Drawing.Size(104, 15);
-      this.Label10.TabIndex = 112;
-      this.Label10.Text = "Kaltlichtkathoden:";
-      // 
-      // cbxLED
-      // 
-      this.cbxLED.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-      this.cbxLED.FormattingEnabled = true;
-      this.cbxLED.Items.AddRange(new object[] {
-            "0",
-            "1",
-            "2",
-            "3",
-            "4",
-            "5"});
-      this.cbxLED.Location = new System.Drawing.Point(384, 525);
-      this.cbxLED.Name = "cbxLED";
-      this.cbxLED.Size = new System.Drawing.Size(67, 21);
-      this.cbxLED.TabIndex = 111;
-      this.cbxLED.Text = "Bitte wählen";
-      // 
-      // cbxKaltlicht
-      // 
-      this.cbxKaltlicht.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-      this.cbxKaltlicht.FormattingEnabled = true;
-      this.cbxKaltlicht.Items.AddRange(new object[] {
-            "0",
-            "1",
-            "2",
-            "3",
-            "4",
-            "5"});
-      this.cbxKaltlicht.Location = new System.Drawing.Point(384, 498);
-      this.cbxKaltlicht.Name = "cbxKaltlicht";
-      this.cbxKaltlicht.Size = new System.Drawing.Size(67, 21);
-      this.cbxKaltlicht.TabIndex = 110;
-      this.cbxKaltlicht.Text = "Bitte wählen";
       // 
       // lblSSD
       // 
@@ -669,107 +595,13 @@ namespace PSU_Calculator
       // chkdualcpu
       // 
       this.chkdualcpu.AutoSize = true;
-      this.chkdualcpu.Location = new System.Drawing.Point(283, 205);
+      this.chkdualcpu.Location = new System.Drawing.Point(276, 35);
       this.chkdualcpu.Name = "chkdualcpu";
       this.chkdualcpu.Size = new System.Drawing.Size(137, 17);
       this.chkdualcpu.TabIndex = 101;
       this.chkdualcpu.Text = "Dual Sockel Mainboard";
       this.chkdualcpu.UseVisualStyleBackColor = true;
       this.chkdualcpu.CheckedChanged += new System.EventHandler(this.chkdualcpu_CheckedChanged);
-      // 
-      // lcd
-      // 
-      this.lcd.AutoSize = true;
-      this.lcd.Location = new System.Drawing.Point(283, 160);
-      this.lcd.Name = "lcd";
-      this.lcd.Size = new System.Drawing.Size(74, 17);
-      this.lcd.TabIndex = 97;
-      this.lcd.Text = "LCD Front";
-      this.lcd.UseVisualStyleBackColor = true;
-      // 
-      // cardreader
-      // 
-      this.cardreader.AutoSize = true;
-      this.cardreader.Location = new System.Drawing.Point(283, 144);
-      this.cardreader.Name = "cardreader";
-      this.cardreader.Size = new System.Drawing.Size(100, 17);
-      this.cardreader.TabIndex = 96;
-      this.cardreader.Text = "Kartenlesegerät";
-      this.cardreader.UseVisualStyleBackColor = true;
-      // 
-      // fancontroll
-      // 
-      this.fancontroll.AutoSize = true;
-      this.fancontroll.Location = new System.Drawing.Point(283, 128);
-      this.fancontroll.Name = "fancontroll";
-      this.fancontroll.Size = new System.Drawing.Size(100, 17);
-      this.fancontroll.TabIndex = 95;
-      this.fancontroll.Text = "Lüftersteuerung";
-      this.fancontroll.UseVisualStyleBackColor = true;
-      // 
-      // Label26
-      // 
-      this.Label26.AutoSize = true;
-      this.Label26.BackColor = System.Drawing.Color.Transparent;
-      this.Label26.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-      this.Label26.ForeColor = System.Drawing.Color.Black;
-      this.Label26.Location = new System.Drawing.Point(280, 107);
-      this.Label26.Name = "Label26";
-      this.Label26.Size = new System.Drawing.Size(107, 18);
-      this.Label26.TabIndex = 94;
-      this.Label26.Text = "Andere Geräte:";
-      // 
-      // raidcard
-      // 
-      this.raidcard.AutoSize = true;
-      this.raidcard.Location = new System.Drawing.Point(283, 82);
-      this.raidcard.Name = "raidcard";
-      this.raidcard.Size = new System.Drawing.Size(76, 17);
-      this.raidcard.TabIndex = 89;
-      this.raidcard.Text = "Raid Karte";
-      this.raidcard.UseVisualStyleBackColor = true;
-      // 
-      // tvtuner
-      // 
-      this.tvtuner.AutoSize = true;
-      this.tvtuner.Location = new System.Drawing.Point(283, 65);
-      this.tvtuner.Name = "tvtuner";
-      this.tvtuner.Size = new System.Drawing.Size(71, 17);
-      this.tvtuner.TabIndex = 88;
-      this.tvtuner.Text = "TV-Tuner";
-      this.tvtuner.UseVisualStyleBackColor = true;
-      // 
-      // soundblasterwfront
-      // 
-      this.soundblasterwfront.AutoSize = true;
-      this.soundblasterwfront.Location = new System.Drawing.Point(283, 49);
-      this.soundblasterwfront.Name = "soundblasterwfront";
-      this.soundblasterwfront.Size = new System.Drawing.Size(161, 17);
-      this.soundblasterwfront.TabIndex = 87;
-      this.soundblasterwfront.Text = "Soundblaster m. Frontblende";
-      this.soundblasterwfront.UseVisualStyleBackColor = true;
-      // 
-      // Label20
-      // 
-      this.Label20.AutoSize = true;
-      this.Label20.BackColor = System.Drawing.Color.Transparent;
-      this.Label20.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-      this.Label20.ForeColor = System.Drawing.Color.Black;
-      this.Label20.Location = new System.Drawing.Point(280, 14);
-      this.Label20.Name = "Label20";
-      this.Label20.Size = new System.Drawing.Size(84, 18);
-      this.Label20.TabIndex = 86;
-      this.Label20.Text = "PCI-Karten:";
-      // 
-      // soundblaster
-      // 
-      this.soundblaster.AutoSize = true;
-      this.soundblaster.Location = new System.Drawing.Point(283, 33);
-      this.soundblaster.Name = "soundblaster";
-      this.soundblaster.Size = new System.Drawing.Size(88, 17);
-      this.soundblaster.TabIndex = 85;
-      this.soundblaster.Text = "Soundblaster";
-      this.soundblaster.UseVisualStyleBackColor = true;
       // 
       // cbxCpu
       // 
@@ -966,25 +798,18 @@ namespace PSU_Calculator
       this.lblCPU2.Text = "CPU 2:";
       this.lblCPU2.Visible = false;
       // 
-      // pnlTest
-      // 
-      this.pnlTest.Location = new System.Drawing.Point(280, 244);
-      this.pnlTest.Name = "pnlTest";
-      this.pnlTest.Size = new System.Drawing.Size(181, 248);
-      this.pnlTest.TabIndex = 123;
-      // 
       // Form1
       // 
       this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
       this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
       this.BackColor = System.Drawing.SystemColors.Window;
-      this.ClientSize = new System.Drawing.Size(852, 689);
+      this.ClientSize = new System.Drawing.Size(882, 448);
       this.Controls.Add(this.PnlContent);
       this.Controls.Add(this.menuStrip1);
       this.Controls.Add(this.PnlHeader);
       this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
       this.MainMenuStrip = this.menuStrip1;
-      this.MinimumSize = new System.Drawing.Size(850, 480);
+      this.MinimumSize = new System.Drawing.Size(850, 430);
       this.Name = "Form1";
       this.Text = "PSU Calculator";
       this.menuStrip1.ResumeLayout(false);
@@ -1013,88 +838,6 @@ namespace PSU_Calculator
 
     #endregion
 
-    /// <summary>
-    /// Komponenten anpassen wenn mehr hinzukommen
-    /// AUsserdem setzten des Tabstopes
-    /// </summary>
-    public void PlaziereElemente()
-    {
-      this.gbxDaten.SuspendLayout();
-      int vonoben = 13;
-      int vonlinks = 9;
-      int abstand = 29;
-      int tabstop = 1;
-      lblCPU.SetBounds(vonlinks, vonoben + 3, lblCPU.Bounds.Width, lblCPU.Bounds.Height);
-      cbxCpu.SetBounds(cbxCpu.Bounds.Left, vonoben, cbxCpu.Bounds.Width, cbxCpu.Bounds.Height); vonoben += abstand;
-      cbxCpu.TabIndex = tabstop++;
-      if (chkdualcpu.Checked)
-      {
-        lblCPU2.Visible = true;
-        cbxCPU2.Visible = true;
-        lblCPU2.SetBounds(vonlinks, vonoben + 3, lblCPU2.Bounds.Width, lblCPU2.Bounds.Height);
-        cbxCPU2.SetBounds(cbxCPU2.Bounds.Left, vonoben, cbxCPU2.Bounds.Width, cbxCPU2.Bounds.Height); vonoben += abstand;
-        cbxCPU2.TabIndex = tabstop++;
-      }
-      else
-      {
-        lblCPU2.Visible = false;
-        cbxCPU2.Visible = false;
-      }
-
-      lblKuehlung.SetBounds(vonlinks, vonoben + 3, lblKuehlung.Bounds.Width, lblKuehlung.Bounds.Height);
-      cbxCooling.SetBounds(cbxCooling.Bounds.Left, vonoben, cbxCooling.Bounds.Width, cbxCooling.Bounds.Height); vonoben += abstand;
-      cbxCooling.TabIndex = tabstop++;
-
-      for (int i = 0; i < cbxGrakaList.Count; i++)
-      {
-        lblGrakaList[i].SetBounds(vonlinks, vonoben + 3, lblGrakaList[i].Bounds.Width, lblGrakaList[i].Bounds.Height);
-        cbxGrakaList[i].SetBounds(cbxGrakaList[i].Bounds.Left, vonoben, cbxGrakaList[i].Bounds.Width, cbxGrakaList[i].Bounds.Height); vonoben += abstand;
-        cbxGrakaList[i].TabIndex = tabstop++;
-
-        if (!chkCFSLI.Checked)
-        {
-          break;
-        }
-      }
-
-      lblPhysX.SetBounds(vonlinks, vonoben + 3, lblPhysX.Bounds.Width, lblPhysX.Bounds.Height);
-      cbxPhysx.SetBounds(cbxPhysx.Bounds.Left, vonoben, cbxPhysx.Bounds.Width, cbxPhysx.Bounds.Height); vonoben += abstand;
-      cbxPhysx.TabIndex = tabstop++;
-      
-      lblHDD.SetBounds(vonlinks, vonoben + 3, lblHDD.Bounds.Width, lblHDD.Bounds.Height);
-      cbxHDD.SetBounds(cbxHDD.Bounds.Left, vonoben, cbxHDD.Bounds.Width, cbxHDD.Bounds.Height); vonoben += abstand;
-      cbxHDD.TabIndex = tabstop++;
-
-      lblSSD.SetBounds(vonlinks, vonoben + 3, lblSSD.Bounds.Width, lblSSD.Bounds.Height);
-      cbxSSD.SetBounds(cbxSSD.Bounds.Left, vonoben, cbxSSD.Bounds.Width, cbxSSD.Bounds.Height); vonoben += abstand;
-      cbxSSD.TabIndex = tabstop++;
-
-      lblLaufwerke.SetBounds(vonlinks, vonoben + 3, lblLaufwerke.Bounds.Width, lblLaufwerke.Bounds.Height);
-      cbxLaufwerke.SetBounds(cbxLaufwerke.Bounds.Left, vonoben, cbxLaufwerke.Bounds.Width, cbxLaufwerke.Bounds.Height); vonoben += abstand;
-      cbxLaufwerke.TabIndex = tabstop++;
-
-      lblLuefter.SetBounds(vonlinks, vonoben + 3, lblLuefter.Bounds.Width, lblLuefter.Bounds.Height);
-      cbxFans.SetBounds(cbxFans.Bounds.Left, vonoben, cbxFans.Bounds.Width, cbxFans.Bounds.Height); vonoben += abstand;
-      cbxFans.TabIndex = tabstop++;
-
-      lblOC.SetBounds(vonlinks, vonoben + 3, lblOC.Bounds.Width, lblOC.Bounds.Height);
-      cbxOverclocking.SetBounds(cbxOverclocking.Bounds.Left, vonoben, cbxOverclocking.Bounds.Width, cbxOverclocking.Bounds.Height); vonoben += abstand;
-      cbxOverclocking.TabIndex = tabstop++;
-
-      //Fenstergrösse anpassen bei vielen GPU's
-      vonoben += abstand;
-      if (vonoben > 370)
-      {
-        this.Size = new System.Drawing.Size(this.Size.Width, vonoben + 144);
-      }
-      else
-      {
-        this.Size = new System.Drawing.Size(this.Size.Width, 510);
-      }
-
-      this.gbxDaten.ResumeLayout();
-    }
-
     private System.Windows.Forms.MenuStrip menuStrip1;
     private System.Windows.Forms.ToolStripMenuItem supportToolStripMenuItem;
     private System.Windows.Forms.ToolStripMenuItem infoToolStripMenuItem;
@@ -1119,22 +862,9 @@ namespace PSU_Calculator
     internal System.Windows.Forms.ComboBox cbxPhysx;
     internal System.Windows.Forms.Label lblPhysX;
     internal System.Windows.Forms.CheckBox chkCFSLI;
-    internal System.Windows.Forms.Label Label11;
-    internal System.Windows.Forms.Label Label10;
-    internal System.Windows.Forms.ComboBox cbxLED;
-    internal System.Windows.Forms.ComboBox cbxKaltlicht;
     internal System.Windows.Forms.Label lblSSD;
     internal System.Windows.Forms.ComboBox cbxSSD;
     internal System.Windows.Forms.CheckBox chkdualcpu;
-    internal System.Windows.Forms.CheckBox lcd;
-    internal System.Windows.Forms.CheckBox cardreader;
-    internal System.Windows.Forms.CheckBox fancontroll;
-    internal System.Windows.Forms.Label Label26;
-    internal System.Windows.Forms.CheckBox raidcard;
-    internal System.Windows.Forms.CheckBox tvtuner;
-    internal System.Windows.Forms.CheckBox soundblasterwfront;
-    internal System.Windows.Forms.Label Label20;
-    internal System.Windows.Forms.CheckBox soundblaster;
     internal System.Windows.Forms.ComboBox cbxCpu;
     internal System.Windows.Forms.Label lblCPU;
     internal System.Windows.Forms.Label lblKuehlung;
@@ -1168,7 +898,7 @@ namespace PSU_Calculator
     private System.Windows.Forms.ToolStripMenuItem datenSpeicherortToolStripMenuItem;
     private System.Windows.Forms.ToolStripMenuItem lokalerOrdnerToolStripMenuItem;
     private System.Windows.Forms.ToolStripMenuItem appDataToolStripMenuItem;
-    private System.Windows.Forms.Panel pnlTest;
+    private System.Windows.Forms.Panel pnlRow2;
 
   }
 }

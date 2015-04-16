@@ -49,38 +49,8 @@ namespace PSU_Calculator.DataWorker
     //  foreach (PowerSupply ps in LoaderModul.getInstance().Netzteile)
       foreach (PowerSupply ps in ActiveComponents.Get().LastEmpfohlenePowerSupplys)
       {
-        if (GetPricesForPSU(ps))
-        {
-         // pricesDoneOneUpdate(this, ps);
-        }
       }
       running = false;
-    }
-
-    public bool GetPricesForPSU(PowerSupply psu)
-    {
-      if (!string.IsNullOrEmpty(psu.Price))
-      {
-        return false;
-      }
-      if (string.IsNullOrEmpty(psu.CurrentPresvergleichLink))
-      {
-        return false;
-      }
-      Preisvergleich = psu.CurrentPresvergleichLink;
-
-
-      if (string.IsNullOrEmpty(""))
-      {
-        return false;
-      }
-      //Presivergleich hat sich geändert.
-      if (Preisvergleich != psu.CurrentPresvergleichLink)
-      {
-        return false;
-      }
-      psu.Price = "";
-      return true;
     }
 
     private string Preisvergleich
