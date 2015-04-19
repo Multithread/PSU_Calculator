@@ -1,0 +1,23 @@
+<Settings>
+  <Version>
+    <GPUs Version="1"/>
+    <CPUs Version="1"/>
+    <Netzteile Version="1.2"/>
+  </Version>
+  <File Name="GPUs">
+    	https://raw.githubusercontent.com/Multithread/PSU_Calculator/master/GPUs.data
+  </File>
+  <File Name="CPUs">
+    	https://raw.githubusercontent.com/Multithread/PSU_Calculator/master/CPUs.data
+  </File>
+  <File Name="Netzteile">
+    	https://raw.githubusercontent.com/Multithread/PSU_Calculator/master/Netzteile.data
+  </File>
+  <File Name="Anderes">
+    	https://raw.githubusercontent.com/Multithread/PSU_Calculator/master/Anderes.data
+  </File>
+  <Booleans/>
+  <Suchmaschine>
+    DE
+  </Suchmaschine>
+</Settings>
