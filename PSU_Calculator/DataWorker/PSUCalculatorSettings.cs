@@ -12,17 +12,18 @@ namespace PSU_Calculator.DataWorker
   public class PSUCalculatorSettings
   {
     private static PSUCalculatorSettings instance = null;
-    public static string Version = "Version";
+    public static string Einstellungen = "Einstellungen";
     public static string CPU = "CPUs";
     public static string GPU = "GPUs";
     public static string PowerSupply = "Netzteile";
+
+
+    public static string Version = "Version"; 
     public static string MySystem = "MySystem";
     public static string ChoosenComponents = "Components";
-    public static string Einstellungen = "Einstellungen";
     public static string DataPath = "PSU_Calculator_Data";
     public static string SearchEngineString = "Suchmaschine";
     public static string DefaultSearchEngine = "de";
-    private static string BoolValues = "Booleans";
 
     private string searchEngineString = "";
 
@@ -36,11 +37,11 @@ namespace PSU_Calculator.DataWorker
     {
       get
       {
-        return GetAsDouble(GetSetting("Version." + GPU).getAttribut("Version"));
+        return CalculatorSettingsFile.Get().GetVersionForFile(GPU);
       }
       set
       {
-        GetSetting("Version." + GPU).addAttribut("Version", value.ToString());
+        CalculatorSettingsFile.Get().SetVersionForFile(GPU, value);
       }
     }
 
@@ -48,11 +49,11 @@ namespace PSU_Calculator.DataWorker
     {
       get
       {
-        return GetAsDouble(GetSetting("Version." + CPU).getAttribut("Version"));
+        return CalculatorSettingsFile.Get().GetVersionForFile(CPU);
       }
       set
       {
-        GetSetting("Version." + CPU).addAttribut("Version", value.ToString());
+        CalculatorSettingsFile.Get().SetVersionForFile(CPU, value);
       }
     }
 
@@ -60,11 +61,11 @@ namespace PSU_Calculator.DataWorker
     {
       get
       {
-        return GetAsDouble(GetSetting("Version." + PowerSupply).getAttribut("Version"));
+        return CalculatorSettingsFile.Get().GetVersionForFile(PowerSupply);
       }
       set
       {
-        GetSetting("Version." + PowerSupply).addAttribut("Version", value.ToString());
+        CalculatorSettingsFile.Get().SetVersionForFile(PowerSupply, value);
       }
     }
 
@@ -112,7 +113,7 @@ namespace PSU_Calculator.DataWorker
 
     private void Load()
     {
-      Settings = StorageMapper.GetXML(GetXmlFilePath(Einstellungen));
+      Settings = CalculatorSettingsFile.Get().Settings;
       Element version;
       if (Settings.getAllEntries().Count == 0)
       {
@@ -132,9 +133,9 @@ namespace PSU_Calculator.DataWorker
           search = "DE";
         }
         Settings.addElement(new Element(SearchEngineString, search));
-        Settings.addElement(new Element(BoolValues));
+       // Settings.addElement(new Element(BoolValues));
         hasChanged = true;
-        SaveSettings();
+        //SaveSettings();
       }
       version = Settings.getElementByName("Version");
       //ElementDict abfüllen.
@@ -142,10 +143,10 @@ namespace PSU_Calculator.DataWorker
       ElementDict.Add(CPU, version.getElementByName(CPU));
       ElementDict.Add(PowerSupply, version.getElementByName(PowerSupply));
       ElementDict.Add(SearchEngineString, Settings.getElementByName(SearchEngineString));
-      if (Settings.getElementByName(BoolValues) != null)
-      {
-        ElementDict.Add(BoolValues, Settings.getElementByName(BoolValues));
-      }
+      //if (Settings.getElementByName(BoolValues) != null)
+      //{
+      //  ElementDict.Add(BoolValues, Settings.getElementByName(BoolValues));
+      //}
       SetSearchEngine(Settings.getElementByName(SearchEngineString).Text);
     }
 
@@ -224,21 +225,6 @@ namespace PSU_Calculator.DataWorker
       }
     }
 
-    private double GetAsDouble(string data)
-    {
-      double output;
-      if (double.TryParse(data, NumberStyles.AllowDecimalPoint, CultureInfo.InvariantCulture, out output))
-      {
-        return output;
-      }
-      return 0.0d;
-    }
-
-    public Element GetSetting(string settingName)
-    {
-      return Settings.getElementByPfadOnCreate(settingName);
-    }
-
     public void SetSearchEngine(string engine)
     {
       OverrideSetting(PSUCalculatorSettings.SearchEngineString, engine);
@@ -262,30 +248,8 @@ namespace PSU_Calculator.DataWorker
         ElementDict.Add(key, ele);
       }
       ele.Text = value;
+      CalculatorSettingsFile.Get().OverrideSetting(key, ele);
       //Daten.Put(key, value);
-    }
-
-    public void OverrideSetting(string key, Element newElement)
-    {
-      hasChanged = true;
-      Element oldElement;
-      if (ElementDict.TryGetValue(key, out oldElement))
-      {
-        ElementDict.Remove(key);
-        Settings.removeElement(oldElement);
-      }
-      Settings.addElement(newElement);
-      ElementDict.Add(key, newElement);
-      SaveSettings();
-    }
-
-    public void SaveSettings()
-    {
-      if (hasChanged)
-      {
-        StorageMapper.WriteToFilesystem(GetXmlFilePath(Einstellungen), Settings.getXML());
-        hasChanged = false;
-      }
     }
 
     public bool HasChanged
@@ -317,48 +281,12 @@ namespace PSU_Calculator.DataWorker
     {
       get
       {
-        return GetBoolValue("ConnectorsHaveToFit");
+        return CalculatorSettingsFile.Get().GetBoolValue("ConnectorsHaveToFit");
       }
       set
       {
-        SetBoolValue("ConnectorsHaveToFit", value);
+        CalculatorSettingsFile.Get().SetBoolValue("ConnectorsHaveToFit", value);
       }
-    }
-
-    /// <summary>
-    /// Setzt einen Boolschen Wert in das Setting Element
-    /// </summary>
-    /// <param name="key">Name des Boolschen wertes</param>
-    /// <param name="value">Wert</param>
-    private void SetBoolValue(string key, bool value)
-    {
-      Element ele;
-      if (!ElementDict.TryGetValue(BoolValues, out ele))
-      {
-        ele = new Element(BoolValues);
-      }
-      ele.addAttribut(key, value.ToString());
-      OverrideSetting(BoolValues, ele);
-    }
-
-    /// <summary>
-    /// gibt einen Boolschen wert asu dem Settings Element zurück.
-    /// </summary>
-    /// <param name="key"></param>
-    /// <returns></returns>
-    private bool GetBoolValue(string key)
-    {
-      Element ele;
-      if (!ElementDict.TryGetValue(BoolValues, out ele))
-      {
-        return true;
-      }
-      Boolean output = false;
-      if (Boolean.TryParse(ele.getAttribut(key), out output))
-      {
-        return output;
-      }
-      return true;
     }
 
     public static string GetFilePath(string filename)

@@ -605,7 +605,7 @@ namespace PSU_Calculator
       var entry = sender as ToolStripMenuItem;
       var set = PSUCalculatorSettings.Get();
       set.SetSearchEngine(entry.Text);
-      set.SaveSettings();
+      CalculatorSettingsFile.Get().SaveSettings();
       berechneVerbrauch(null, null);
     }
 
