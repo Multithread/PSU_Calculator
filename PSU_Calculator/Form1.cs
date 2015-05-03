@@ -341,6 +341,7 @@ namespace PSU_Calculator
       PlaziereElemente();
       LoaderModul.getInstance().LoadGPU(cbxGraka);
       LoaderModul.getInstance().setGPUSearchEvent(cbxGraka);
+      //LoaderModul.getInstance().AddComboBoxKeyUp(cbxGraka);
       ActiveComponents.Get().AddControl(cbxGraka);
       renameGPULabels();
     }

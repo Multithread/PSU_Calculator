@@ -264,6 +264,7 @@ namespace PSU_Calculator
       _box.AutoCompleteSource = AutoCompleteSource.ListItems;
       _box.Items.Clear();
       _box.Items.AddRange(GetGPUComponents().ToArray());
+      _box.Tag = new PcComponentList(GetGPUComponents());
     }
 
     /// <summary>
@@ -277,6 +278,7 @@ namespace PSU_Calculator
       _box.AutoCompleteSource = AutoCompleteSource.ListItems;
       _box.Items.Clear();
       _box.Items.AddRange(GetCPUComponents().ToArray());
+      _box.Tag = new PcComponentList(GetCPUComponents());
     }
 
     public void setGPUSearchEvent(ComboBox _box)
@@ -333,6 +335,40 @@ namespace PSU_Calculator
           _box.Select(_box.Text.Length, 0);
           _box.SelectedItem = null;
           //liste.DroppedDown = true;
+        }
+      };
+    }
+
+    public void AddComboBoxKeyUp(ComboBox _box)
+    {
+      if (!(_box.Tag is PcComponentList))
+      {
+        return;
+      }
+      _box.KeyUp += (sender, args) =>
+      {
+        var comList = (_box.Tag as PcComponentList);
+
+        //Nichts machen wenn das Zeichen kein Zeichen oder kein Buchstabe ist
+        if (!char.IsLetterOrDigit((char)args.KeyValue) && !Keys.Back.Equals(args.KeyCode) && !Keys.Delete.Equals(args.KeyCode) && !Keys.NumPad0.Equals(args.KeyCode))
+        {
+          return;
+        }
+
+        _box.Items.Clear();
+        IEnumerable<PcComponent> suggestions = GetPossibleComponents(comList.Components, _box.Text);
+
+        if (suggestions.Count() == 1)
+        {
+          _box.Items.AddRange(suggestions.ToArray());
+          _box.SelectedItem = suggestions.First();
+          _box.SelectAll();
+        }
+        else
+        {
+          _box.Items.AddRange(suggestions.ToArray());
+          _box.Select(_box.Text.Length, 0);
+          _box.SelectedItem = null;
         }
       };
     }
