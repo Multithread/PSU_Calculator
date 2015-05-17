@@ -1,7 +1,7 @@
 <Settings>
   <Version>
     <GPUs Version="1"/>
-    <CPUs Version="1"/>
+    <CPUs Version="1.1"/>
     <Netzteile Version="1.2"/>
   </Version>
   <File Name="GPUs">
