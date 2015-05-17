@@ -30,8 +30,8 @@
   <Component Name="Intel Core i7 3960x" TDP="130" Type="CPU"/>
   <Component Name="Intel Core i7 3970x" TDP="150" Type="CPU"/>
   <Component Name="Intel Core i7 4770(k)" TDP="84" Type="CPU"/>
-  <Component Name="Intel Core i7 4930(k)" TDP="190" Type="CPU"/>
-  <Component Name="Intel Core i7 4960x" TDP="190" Type="CPU"/>
+  <Component Name="Intel Core i7 4930(k)" TDP="130" Type="CPU"/>
+  <Component Name="Intel Core i7 4960x" TDP="130" Type="CPU"/>
   <Component Name="Intel Core i7 5820k" TDP="140" Type="CPU"/>
   <Component Name="Intel Core i7 5930k" TDP="140" Type="CPU"/>
   <Component Name="Intel Core i7 5960x" TDP="140" Type="CPU"/>
