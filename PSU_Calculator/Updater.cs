@@ -12,11 +12,8 @@ namespace PSU_Calculator
 {
   public class Updater
   {
-    static string Einstellungen = "https://raw.githubusercontent.com/Multithread/PSU_Calculator/master/Einstellungen.data";
-    static string PSUlist = "https://raw.githubusercontent.com/Multithread/PSU_Calculator/master/Netzteile.data";
-    static string GPUList = "https://raw.githubusercontent.com/Multithread/PSU_Calculator/master/GPUs.data";
-    static string CPUList = "https://raw.githubusercontent.com/Multithread/PSU_Calculator/master/CPUs.data";
-    Thread downloader;
+    private static string Einstellungen = "https://raw.githubusercontent.com/Multithread/PSU_Calculator/master/Einstellungen.data";
+     Thread downloader;
 
     public delegate void UpdateFinishedDelegate(Updater sender);
     public event UpdateFinishedDelegate UpdateFinishedEvent;
@@ -67,14 +64,22 @@ namespace PSU_Calculator
     /// </summary>
     private void run()
     {
-      string data = DownloadFromSource(Einstellungen);
+      string data = DownloadFromSource(GetSettingsDownloadPath());
       ComponentStringSplitter css = new ComponentStringSplitter(data, true);
       foreach (string key in updateFileDict.Keys)
       {
+        //EInstellungen Key Ignorieren, den haben wir bereits
+        if (PSUCalculatorSettings.Einstellungen.Equals(key))
+        {
+          continue;
+        }
+
+        //Version auslesen
         double version;
         versionFileDict.TryGetValue(key, out version);
         if (CalculatorSettingsFile.Get().GetVersionForFile(key) < css.GetValueForKeyAsDouble(key))
         {
+          //Herunterladen der Daten.
           string url;
           updateFileDict.TryGetValue(key, out url);
           IsUpdating = true;
@@ -131,6 +136,16 @@ namespace PSU_Calculator
       {
         UpdateFinishedEvent(this);
       }
+    }
+
+    public string GetSettingsDownloadPath()
+    {
+      string tmpPath;
+      if (!updateFileDict.TryGetValue(PSUCalculatorSettings.Einstellungen, out tmpPath))
+      {
+        tmpPath = Einstellungen;
+      }
+      return tmpPath.Trim();
     }
 
     public string DownloadFromSource(string url)
