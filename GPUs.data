@@ -1,4 +1,10 @@
 <GPUs>
+  <Component Name="AMD Radeon R9 360" TDP="85" Type="GPU"/>
+  <Component Name="AMD Radeon R9 370" TDP="150" Type="GPU"/>
+  <Component Name="AMD Radeon R9 380" TDP="200" Type="GPU"/>
+  <Component Name="AMD Radeon R9 390" TDP="275" Type="GPU"/>
+  <Component Name="AMD Radeon R9 390x" TDP="275" Type="GPU"/>
+  <Component Name="" TDP="0" Type="Empty"/>
   <Component Name="AMD Radeon R7 240" TDP="30" Type="GPU"/>
   <Component Name="AMD Radeon R7 250" TDP="75" Type="GPU"/>
   <Component Name="AMD Radeon R7 250x" TDP="95" Type="GPU"/>
@@ -26,6 +32,7 @@
   <Component Name="Nvidia GeForce GTX 960" TDP="90" Type="GPU"/>
   <Component Name="Nvidia GeForce GTX 970" TDP="170" Type="GPU"/>
   <Component Name="Nvidia GeForce GTX 980" TDP="200" Type="GPU"/>
+  <Component Name="Nvidia GeForce GTX 980" TDP="250" Type="GPU"/>
   <Component Name="" TDP="0" Type="Empty"/>
   <Component Name="AMD Radeon HD 7770 GHz Edition" TDP="80" Type="GPU"/>
   <Component Name="AMD Radeon HD 7850" TDP="130" Type="GPU"/>
