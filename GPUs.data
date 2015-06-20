@@ -1,6 +1,6 @@
 <GPUs>
   <Component Name="AMD Radeon R9 360" TDP="85" Type="GPU"/>
-  <Component Name="AMD Radeon R9 370" TDP="150" Type="GPU"/>
+  <Component Name="AMD Radeon R9 370" TDP="120" Type="GPU"/>
   <Component Name="AMD Radeon R9 380" TDP="200" Type="GPU"/>
   <Component Name="AMD Radeon R9 390" TDP="275" Type="GPU"/>
   <Component Name="AMD Radeon R9 390x" TDP="275" Type="GPU"/>
