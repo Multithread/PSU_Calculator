@@ -140,13 +140,12 @@ namespace PSU_Calculator.DataWorker
       version = Settings.getElementByName("Version");
       //ElementDict abfüllen.
       ElementDict.Add(GPU, version.getElementByName(GPU));
+      ElementDict.Add("AskSaveLocal", Settings.getElementByPfadOnCreate("AskSaveLocal"));
       ElementDict.Add(CPU, version.getElementByName(CPU));
       ElementDict.Add(PowerSupply, version.getElementByName(PowerSupply));
       ElementDict.Add(SearchEngineString, Settings.getElementByName(SearchEngineString));
-      //if (Settings.getElementByName(BoolValues) != null)
-      //{
-      //  ElementDict.Add(BoolValues, Settings.getElementByName(BoolValues));
-      //}
+
+
       SetSearchEngine(Settings.getElementByName(SearchEngineString).Text);
     }
 
@@ -234,6 +233,10 @@ namespace PSU_Calculator.DataWorker
       if (oldEngine != null && !oldEngine.Equals(SearchEngine))
       {
         hasChanged = true;
+      } 
+      if (string.IsNullOrEmpty(oldEngine) || oldEngine.Equals(SearchEngine))
+      {
+        CalculatorSettingsFile.Get().HasChanged = false;
       }
     }
 
@@ -265,17 +268,18 @@ namespace PSU_Calculator.DataWorker
       get;
       set;
     }
-    //public bool ShowPriceComparer
-    //{
-    //  get
-    //  {
-    //    return GetBoolValue("ShowPriceComparer");
-    //  }
-    //  set
-    //  {
-    //    SetBoolValue("ShowPriceComparer", value);
-    //  }
-    //}
+
+    public bool AskSaveLocal
+    {
+      get
+      {
+        return CalculatorSettingsFile.Get().GetBoolValue("AskSaveLocal");
+      }
+      set
+      {
+        CalculatorSettingsFile.Get().SetBoolValue("AskSaveLocal", value);
+      }
+    }
 
     public bool ConnectorsHaveToFit
     {

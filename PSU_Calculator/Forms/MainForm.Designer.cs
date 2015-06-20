@@ -91,6 +91,7 @@ namespace PSU_Calculator
       this.cbxOverclocking = new System.Windows.Forms.ComboBox();
       this.cbxCPU2 = new System.Windows.Forms.ComboBox();
       this.lblCPU2 = new System.Windows.Forms.Label();
+      this.downloadpfadÄndernToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
       this.menuStrip1.SuspendLayout();
       this.PnlContent.SuspendLayout();
       this.gbxNetzteile.SuspendLayout();
@@ -111,7 +112,7 @@ namespace PSU_Calculator
             this.einstellungenToolStripMenuItem});
       this.menuStrip1.Location = new System.Drawing.Point(0, 0);
       this.menuStrip1.Name = "menuStrip1";
-      this.menuStrip1.Size = new System.Drawing.Size(307, 24);
+      this.menuStrip1.Size = new System.Drawing.Size(399, 24);
       this.menuStrip1.TabIndex = 0;
       this.menuStrip1.Text = "menuStrip1";
       // 
@@ -181,7 +182,8 @@ namespace PSU_Calculator
       // 
       this.optionenToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.themeToolStripMenuItem,
-            this.datenSpeicherortToolStripMenuItem});
+            this.datenSpeicherortToolStripMenuItem,
+            this.downloadpfadÄndernToolStripMenuItem});
       this.optionenToolStripMenuItem.Name = "optionenToolStripMenuItem";
       this.optionenToolStripMenuItem.Size = new System.Drawing.Size(49, 20);
       this.optionenToolStripMenuItem.Text = "Extras";
@@ -189,7 +191,7 @@ namespace PSU_Calculator
       // themeToolStripMenuItem
       // 
       this.themeToolStripMenuItem.Name = "themeToolStripMenuItem";
-      this.themeToolStripMenuItem.Size = new System.Drawing.Size(169, 22);
+      this.themeToolStripMenuItem.Size = new System.Drawing.Size(192, 22);
       this.themeToolStripMenuItem.Text = "Aktualisiere Preise";
       this.themeToolStripMenuItem.Visible = false;
       this.themeToolStripMenuItem.Click += new System.EventHandler(this.themeToolStripMenuItem_Click);
@@ -200,7 +202,7 @@ namespace PSU_Calculator
             this.lokalerOrdnerToolStripMenuItem,
             this.appDataToolStripMenuItem});
       this.datenSpeicherortToolStripMenuItem.Name = "datenSpeicherortToolStripMenuItem";
-      this.datenSpeicherortToolStripMenuItem.Size = new System.Drawing.Size(169, 22);
+      this.datenSpeicherortToolStripMenuItem.Size = new System.Drawing.Size(192, 22);
       this.datenSpeicherortToolStripMenuItem.Text = "Daten Speicherort";
       // 
       // lokalerOrdnerToolStripMenuItem
@@ -231,7 +233,7 @@ namespace PSU_Calculator
       this.spracheToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.deutschToolStripMenuItem});
       this.spracheToolStripMenuItem.Name = "spracheToolStripMenuItem";
-      this.spracheToolStripMenuItem.Size = new System.Drawing.Size(151, 22);
+      this.spracheToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
       this.spracheToolStripMenuItem.Text = "Sprache";
       // 
       // deutschToolStripMenuItem
@@ -244,7 +246,7 @@ namespace PSU_Calculator
       // suchmaschineToolStripMenuItem
       // 
       this.suchmaschineToolStripMenuItem.Name = "suchmaschineToolStripMenuItem";
-      this.suchmaschineToolStripMenuItem.Size = new System.Drawing.Size(151, 22);
+      this.suchmaschineToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
       this.suchmaschineToolStripMenuItem.Text = "Suchmaschine";
       // 
       // PnlHeader
@@ -798,6 +800,13 @@ namespace PSU_Calculator
       this.lblCPU2.Text = "CPU 2:";
       this.lblCPU2.Visible = false;
       // 
+      // downloadpfadÄndernToolStripMenuItem
+      // 
+      this.downloadpfadÄndernToolStripMenuItem.Name = "downloadpfadÄndernToolStripMenuItem";
+      this.downloadpfadÄndernToolStripMenuItem.Size = new System.Drawing.Size(192, 22);
+      this.downloadpfadÄndernToolStripMenuItem.Text = "Downloadpfad ändern";
+      this.downloadpfadÄndernToolStripMenuItem.Click += new System.EventHandler(this.downloadpfadÄndernToolStripMenuItem_Click);
+      // 
       // Form1
       // 
       this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -899,6 +908,7 @@ namespace PSU_Calculator
     private System.Windows.Forms.ToolStripMenuItem lokalerOrdnerToolStripMenuItem;
     private System.Windows.Forms.ToolStripMenuItem appDataToolStripMenuItem;
     private System.Windows.Forms.Panel pnlRow2;
+    private System.Windows.Forms.ToolStripMenuItem downloadpfadÄndernToolStripMenuItem;
 
   }
 }

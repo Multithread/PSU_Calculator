@@ -62,7 +62,9 @@ namespace PSU_Calculator
       setUpdateVerbrauchEvent();
       cbxConectors.Checked = PSUCalculatorSettings.Get().ConnectorsHaveToFit;
 
-      new Updater().RunUpdateAsync();
+      var updater = new Updater() { InvokeControl = this };
+      updater.UpdateFinishedEvent += updater_UpdateFinishedEvent;
+      updater.RunUpdateAsync();
 
       berechneVerbrauch(this, null);
       AddPriceComparorsToToolStrip();
@@ -72,6 +74,14 @@ namespace PSU_Calculator
 
       //Last GPU hinzufügen und positionen, sowie grösse aktualisieren
       addGPU();
+    }
+
+    void updater_UpdateFinishedEvent(Updater sender)
+    {
+      if (sender.HasChanged)
+      {
+        MessageBox.Show("Es konnte eine neuere Version der Dateien heruntergeladen werden.\nStarten Sie das Programm neu damit die änderungen übernommen werden.");
+      }
     }
 
     void ActiveComponentChangedEvent(object sender)
@@ -677,6 +687,25 @@ namespace PSU_Calculator
     private void appDataToolStripMenuItem_Click(object sender, EventArgs e)
     {
       PSUCalculatorSettings.Get().ChangeDataPathToAppdata();
+    }
+
+    private void downloadpfadÄndernToolStripMenuItem_Click(object sender, EventArgs e)
+    {
+      var newPath = new InputFeld("Downloadpfad Einstellungen", new System.Text.RegularExpressions.Regex(""));
+      var settings = CalculatorSettingsFile.Get();
+      newPath.GetText = settings.Settings.getElementByPfadOnCreate(PSUCalculatorSettings.Einstellungen).Text;
+
+      if (newPath.ShowDialog() == DialogResult.OK)
+      {
+        settings.AddDownloadableFile(PSUCalculatorSettings.Einstellungen, newPath.GetText);
+        settings.Settings.getElementByPfadOnCreate(PSUCalculatorSettings.Einstellungen).Text = newPath.GetText;
+        foreach (var ele in settings.Settings.getElementByPfadOnCreate(PSUCalculatorSettings.Version).getAllEntries())
+        {
+          ele.addAttribut(PSUCalculatorSettings.Version, "0");
+        }
+        settings.SaveSettings();
+        MessageBox.Show("Bitte Starten Sie das Programm neu, um die Dateien vom neuen Downloadpfad herunterzuladen.");
+      }
     }
   }
 }

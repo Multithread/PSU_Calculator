@@ -15,7 +15,7 @@ namespace PSU_Calculator.Dateizugriffe
     public static bool SetLocalData(string _version, List<PcComponent> _gpu, List<PcComponent> _cpu, List<PcComponent> _nt)
     {
       //erstesmal?
-      if (!Properties.Einstellungen.Default.AskSaveLocal)
+      if (!PSUCalculatorSettings.Get().AskSaveLocal)
       {
         if (!StorageMapper.Existiert(PSUCalculatorSettings.Get().DirectoryPath))
         {
@@ -32,7 +32,7 @@ namespace PSU_Calculator.Dateizugriffe
           {
             return false;
           }
-          Properties.Einstellungen.Default.AskSaveLocal = true;
+          PSUCalculatorSettings.Get().AskSaveLocal = true;
         }
 
       }

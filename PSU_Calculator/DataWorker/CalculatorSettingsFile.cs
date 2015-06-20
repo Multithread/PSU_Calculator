@@ -35,11 +35,23 @@ namespace PSU_Calculator.DataWorker
     private Updater updater;
     private bool hasChanged = false;
 
+    public bool HasChanged
+    {
+      get
+      {
+        return hasChanged;
+      }
+      set
+      {
+        hasChanged = value;
+      }
+    }
+
     public void Load()
     {
       if (!FileExists(PSUCalculatorSettings.Einstellungen))
       {
-        return;
+        new Updater().RunUpdateSyncroniced();
       }
       settings = StorageMapper.GetXML(PSUCalculatorSettings.GetFilePath(PSUCalculatorSettings.Einstellungen));
       
@@ -55,13 +67,20 @@ namespace PSU_Calculator.DataWorker
           versionFileDict.Add(name, ver);
         }
       }
+      if (settings.getElementByName(PSUCalculatorSettings.Einstellungen)!=null)
+      {
+        if (!string.IsNullOrWhiteSpace(settings.getElementByName(PSUCalculatorSettings.Einstellungen).Text))
+        {
+          AddDownloadableFile(PSUCalculatorSettings.Einstellungen, settings.getElementByName(PSUCalculatorSettings.Einstellungen).Text.Trim());
+        }
+      }
       updater.FileVersions = versionFileDict;
       updater.FilesToUpdate = updateFileDict;
 
     }
 
     /// <summary>
-    /// gibt einen Boolschen wert asu dem Settings Element zurück.
+    /// gibt einen Boolschen wert aus dem Settings Element zurück.
     /// </summary>
     /// <param name="key"></param>
     /// <returns></returns>
@@ -107,7 +126,10 @@ namespace PSU_Calculator.DataWorker
     public double GetVersionForFile(string filename) 
     {
       double outvalue;
-      if (versionFileDict.TryGetValue(filename, out outvalue))
+      string value= settings.getElementByPfadOnCreate(PSUCalculatorSettings.Version).
+        getElementByPfadOnCreate(filename).
+        getAttribut(PSUCalculatorSettings.Version);
+      if (Double.TryParse(value, out outvalue))
       {
         return outvalue;
       }
@@ -147,6 +169,7 @@ namespace PSU_Calculator.DataWorker
         updateFileDict.Remove(filename);
       }
       updateFileDict.Add(filename, url);
+      hasChanged = true;
     }
 
     public bool IsValid()

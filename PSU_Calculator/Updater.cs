@@ -7,12 +7,14 @@ using System.Linq;
 using System.Net;
 using System.Text;
 using System.Threading;
+using System.Windows.Forms;
+using System.Xml;
 
 namespace PSU_Calculator
 {
   public class Updater
   {
-    private static string Einstellungen = "https://raw.githubusercontent.com/Multithread/PSU_Calculator/master/Einstellungen.data";
+    private static string Einstellungen = "https://raw.githubusercontent.com/Multithread/PSU_Calculator/master/Einstellungen.xml";
      Thread downloader;
 
     public delegate void UpdateFinishedDelegate(Updater sender);
@@ -33,6 +35,9 @@ namespace PSU_Calculator
       set { versionFileDict = value; }
     }
 
+    public Control InvokeControl { get; set; }
+    private finishedDelegateHandler finishedDelegate;
+
     public bool IsUpdating
     {
       get;
@@ -42,6 +47,7 @@ namespace PSU_Calculator
     public Updater()
     {
       IsUpdating = false;
+      finishedDelegate = new finishedDelegateHandler(callFinishedEvent);
     }
 
     public void RunUpdateAsync()
@@ -64,79 +70,77 @@ namespace PSU_Calculator
     /// </summary>
     private void run()
     {
+      HasChanged = false;
       string data = DownloadFromSource(GetSettingsDownloadPath());
-      ComponentStringSplitter css = new ComponentStringSplitter(data, true);
-      foreach (string key in updateFileDict.Keys)
+      XmlDocument doc = new XmlDocument();
+      try
       {
-        //EInstellungen Key Ignorieren, den haben wir bereits
+        doc.LoadXml(data);
+      }
+      catch (XmlException)
+      {
+        return;
+        //throw new Exception("XML ist Korupted");
+      }
+      Element tmpSettings = new Element(doc.FirstChild);
+      Element versionen = tmpSettings.getElementByName(PSUCalculatorSettings.Version);
+      foreach (Element ele in tmpSettings.getAlleElementeByName("File"))
+      {
+        string key = ele.getAttribut("Name");
+        //Einstellungen Key Ignorieren, den haben wir bereits
         if (PSUCalculatorSettings.Einstellungen.Equals(key))
         {
           continue;
         }
-
         //Version auslesen
-        double version;
-        versionFileDict.TryGetValue(key, out version);
-        if (CalculatorSettingsFile.Get().GetVersionForFile(key) < css.GetValueForKeyAsDouble(key))
+        double version = 1;
+        if (!Double.TryParse(versionen.getElementByPfadOnCreate(key).getAttribut(PSUCalculatorSettings.Version), out version))
+        {
+          version = 1;
+        }
+
+        //Herunterladen wenn die ServerVersion neuer ist.
+        if (CalculatorSettingsFile.Get().GetVersionForFile(key) < version)
         {
           //Herunterladen der Daten.
-          string url;
-          updateFileDict.TryGetValue(key, out url);
+          string url = ele.Text.Trim();
           IsUpdating = true;
           data = DownloadFromSource(url);
           if (!string.IsNullOrEmpty(data))
           {
             string path = PSUCalculatorSettings.GetFilePath(key);
             StorageMapper.WriteToFilesystem(path, data);
-            CalculatorSettingsFile.Get().SetVersionForFile(key, css.GetValueForKeyAsDouble(key));
-            LoaderModul.getInstance().ReloadPowerSupplys();
+            CalculatorSettingsFile.Get().SetVersionForFile(key, version);
+            HasChanged = HasChanged || CalculatorSettingsFile.Get().HasChanged;
+            CalculatorSettingsFile.Get().SaveSettings();
           }
           IsUpdating = false;
         }
       }
-      //if (PSUCalculatorSettings.Get().PSUVersion < css.GetValueForKeyAsDouble(PSUCalculatorSettings.PowerSupply))
-      //{
-      //  IsUpdating = true;
-      //  data = DownloadFromSource(PSUlist);
-      //  if (!string.IsNullOrEmpty(data))
-      //  {
-      //    string path = PSUCalculatorSettings.GetFilePath(PSUCalculatorSettings.PowerSupply);
-      //    StorageMapper.WriteToFilesystem(path, data);
-      //    PSUCalculatorSettings.Get().PSUVersion = css.GetValueForKeyAsDouble(PSUCalculatorSettings.PowerSupply);
-      //    LoaderModul.getInstance().ReloadPowerSupplys();
-      //  }
-      //  IsUpdating = false;
-      //}
-      //if (PSUCalculatorSettings.Get().CPUVersion < css.GetValueForKeyAsDouble(PSUCalculatorSettings.CPU))
-      //{
-      //  IsUpdating = true;
-      //  data = DownloadFromSource(CPUList);
-      //  if (!string.IsNullOrEmpty(data))
-      //  {
-      //    string path = PSUCalculatorSettings.GetFilePath(PSUCalculatorSettings.CPU);
-      //    StorageMapper.WriteToFilesystem(path, data);
-      //    PSUCalculatorSettings.Get().CPUVersion = css.GetValueForKeyAsDouble(PSUCalculatorSettings.CPU);
-      //  }
-      //  IsUpdating = false;
-      //}
-      //if (PSUCalculatorSettings.Get().GPUVersion < css.GetValueForKeyAsDouble(PSUCalculatorSettings.GPU))
-      //{
-      //  IsUpdating = true;
-      //  data = DownloadFromSource(GPUList);
-      //  if (!string.IsNullOrEmpty(data))
-      //  {
-      //    string path = PSUCalculatorSettings.GetFilePath(PSUCalculatorSettings.GPU);
-      //    StorageMapper.WriteToFilesystem(path, data);
-      //    PSUCalculatorSettings.Get().GPUVersion = css.GetValueForKeyAsDouble(PSUCalculatorSettings.GPU);
-      //  }
-      //  IsUpdating = false;
-      //}
-      CalculatorSettingsFile.Get().SaveSettings();
+      callFinishedEvent();
+    }
+
+    private delegate void finishedDelegateHandler();
+    /// <summary>
+    /// Invoken des Events, je anchdem mit contro.Invoke
+    /// </summary>
+    public void callFinishedEvent()
+    {
       if (UpdateFinishedEvent != null)
       {
+        if (InvokeControl != null)
+        {
+          if (InvokeControl.InvokeRequired)
+          {
+            InvokeControl.Invoke(finishedDelegate);
+            return;
+          }
+        }
         UpdateFinishedEvent(this);
       }
     }
+
+    public bool HasChanged { get; set; }
 
     public string GetSettingsDownloadPath()
     {
