@@ -49,6 +49,7 @@ namespace PSU_Calculator.DataWorker
 
     public void Load()
     {
+      settings = new Element("");
       if (!FileExists(PSUCalculatorSettings.Einstellungen))
       {
         new Updater().RunUpdateSyncroniced();

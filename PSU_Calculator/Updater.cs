@@ -155,6 +155,7 @@ namespace PSU_Calculator
     public string DownloadFromSource(string url)
     {
       WebClient c = new WebClient();
+      c.Encoding = Encoding.UTF8;
       LoaderModul m = LoaderModul.getInstance();
       string data = "";
       try
