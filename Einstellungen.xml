@@ -1,6 +1,6 @@
 <Settings>
   <Version>
-    <GPUs Version="2"/>
+    <GPUs Version="2.1"/>
     <CPUs Version="1.1"/>
     <Netzteile Version="1.2"/>
   </Version>
