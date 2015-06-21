@@ -1,4 +1,3 @@
-<?xml version="1.0" encoding="UTF-8"?>
 <Components>
 	<Component TitleOrder="1"  Order="0" Row="2" Name="PCI-E Karten:" Type="Label"/>
 	<Component TitleOrder="2"  Order="0" Row="2" Name="Andere Geräte:" Type="Label"/>
