@@ -22,7 +22,7 @@
         http://www.hardwareluxx.de/index.php/artikel/hardware/netzteile/29562-roundup500w0114.html?start=2
       </Test>
     </Testberichte>
-  </Netzteil>  
+  </Netzteil>   
   <Netzteil Name="Cooler Master V550">
     <Daten Min="200" Max="440" Quali="73"/>
 	<Data>
@@ -137,7 +137,7 @@
     <Testberichte/>
   </Netzteil>
   <Netzteil Name="Antec High Current Pro HCP-1300 Platinum 1300W">
-    <Daten Min="850" Max="1150" Quali="98"/>
+    <Daten Min="850" Max="1200" Quali="94"/>
 	<Data>
 	  <Stecker PCIE68="10" Sata="9" Molex="6" ATX12="1" EPS12="1"/>
 	  <Kabel Modular="Voll"/>
@@ -152,7 +152,7 @@
       </CH>
     </Preisvergleiche>
     <Testberichte/>
-  </Netzteil>
+  </Netzteil>  
   <Netzteil Name="Be quiet! Dark Power P10 750W">
     <Daten Min="450" Max="650" Quali="97"/>
 	<Data>
@@ -170,42 +170,79 @@
     </Preisvergleiche>
     <Testberichte/>
   </Netzteil>
-  <Netzteil Name="Be quiet! Dark Power P10 1000W">
-    <Daten Min="650" Max="880" Quali="96"/>
+  <Netzteil Name="Be quiet! Dark Power 11 850W">
+    <Daten Min="500" Max="800" Quali="98"/>
 	<Data>
-	  <Stecker PCIE68="8" PCIE6="1" Sata="11" Molex="9" ATX12="2" ATX4="1" EPS12="1"/>
+	  <Stecker PCIE68="6" PCIE6="1" Sata="8" Molex="6" ATX12="1" EPS12="1"/>
+	  <Kabel Modular="Semi"/>
+	  <Energy PCIE="60"/>
+	</Data>
+    <Preisvergleiche>
+      <DE>
+        http://geizhals.de/be-quiet-dark-power-pro-11-850w-atx-2-4-bn253-a1265096.html
+      </DE>
+      <CH>
+        http://www.toppreise.ch/prod_409397.html
+      </CH>
+	  <AT>
+		http://geizhals.at/be-quiet-dark-power-pro-11-850w-atx-2-4-bn253-a1265096.html
+	  </AT>
+    </Preisvergleiche>
+    <Testberichte>
+      <Test>
+        http://www.hardwareluxx.de/index.php/artikel/hardware/netzteile/35247-be-quiet-dark-power-pro-11-850w-im-test.html
+      </Test>
+      <Test>
+        http://www.tweakpc.de/hardware/tests/netzteile/bequiet_dark_power_pro_11/s01.php
+      </Test>
+    </Testberichte>
+  </Netzteil>
+    <Netzteil Name="Be quiet! Dark Power 11 1000W">
+    <Daten Min="500" Max="950" Quali="97"/>
+	<Data>
+	  <Stecker PCIE68="8" PCIE6="1" Sata="10" Molex="7" ATX12="1" EPS12="1"/>
 	  <Kabel Modular="Semi"/>
 	  <Energy PCIE="80"/>
 	</Data>
     <Preisvergleiche>
       <DE>
-        http://geizhals.de/be-quiet-dark-power-pro-10-1000w-atx-2-31-p10-1000w-bn204-a790601.html
+        http://geizhals.de/be-quiet-dark-power-pro-11-1000w-atx-2-4-bn254-a1265098.html
       </DE>
       <CH>
-        http://www.toppreise.ch/prod_279025.html
+        http://www.toppreise.ch/prod_409404.html
       </CH>
+	  <AT>
+		http://geizhals.at/be-quiet-dark-power-pro-11-1000w-atx-2-4-bn254-a1265098.html
+	  </AT>
     </Preisvergleiche>
     <Testberichte/>
   </Netzteil>
-  <Netzteil Name="Be quiet! Dark Power P10 1200W">
-    <Daten Min="800" Max="1100" Quali="95"/>
+    <Netzteil Name="Be quiet! Dark Power 11 1200W">
+    <Daten Min="500" Max="1200" Quali="95"/>
 	<Data>
-	  <Stecker PCIE68="8" PCIE6="1" Sata="11" Molex="9" ATX12="2" ATX4="1" EPS12="1"/>
+	  <Stecker PCIE68="8" PCIE6="1" Sata="10" Molex="7" ATX12="1" EPS12="1"/>
 	  <Kabel Modular="Semi"/>
-	  <Energy PCIE="80"/>
+	  <Energy PCIE="90"/>
 	</Data>
     <Preisvergleiche>
       <DE>
-        http://geizhals.de/be-quiet-dark-power-pro-10-1200w-atx-2-31-p10-1200w-bn205-a790611.html
+        http://geizhals.de/be-quiet-dark-power-pro-11-1200w-atx-2-4-bn255-a1268103.html
       </DE>
       <CH>
-        http://www.toppreise.ch/prod_279024.html
+        http://www.toppreise.ch/prod_409409.html
       </CH>
+	  <AT>
+		geizhals.at/be-quiet-dark-power-pro-11-1200w-atx-2-4-bn255-a1268103.html
+	  </AT>
     </Preisvergleiche>
-    <Testberichte/>
+    <Testberichte>
+      <Test>
+        http://www.ocaholic.ch/modules/smartsection/item.php?itemid=1610
+      </Test>
+    </Testberichte>
   </Netzteil>
   <Netzteil Name="Be quiet! Straight Power E10 400W">
-    <Daten Min="150" Max="320" Quali="85"/>
+    <Daten Min="150" Max="320" Quali="76"/>
 	<Data>
 	  <Stecker PCIE68="2" Sata="6" Molex="3" ATX12="1"/>
 	  <Kabel Modular="None/Semi"/>
@@ -363,8 +400,76 @@
       </Test>
     </Testberichte>
   </Netzteil>
+  <Netzteil Name="SuperFlower Golden Silent Fanless Platinum 430W">
+    <Daten Min="80" Max="400" Quali="65"/>
+	<Data>
+	  <Stecker PCIE68="2" Sata="6" Molex="5" ATX12="1"/>
+	  <Kabel Modular="Semi"/>
+	  <Energy PCIE="34"/>
+	</Data>
+    <Preisvergleiche>
+      <DE>
+        http://geizhals.de/super-flower-golden-silent-fanless-platinum-430w-atx-2-3-sf-430p14fg-a1041556.html
+      </DE>
+      <CH>
+        http://www.toppreise.ch/prod_360071.html
+      </CH>
+      <AT>
+        http://geizhals.at/super-flower-golden-silent-fanless-platinum-430w-atx-2-3-sf-430p14fg-a1041556.html
+      </AT>
+    </Preisvergleiche>
+    <Testberichte/>
+  </Netzteil>   
+  <Netzteil Name="SuperFlower Golden Silent Fanless Platinum 500W">
+    <Daten Min="150" Max="480" Quali="60"/>
+	<Data>
+	  <Stecker PCIE68="2" Sata="6" Molex="5" ATX12="1"/>
+	  <Kabel Modular="Semi"/>
+	  <Energy PCIE="34"/>
+	</Data>
+    <Preisvergleiche>
+      <DE>
+        http://geizhals.de/super-flower-golden-silent-fanless-platinum-500w-atx-2-3-sf-500p14fg-a660059.html
+      </DE>
+      <CH>
+        http://www.toppreise.ch/prod_254332.html
+      </CH>
+      <AT>
+        http://geizhals.at/super-flower-golden-silent-fanless-platinum-500w-atx-2-3-sf-500p14fg-a660059.html
+      </AT>
+    </Preisvergleiche>
+    <Testberichte>
+	  <Test>
+	    http://www.hardwareluxx.de/index.php/artikel/hardware/netzteile/23210-fanless-roundup-2012.html?start=3
+	  </Test>
+    </Testberichte>
+  </Netzteil>  
+  <Netzteil Name="SuperFlower HX 550 Golden Green 550W">
+    <Daten Min="250" Max="490" Quali="60"/>
+	<Data>
+	  <Stecker PCIE68="2" Sata="5" Molex="4" ATX12="1"/>
+	  <Kabel Modular="None"/>
+	  <Energy PCIE="45"/>
+	</Data>
+    <Preisvergleiche>
+      <DE>
+        http://geizhals.de/super-flower-golden-green-hx-550w-atx-2-3-sf-550p14xe-hx-a1039303.html
+      </DE>
+      <CH>
+        http://www.toppreise.ch/prod_254330.html
+      </CH>
+      <AT>
+        http://geizhals.at/super-flower-golden-green-hx-550w-atx-2-3-sf-550p14xe-hx-a1039303.html
+      </AT>
+    </Preisvergleiche>
+    <Testberichte>
+		<Test>
+			http://www.computerbase.de/forum/showthread.php?t=832307
+		</Test>
+    </Testberichte>
+  </Netzteil>  
   <Netzteil Name="SuperFlower HX 450 Golden Green 450W">
-    <Daten Min="200" Max="425" Quali="30"/>
+    <Daten Min="200" Max="425" Quali="65"/>
 	<Data>
 	  <Stecker PCIE68="2" Sata="4" Molex="3" ATX12="1"/>
 	  <Kabel Modular="None"/>
@@ -383,32 +488,8 @@
     </Preisvergleiche>
     <Testberichte/>
   </Netzteil>
-  <Netzteil Name="Be quiet! System Power 7 450W">
-    <Daten Min="-1" Max="350" Quali="30"/>
-	<Data>
-	  <Stecker PCIE68="2" Sata="6" Molex="2" ATX12="1"/>
-	  <Kabel Modular="None"/>
-	  <Energy PCIE="20"/>
-	</Data>
-    <Preisvergleiche>
-      <DE>
-        http://geizhals.de/be-quiet-system-power-7-450w-atx-2-31-bn143-a871343.html
-      </DE>
-      <AT>
-        http://geizhals.at/be-quiet-system-power-7-450w-atx-2-31-bn143-a871343.html
-      </AT>
-      <CH>
-        http://www.toppreise.ch/prod_300065.html
-      </CH>
-    </Preisvergleiche>
-    <Testberichte>
-      <Test>
-        www.computerbase.de/2013-05/be-quiet-system-power-7-450-watt-test/
-      </Test>
-    </Testberichte>
-  </Netzteil>
   <Netzteil Name="SuperFlower HX 350 Golden Green 350W">
-    <Daten Min="100" Max="325" Quali="29"/>
+    <Daten Min="100" Max="325" Quali="68"/>
 	<Data>
 	  <Stecker PCIE68="2" Sata="4" Molex="3" ATX12="1"/>
 	  <Kabel Modular="None"/>
