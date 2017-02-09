@@ -1,4 +1,38 @@
-﻿Intel Core i5 4440:84
+Intel Celeron G3900:65
+Intel Celeron G3900T:35
+Intel Celeron G3920:65
+
+Intel Pentium G4400:65
+Intel Pentium G4400T:35
+Intel Pentium G4500:65
+Intel Pentium G4500T:35
+Intel Pentium G4520:65
+
+Intel Core i3 3210:55
+Intel Core i3 3220:55
+Intel Core i3 3225:55
+Intel Core i3 3250:55
+Intel Core i3 4130:53
+Intel Core i3 4150:54
+Intel Core i3 4160:54
+Intel Core i3 4330:54
+Intel Core i3 4340:54
+Intel Core i3 4360:54
+Intel Core i3 4370:54
+Intel Core i3 6098P:54
+Intel Core i3 6100:65
+Intel Core i3 6100T:35
+Intel Core i3 6300:65
+Intel Core i3 6300T:35
+Intel Core i3 6320:65
+Intel Core i3 7100:51
+Intel Core i3 7100T:35
+Intel Core i3 7300:51
+Intel Core i3 7300T:35
+Intel Core i3 7320:51
+Intel Core i3 7350K:60
+
+Intel Core i5 4440:84
 Intel Core i5 4460:84
 Intel Core i5 4570:84
 Intel Core i5 4590:84
@@ -16,6 +50,20 @@ Intel Core i5 3550:77
 Intel Core i5 3570:70
 Intel Core i5 3570(k):77
 Intel Core i5 4690(k):88
+Intel Core i5 6400:65
+Intel Core i5 6400T:35
+Intel Core i5 6500:65
+Intel Core i5 6500T:35
+Intel Core i5 6600:65
+Intel Core i5 6600T:35
+Intel Core i5 6600K:91
+Intel Core i5 7400:65
+Intel Core i5 7400T:35
+Intel Core i5 7500:65
+Intel Core i5 7500T:35
+Intel Core i5 7600:65
+Intel Core i5 7600T:35
+Intel Core i5 7600K:91
 
 Intel Core i7 860:95
 Intel Core i7 860S:82
@@ -29,12 +77,19 @@ Intel Core i7 3930k:130
 Intel Core i7 3960x:130
 Intel Core i7 3970x:150
 Intel Core i7 4770(k):84
+Intel Core i7 4820K:130
 Intel Core i7 4930(k):190
-Intel Core i7 4960x:190
+Intel Core i7 4960x:130
 Intel Core i7 5820k:140
 Intel Core i7 5930k:140
 Intel Core i7 5960x:140
 Intel Core i7 4790(k):84
+Intel Core i7 6700:65
+Intel Core i7 6700T:35
+Intel Core i7 6700K:91
+Intel Core i7 7700:65
+Intel Core i7 7700T:35
+Intel Core i7 7700K:91
 
 Intel Xeon E3 1220:80
 Intel Xeon E3 1220L:20
@@ -166,14 +221,3 @@ Intel Core 2 Quad Q8400S:65
 Intel Core 2 Quad Q9300:95
 Intel Core 2 Quad Q9500:95
 
-Intel Core i3 3210:55
-Intel Core i3 3220:55
-Intel Core i3 3225:55
-Intel Core i3 3250:55
-Intel Core i3 4130:53
-Intel Core i3 4150:54
-Intel Core i3 4160:54
-Intel Core i3 4330:54
-Intel Core i3 4340:54
-Intel Core i3 4360:54
-Intel Core i3 4370:54
