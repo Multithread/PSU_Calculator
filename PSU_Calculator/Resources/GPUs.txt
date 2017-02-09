@@ -3,6 +3,8 @@ AMD Radeon R7 250:75
 AMD Radeon R7 250x:95
 AMD Radeon R7 260:95
 AMD Radeon R7 260x:115
+AMD Radeon R7 360:100
+AMD Radeon R7 370:110
 AMD Radeon R9 270:150
 AMD Radeon R9 270x:180
 AMD Radeon R9 280:240
@@ -11,17 +13,29 @@ AMD Radeon R9 285:215
 AMD Radeon R9 290:280
 AMD Radeon R9 290x:290
 AMD Radeon R9 295 X2:500
+AMD Radeon R9 380:190
+AMD Radeon R9 390:275
+AMD Radeon R9 390X:275
 
-Nvidia GeForce GTX 750:55
-Nvidia GeForce GTX 750ti:60
-Nvidia GeForce GTX 760:170
-Nvidia GeForce GTX 770:200
-Nvidia GeForce GTX 780:250
-Nvidia GeForce GTX 780ti:250
-Nvidia GeForce GTX Titan:230
-Nvidia GeForce GTX Titan Black:250
-Nvidia GeForce GTX 970:145
-Nvidia GeForce GTX 980:165
+AMD Radeon RX 460:75
+AMD Radeon RX 470:120
+AMD Radeon RX 480:150
+
+NVidia GeForce GTX 750:55
+NVidia GeForce GTX 750ti:60
+NVidia GeForce GTX 760:170
+NVidia GeForce GTX 770:200
+NVidia GeForce GTX 780:250
+NVidia GeForce GTX 780ti:250
+NVidia GeForce GTX Titan:230
+NVidia GeForce GTX Titan Black:250
+NVidia GeForce GTX 970:145
+NVidia GeForce GTX 980:165
+NVidia GeForce GTX 1050:(ti):75
+NVidia GeForce GTX 1060:120
+NVidia GeForce GTX 1070:150
+NVidia GeForce GTX 1080:180
+
 
 AMD Radeon HD 7770 GHz Edition:80
 AMD Radeon HD 7850:130
@@ -31,13 +45,13 @@ AMD Radeon HD 7950:200
 AMD Radeon HD 7970:250
 AMD Radeon HD 7990:375
 
-Nvidia GeForce GTX 650ti:80
-Nvidia GeForce GTX 650:64
-Nvidia GeForce GTX 660:140
-Nvidia GeForce GTX 660ti:170
-Nvidia GeForce GTX 670:170
-Nvidia GeForce GTX 680:195
-Nvidia GeForce GTX 690:417
+NVidia GeForce GTX 650ti:80
+NVidia GeForce GTX 650:64
+NVidia GeForce GTX 660:140
+NVidia GeForce GTX 660ti:170
+NVidia GeForce GTX 670:170
+NVidia GeForce GTX 680:195
+NVidia GeForce GTX 690:417
 
 AMD Radeon HD 6350:20
 AMD Radeon HD 6450:30
@@ -52,18 +66,18 @@ AMD Radeon HD 6950:200
 AMD Radeon HD 6970:200
 AMD Radeon HD 6990:375
 
-Nvidia GeForce GT 510:25
-Nvidia GeForce GT 520:29
-Nvidia GeForce GT 530:50
-Nvidia GeForce GT 545:70
-Nvidia GeForce GTX 550:105
-Nvidia GeForce GTX 555:116
-Nvidia GeForce GTX 560 SE:150
-Nvidia GeForce GTX 560:150
-Nvidia GeForce GTX 560ti:170
-Nvidia GeForce GTX 570:219
-Nvidia GeForce GTX 580:244
-Nvidia GeForce GTX 590:365
+NVidia GeForce GT 510:25
+NVidia GeForce GT 520:29
+NVidia GeForce GT 530:50
+NVidia GeForce GT 545:70
+NVidia GeForce GTX 550:105
+NVidia GeForce GTX 555:116
+NVidia GeForce GTX 560 SE:150
+NVidia GeForce GTX 560:150
+NVidia GeForce GTX 560ti:170
+NVidia GeForce GTX 570:219
+NVidia GeForce GTX 580:244
+NVidia GeForce GTX 590:365
 
 AMD Radeon HD 5450:25
 AMD Radeon HD 5550:29
@@ -76,14 +90,14 @@ AMD Radeon HD 5850:150
 AMD Radeon HD 5870:170
 AMD Radeon HD 5970:219
 
-Nvidia GeForce GT 420:50
-Nvidia GeForce GT 430:49
-Nvidia GeForce GT 440:65
-Nvidia GeForce GTS 450:106
-Nvidia GeForce GTX 460:150
-Nvidia GeForce GTX 465:200
-Nvidia GeForce GTX 470:215
-Nvidia GeForce GTX 480:250
+NVidia GeForce GT 420:50
+NVidia GeForce GT 430:49
+NVidia GeForce GT 440:65
+NVidia GeForce GTS 450:106
+NVidia GeForce GTX 460:150
+NVidia GeForce GTX 465:200
+NVidia GeForce GTX 470:215
+NVidia GeForce GTX 480:250
 
 ATI Radeon 4350:20
 ATI Radeon HD 4770:90
@@ -92,9 +106,9 @@ ATI Radeon HD 4870:220
 ATI Radeon HD 4870 X2:400
 ATI Radeon HD 4890:250
 
-Nvidia GeForce GTS 250:150
-Nvidia GeForce GTX 260:202
-Nvidia GeForce GTX 275:219
-Nvidia GeForce GTX 280:236
-Nvidia GeForce GTX 285:204
-Nvidia GeForce GTX 295:289
+NVidia GeForce GTS 250:150
+NVidia GeForce GTX 260:202
+NVidia GeForce GTX 275:219
+NVidia GeForce GTX 280:236
+NVidia GeForce GTX 285:204
+NVidia GeForce GTX 295:289
